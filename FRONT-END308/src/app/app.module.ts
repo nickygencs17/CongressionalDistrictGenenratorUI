@@ -7,7 +7,8 @@ import { Mapd3Component } from './mapd3/mapd3.component';
 import {HttpClientModule} from '@angular/common/http';
 import { UsMapModule } from 'angular-us-map';
 import { UsMapService } from './us-map.service';
-
+import { routes } from './app.routes';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,8 +18,10 @@ import { UsMapService } from './us-map.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    UsMapModule
-  ],
+    UsMapModule,
+    RouterModule.forRoot(routes, {
+      useHash: false
+    })],
   providers: [UsMapService],
   bootstrap: [AppComponent]
 })

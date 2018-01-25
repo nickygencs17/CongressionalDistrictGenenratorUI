@@ -1,5 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { UsMapService } from '../us-map.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-mapd3',
@@ -9,7 +10,7 @@ import { UsMapService } from '../us-map.service';
 export class Mapd3Component implements OnInit {
 
 
-  constructor(private usMapService: UsMapService) { }
+  constructor(public router: Router, private usMapService: UsMapService) { }
   coordinates: object;
 
   ngOnInit() {
@@ -18,5 +19,7 @@ export class Mapd3Component implements OnInit {
 
   onUsMapClick(state){
     console.log(state);
+    console.log(state.toString());
+    this.router.navigate([state]);
   }
 }
