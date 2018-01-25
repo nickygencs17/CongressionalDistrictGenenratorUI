@@ -1,0 +1,9 @@
+path{
+  fill:none;
+  stroke:black;
+  pointer-events:all;
+}
+path:hover{
+  fill:red;
+  stroke:black;
+}
