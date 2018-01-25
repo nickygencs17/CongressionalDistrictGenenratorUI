@@ -1,9 +1,111 @@
 import { Routes } from '@angular/router';
 import { Mapd3Component } from './mapd3/mapd3.component';
+import { AlComponent } from './al/al.component';
+import { AkComponent } from './ak/ak.component';
+import { AzComponent } from './az/az.component';
+import { ArComponent } from './ar/ar.component';
+import { CaComponent } from './ca/ca.component';
+import { CoComponent } from './co/co.component';
+import { CtComponent } from './ct/ct.component';
+import { DcComponent } from './dc/dc.component';
+import { DeComponent } from './de/de.component';
+import { FlComponent } from './fl/fl.component';
+import { GaComponent } from './ga/ga.component';
+import { HiComponent } from './hi/hi.component';
+import { IdComponent } from './id/id.component';
+import { IlComponent } from './il/il.component';
+import { InComponent } from './in/in.component';
+import { IaComponent } from './ia/ia.component';
+import { KsComponent } from './ks/ks.component';
+import { KyComponent } from './ky/ky.component';
+import { LaComponent } from './la/la.component';
+import { MeComponent } from './me/me.component';
+import { MdComponent } from './md/md.component';
+import { MaComponent } from './ma/ma.component';
+import { MiComponent } from './mi/mi.component';
+import { MnComponent } from './mn/mn.component';
+import { MsComponent } from './ms/ms.component';
+import { MoComponent } from './mo/mo.component';
+import { MtComponent } from './mt/mt.component';
+import { NeComponent } from './ne/ne.component';
+import { NvComponent } from './nv/nv.component';
+import { NhComponent } from './nh/nh.component';
+import { NjComponent } from './nj/nj.component';
+import { NmComponent } from './nm/nm.component';
+import { NyComponent } from './ny/ny.component';
+import { NcComponent } from './nc/nc.component';
+import { NdComponent } from './nd/nd.component';
+import { OhComponent } from './oh/oh.component';
+import { OkComponent } from './ok/ok.component';
+import { OrComponent } from './or/or.component';
+import { PaComponent } from './pa/pa.component';
+import { RiComponent } from './ri/ri.component';
+import { ScComponent } from './sc/sc.component';
+import { SdComponent } from './sd/sd.component';
+import { TnComponent } from './tn/tn.component';
+import { TxComponent } from './tx/tx.component';
+import { UtComponent } from './ut/ut.component';
+import { VtComponent } from './vt/vt.component';
+import { VaComponent } from './va/va.component';
+import { WaComponent } from './wa/wa.component';
+import { WvComponent } from './wv/wv.component';
+import { WiComponent } from './wi/wi.component';
+import { WyComponent } from './wy/wy.component';
 
 export const routes: Routes = [
   { path: '',       component: Mapd3Component },
   { path: 'login',  component: Mapd3Component },
+  { path: 'AL',     component: AlComponent },
+  { path: 'AK',     component: AkComponent },
+  { path: 'AZ',     component: AzComponent },
+  { path: 'AR',     component: ArComponent },
+  { path: 'CA',     component: CaComponent },
+  { path: 'CO',     component: CoComponent },
+  { path: 'CT',     component: CtComponent },
+  { path: 'DC',     component: DcComponent },
+  { path: 'DE',     component: DeComponent },
+  { path: 'FL',     component: FlComponent },
+  { path: 'GA',     component: GaComponent },
+  { path: 'HI',     component: HiComponent },
+  { path: 'ID',     component: IdComponent },
+  { path: 'IL',     component: IlComponent },
+  { path: 'IN',     component: InComponent },
+  { path: 'IA',     component: IaComponent },
+  { path: 'KS',     component: KsComponent },
+  { path: 'KY',     component: KyComponent },
+  { path: 'LA',     component: LaComponent },
+  { path: 'ME',     component: MeComponent },
+  { path: 'MD',     component: MdComponent },
+  { path: 'MA',     component: MaComponent },
+  { path: 'MI',     component: MiComponent },
+  { path: 'MN',     component: MnComponent },
+  { path: 'MS',     component: MsComponent },
+  { path: 'MO',     component: MoComponent },
+  { path: 'MT',     component: MtComponent },
+  { path: 'NE',     component: NeComponent },
+  { path: 'NV',     component: NvComponent },
+  { path: 'NH',     component: NhComponent },
+  { path: 'NJ',     component: NjComponent },
+  { path: 'NM',     component: NmComponent },
+  { path: 'NY',     component: NyComponent },
+  { path: 'NC',     component: NcComponent },
+  { path: 'ND',     component: NdComponent },
+  { path: 'OH',     component: OhComponent },
+  { path: 'OK',     component: OkComponent },
+  { path: 'OR',     component: OrComponent },
+  { path: 'PA',     component: PaComponent },
+  { path: 'RI',     component: RiComponent },
+  { path: 'SC',     component: ScComponent },
+  { path: 'SD',     component: SdComponent },
+  { path: 'TN',     component: TnComponent },
+  { path: 'TX',     component: TxComponent },
+  { path: 'UT',     component: UtComponent },
+  { path: 'VT',     component: VtComponent },
+  { path: 'VA',     component: VaComponent },
+  { path: 'WA',     component: WaComponent },
+  { path: 'WV',     component: WvComponent },
+  { path: 'WI',     component: WiComponent },
+  { path: 'WY',     component: WyComponent },
   { path: '**',     component: Mapd3Component }
 
 
