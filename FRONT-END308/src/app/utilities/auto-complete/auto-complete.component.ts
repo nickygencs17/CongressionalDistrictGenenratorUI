@@ -102,7 +102,7 @@ export class AutoCompleteComponent {
       population: '1.7M',
       flag: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_Idaho.svg',
       abbrv: 'ID'
-    }
+    },
     {
       name: 'Illinois',
       population: '27.47M',
