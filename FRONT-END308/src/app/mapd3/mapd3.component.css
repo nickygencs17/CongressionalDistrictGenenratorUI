@@ -7,3 +7,9 @@ path:hover{
   fill:red;
   stroke:black;
 }
+#autocomplete {
+  display: inline-block;
+}
+svg{
+  width: 50%;
+}
