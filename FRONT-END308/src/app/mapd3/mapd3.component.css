@@ -10,3 +10,6 @@ path:hover{
 #autocomplete {
   display: inline-block;
 }
+svg{
+  width: 50%;
+}
