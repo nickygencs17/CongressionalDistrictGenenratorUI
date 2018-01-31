@@ -105,7 +105,7 @@ export class AutoCompleteComponent {
     },
     {
       name: 'Illinois',
-      population: '27.47M',
+      population: '12.8M',
       flag: 'https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_Illinois.svg',
       abbrv: 'IL'
     }, {
