@@ -1,3 +1,27 @@
-<p>
-  oh works!
-</p>
+
+<br>
+
+
+<app-auto-complete></app-auto-complete>
+<br>
+
+<mat-radio-group>
+  <mat-radio-button value="1">Senate District</mat-radio-button>
+  <mat-radio-button value="2">State Legislation District</mat-radio-button>
+  <mat-radio-button value="3">Congressional District</mat-radio-button>
+</mat-radio-group>
+<br>
+<br>
+<br>
+<div style="height: 600px;"
+     leaflet
+     [leafletOptions]="options"
+     [leafletLayers]="layers">
+</div>
+<br>
+<br>
+<div>
+  <button mat-button>Algo 1</button>
+  <button mat-button>Algo 2</button>
+  <button mat-button>Algo 3</button>
+</div>
