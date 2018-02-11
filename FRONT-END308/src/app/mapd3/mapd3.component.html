@@ -1,11 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600">
- [attr.fill]="fillStateColor" [attr.stroke]="strokeColor" x="361" y="562" width="24" height="18" id="HI_1" (click)="onUsMapClick('HI')"/>
+  [attr.fill]="fillStateColor" [attr.stroke]="strokeColor" x="361" y="562" width="24" height="18" id="HI_1" (click)="onUsMapClick('HI')"/>
   <g>
     <path
       *ngFor="let coordinate of coordinates;let i = index"
       [attr.id]="coordinate.id"
       [attr.d]="coordinate.d"
       (click)="onUsMapClick(coordinate.id)"
+      [matTooltip]="coordinate.id"
     >
     </path>
     <g id="DC">
@@ -16,5 +17,5 @@
 </svg>
 <br>
 <div id="autocomplete">
-<app-auto-complete></app-auto-complete>
+  <app-auto-complete></app-auto-complete>
 </div>
