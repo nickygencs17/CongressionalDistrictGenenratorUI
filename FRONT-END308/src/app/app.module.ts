@@ -64,7 +64,10 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AutoCompleteComponent } from './utilities/auto-complete/auto-complete.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatTooltipModule} from '@angular/material';
+import {
+  MatButtonModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatToolbar, MatToolbarModule,
+  MatTooltipModule
+} from '@angular/material';
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 
 @NgModule({
@@ -125,6 +128,7 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
     AutoCompleteComponent
   ],
   imports: [
+    MatToolbarModule,
     MatButtonModule,
     MatRadioModule,
     MatTooltipModule,
