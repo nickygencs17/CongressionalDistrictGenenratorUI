@@ -20,7 +20,7 @@ export class StateComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.state_service.state_id);
-    this.http.get('new.json')
+    this.http.get('http://localhost:4200/assets/data/pa.geojson')
       .subscribe((data) => {
           this.geo_json_data = data;
           console.log(this.geo_json_data);
