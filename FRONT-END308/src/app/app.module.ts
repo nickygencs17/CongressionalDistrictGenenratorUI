@@ -33,7 +33,7 @@ import {StateService} from "./state.service";
     MatButtonModule,
     MatRadioModule,
     MatTooltipModule,
-    LeafletModule.forRoot(),
+    LeafletModule,
     BrowserModule,
     FormsModule,
     MatFormFieldModule,
