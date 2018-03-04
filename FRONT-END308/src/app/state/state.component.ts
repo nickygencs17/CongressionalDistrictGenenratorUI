@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'leaflet-providers';
-import { Layer, tileLayer, geoJSON, LayerOptions } from 'leaflet';
+import {Layer, tileLayer, geoJSON, LayerOptions, latLng} from 'leaflet';
 @Component({
   selector: 'app-state',
   templateUrl: './state.component.html',
@@ -16,8 +16,11 @@ export class StateComponent implements OnInit {
 
   layers: Layer[];
   layersControl: any;
-  center = [59.9386300, 30.3141300];
-  fitBounds = [[60.2448369, 29.6998985], [59.6337832, 30.254172]];
+  options = {
+    zoom: 6,
+    center: latLng(41.2033, -74.2179)
+  };
+
 
   constructor(private http: HttpClient) { }
 
