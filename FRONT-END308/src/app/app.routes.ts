@@ -5,7 +5,7 @@ import { StateComponent } from "./state/state.component";
 export const routes: Routes = [
   { path: '',       component: Mapd3Component },
   { path: 'login',  component: Mapd3Component },
-  { path: 'state',  component: StateComponent },
+  { path: 'state/:id',  component: StateComponent },
   { path: '**',     component: Mapd3Component }
 
 

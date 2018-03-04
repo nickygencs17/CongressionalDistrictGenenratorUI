@@ -16,7 +16,7 @@
       *ngFor="let coordinate of coordinates;let i = index"
       [attr.id]="coordinate.id"
       [attr.d]="coordinate.d"
-      (click)="onUsMapClick(coordinate.id)"
+      [routerLink]= "['/state', coordinate.id]"
       [matTooltip]="coordinate.id"
     >
     </path>
