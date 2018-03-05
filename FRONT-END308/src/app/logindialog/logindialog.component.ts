@@ -16,10 +16,13 @@ export class LogindialogComponent {
 
   login(){
     console.log("login");
+    //TODO: rest login then send to current component
   }
 
   openCreateDialog() {
     console.log("CREATEUSER");
+    //TODO: create user modal I want to use the folowing
+    //https://material.angular.io/components/stepper/overview
   }
 
 
