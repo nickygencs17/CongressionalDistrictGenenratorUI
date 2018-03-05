@@ -3,7 +3,9 @@ import {HttpClient} from "@angular/common/http";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'leaflet-providers';
-import {Layer, tileLayer, geoJSON, LayerOptions, latLng} from 'leaflet';
+import {Layer, tileLayer, geoJSON,latLng} from 'leaflet';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-state',
   templateUrl: './state.component.html',
@@ -11,7 +13,12 @@ import {Layer, tileLayer, geoJSON, LayerOptions, latLng} from 'leaflet';
 })
 export class StateComponent implements OnInit {
 
-  public geo_json_data;
+
+  id: string;
+
+  goBack(): void {
+    this.location.back();
+  }
 
 
   layers: Layer[];
@@ -22,10 +29,13 @@ export class StateComponent implements OnInit {
   };
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private route: ActivatedRoute,
+              private location: Location) { }
 
   ngOnInit() {
-    this.http.get<any>('/assets/data/pa.geojson')
+    this.id = this.route.snapshot.params['id'];
+    this.http.get<any>('/assets/data/' + this.id.toLowerCase() + '.geojson')
       .subscribe(geo1 => {
         {
           let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
