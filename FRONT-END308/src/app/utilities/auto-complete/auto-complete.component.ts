@@ -5,7 +5,8 @@ import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
 import {Router} from "@angular/router";
-import {forEach} from "@angular/router/src/utils/collection";
+
+import { Location } from '@angular/common';
 
 export class State {
   constructor(public name: string, public population: string, public flag: string, public abbrv: string) { }
@@ -324,7 +325,8 @@ export class AutoCompleteComponent {
   filterStates(name: string) {
     for(let i=0; i<this.states.length; i++){
       if(this.states[i].name===name){
-        this.router.navigate([this.states[i].abbrv.toUpperCase()]);
+        this.router.navigate(['/state/'+this.states[i].abbrv.toUpperCase()]);
+        location.reload();
       }
     }
 

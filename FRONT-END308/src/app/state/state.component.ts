@@ -3,10 +3,9 @@ import {HttpClient} from "@angular/common/http";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'leaflet-providers';
-import {Layer, tileLayer, geoJSON, LayerOptions, latLng} from 'leaflet';
-import { Params, ActivatedRoute } from '@angular/router';
+import {Layer, tileLayer, geoJSON,latLng} from 'leaflet';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import {isLowerCase} from "tslint/lib/utils";
 @Component({
   selector: 'app-state',
   templateUrl: './state.component.html',
@@ -14,7 +13,7 @@ import {isLowerCase} from "tslint/lib/utils";
 })
 export class StateComponent implements OnInit {
 
-  public geo_json_data;
+
   id: string;
 
   goBack(): void {
