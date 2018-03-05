@@ -20,14 +20,22 @@ import {
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import { StateComponent } from './state/state.component';
 import {StateService} from "./state.service";
+import { NavbarComponent } from './navbar/navbar.component';
+import { CreateuserdialogComponent } from './createuserdialog/createuserdialog.component';
+import { LogindialogComponent } from './logindialog/logindialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     Mapd3Component,
     AutoCompleteComponent,
-    StateComponent
+    StateComponent,
+    NavbarComponent,
+    CreateuserdialogComponent,
+    LogindialogComponent
   ],
+  entryComponents: [LogindialogComponent],
   imports: [
     MatToolbarModule,
     MatButtonModule,
@@ -40,6 +48,7 @@ import {StateService} from "./state.service";
     MatInputModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatDialogModule,
     UsMapModule,
     MatAutocompleteModule,
     MatFormFieldModule,
