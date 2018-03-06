@@ -10,6 +10,7 @@
       [attr.id]="coordinate.id"
       [attr.d]="coordinate.d"
       [routerLink]= "['/state', coordinate.id]"
+      (click)="onUsMapClick(coordinate.id)"
       [matTooltip]="coordinate.id"
     >
     </path>

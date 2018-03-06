@@ -1,14 +1,15 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {FormControl} from '@angular/forms';
 
 import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
-import {Router} from "@angular/router";
+import {Router} from "@angular/router"
+import {StateService} from "../../state.service";
+import {HttpClient} from "@angular/common/http";
 
-import { Location } from '@angular/common';
 
-export class State {
+export class State  {
   constructor(public name: string, public population: string, public flag: string, public abbrv: string) { }
 }
 @Component({
@@ -16,7 +17,7 @@ export class State {
   templateUrl: './auto-complete.component.html',
   styleUrls: ['./auto-complete.component.css']
 })
-export class AutoCompleteComponent {
+export class AutoCompleteComponent implements OnDestroy{
 
   stateCtrl: FormControl;
   filteredStates: Observable<any[]>;
@@ -313,7 +314,9 @@ export class AutoCompleteComponent {
     }
   ];
 
-  constructor(public router: Router) {
+  public stateId;
+
+  constructor(public router: Router, public state_service:StateService, private http: HttpClient) {
     this.stateCtrl = new FormControl();
     this.filteredStates = this.stateCtrl.valueChanges
       .pipe(
@@ -322,13 +325,28 @@ export class AutoCompleteComponent {
       );
   }
 
+  ngOnDestroy() {
+
+
+  }
+
+
   filterStates(name: string) {
     for(let i=0; i<this.states.length; i++){
       if(this.states[i].name===name){
+        this.state_service.state_id = this.stateId;
+        this.http.get<any>('http://www.datasciencetoolkit.org/maps/api/geocode/json?sensor=false&address=' + this.stateId.toUpperCase()+',US')
+          .subscribe(data => {
+            this.state_service.lat = data.results["0"].geometry.location.lat;
+            this.state_service.lng = data.results["0"].geometry.location.lng;
+          });
+
         this.router.navigate(['/state/'+this.states[i].abbrv.toUpperCase()]);
         location.reload();
       }
     }
+
+
 
     return this.states.filter(state =>
       state.name.toLowerCase().indexOf(name.toLowerCase()) === 0);

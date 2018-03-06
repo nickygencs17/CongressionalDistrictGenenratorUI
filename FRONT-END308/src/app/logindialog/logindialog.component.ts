@@ -21,7 +21,7 @@ export class LogindialogComponent {
 
   openCreateDialog() {
     console.log("CREATEUSER");
-    //TODO: create user modal I want to use the folowing
+    //TODO: create user modal
     //https://material.angular.io/components/stepper/overview
   }
 
