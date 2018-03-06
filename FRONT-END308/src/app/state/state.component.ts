@@ -40,9 +40,9 @@ export class StateComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.options);
+     console.log("here");
+    console.log(this.state_service);
 
-    console.log(this.state_service.state_id);
     this.id = this.route.snapshot.params['id'];
     this.http.get<any>('/assets/data/USA/' + this.id.toUpperCase() + '.geojson')
       .subscribe(geo1 => {

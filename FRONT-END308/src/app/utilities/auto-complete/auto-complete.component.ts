@@ -334,13 +334,6 @@ export class AutoCompleteComponent implements OnDestroy{
   filterStates(name: string) {
     for(let i=0; i<this.states.length; i++){
       if(this.states[i].name===name){
-        this.state_service.state_id = this.stateId;
-        this.http.get<any>('http://www.datasciencetoolkit.org/maps/api/geocode/json?sensor=false&address=' + this.stateId.toUpperCase()+',US')
-          .subscribe(data => {
-            this.state_service.lat = data.results["0"].geometry.location.lat;
-            this.state_service.lng = data.results["0"].geometry.location.lng;
-          });
-
         this.router.navigate(['/state/'+this.states[i].abbrv.toUpperCase()]);
         location.reload();
       }
