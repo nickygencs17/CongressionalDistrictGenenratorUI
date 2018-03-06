@@ -28,8 +28,8 @@ export class StateComponent implements OnInit {
   layers: Layer[];
   layersControl: any;
    options = {
-     zoom: 6,
-     center: latLng(41.2033, -77.1945)
+     zoom: 4,
+     center: latLng(37.0902, -95.7129)
     }
 
 
