@@ -55,20 +55,6 @@ export class StateComponent implements OnInit {
       })
 
 
-    // // this.id = this.route.snapshot.params['id'];
-    // // console.log(this.id);
-    // // this.http.get<any>('http://www.datasciencetoolkit.org/maps/api/geocode/json?sensor=false&address=' + this.id +',US')
-    // //   .subscribe(data => {
-    // //     console.log(data);
-    //     this.lat = data.results["0"].geometry.location.lat;
-    //     this.lng = data.results["0"].geometry.location.lng;
-    //     this.center = [this.lat, this.lng];
-    //     this.fitBounds = [[data.results["0"].geometry.viewport.northeast.lat, data.results["0"].geometry.viewport.northeast.lng],
-    //       [data.results["0"].geometry.viewport.southwest.lat, data.results["0"].geometry.viewport.southwest.lng]];
-    //     this.allDataFetched = true;
-    // //
-    // //   });
-
 
 
 
