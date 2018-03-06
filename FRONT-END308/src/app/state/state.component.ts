@@ -15,35 +15,44 @@ import { StateService} from "../state.service";
 })
 export class StateComponent implements OnInit {
 
-
+  allDataFetched = false;
   id: string;
 
   goBack(): void {
     this.location.back();
   }
-  lat = this.state_service.lat;
-  lng = this.state_service.lng;
+  lat = 0;
+  lng = 0;
 
 
   layers: Layer[];
   layersControl: any;
-   options = {
-     zoom: 4,
-     center: latLng(37.0902, -95.7129)
-    }
-
+  center: any;
+  fitBounds: any;
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
-              private location: Location,
-              public state_service:StateService) { }
+              private location: Location) { }
 
 
   ngOnInit() {
-     console.log("here");
-    console.log(this.state_service);
-
     this.id = this.route.snapshot.params['id'];
+    console.log(this.id);
+    this.http.get<any>('http://www.datasciencetoolkit.org/maps/api/geocode/json?sensor=false&address=' + this.id +',US')
+      .subscribe(data => {
+        console.log(data);
+        this.lat = data.results["0"].geometry.location.lat;
+        this.lng = data.results["0"].geometry.location.lng;
+        this.center = [this.lat, this.lng];
+        this.fitBounds = [[data.results["0"].geometry.viewport.northeast.lat, data.results["0"].geometry.viewport.northeast.lng],
+          [data.results["0"].geometry.viewport.southwest.lat, data.results["0"].geometry.viewport.southwest.lng];
+        this.allDataFetched = true;
+
+      });
+
+
+
+
     this.http.get<any>('/assets/data/USA/' + this.id.toUpperCase() + '.geojson')
       .subscribe(geo1 => {
         {

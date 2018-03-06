@@ -13,10 +13,13 @@
 <br>
 <br>
 <br>
+<div *ngIf="allDataFetched">
 <div leaflet style="height: 600px"
      [leafletLayers]="layers"
      [leafletLayersControl]="layersControl"
-     [leafletOptions]="options"></div>
+     [leafletCenter]="center"
+     [leafletFitBounds]="fitBounds"></div>
+</div>
 <br>
 <br>
 <div>

@@ -10,7 +10,7 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: './mapd3.component.html',
   styleUrls: ['./mapd3.component.css']
 })
-export class Mapd3Component implements OnInit, OnDestroy {
+export class Mapd3Component implements OnInit{
 
   public stateId;
   public lat;
@@ -26,19 +26,6 @@ export class Mapd3Component implements OnInit, OnDestroy {
   onUsMapClick(state){
     console.log(state);
     this.stateId=state;
-
-  }
-
-  ngOnDestroy(): void {
-    console.log(this.stateId);
-    this.http.get<any>('http://www.datasciencetoolkit.org/maps/api/geocode/json?sensor=false&address=' + this.stateId +',US')
-      .subscribe(data => {
-        console.log(data);
-        this.state_service.lat = data.results["0"].geometry.location.lat;
-        this.state_service.lng = data.results["0"].geometry.location.lng;
-        console.log(this.state_service.lat);
-        console.log(this.state_service.lng);
-      });
 
   }
 

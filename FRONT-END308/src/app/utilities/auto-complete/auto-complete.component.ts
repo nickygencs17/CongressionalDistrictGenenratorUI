@@ -17,7 +17,7 @@ export class State  {
   templateUrl: './auto-complete.component.html',
   styleUrls: ['./auto-complete.component.css']
 })
-export class AutoCompleteComponent implements OnDestroy{
+export class AutoCompleteComponent {
 
   stateCtrl: FormControl;
   filteredStates: Observable<any[]>;
@@ -323,11 +323,6 @@ export class AutoCompleteComponent implements OnDestroy{
         startWith(''),
         map(state => state ? this.filterStates(state) : this.states.slice())
       );
-  }
-
-  ngOnDestroy() {
-
-
   }
 
 
