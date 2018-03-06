@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {LogindialogComponent} from "../logindialog/logindialog.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,7 @@ export class NavbarComponent{
   name: string;
   password: string;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public router: Router) {}
 
   openDialog(): void {
     let dialogRef = this.dialog.open(LogindialogComponent, {
@@ -29,4 +30,7 @@ export class NavbarComponent{
     });
   }
 
+  goHome() {
+    this.router.navigate(['']);
+  }
 }

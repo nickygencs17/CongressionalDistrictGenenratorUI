@@ -16,7 +16,7 @@ export class Mapd3Component implements OnInit{
   public lat;
   public lng;
 
-  constructor(public router: Router, private usMapService: UsMapService, private state_service: StateService, private http: HttpClient) { }
+  constructor(private usMapService: UsMapService, private state_service: StateService, private http: HttpClient) { }
   coordinates: object;
 
   ngOnInit() {
