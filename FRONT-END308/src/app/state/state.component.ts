@@ -45,7 +45,7 @@ export class StateComponent implements OnInit {
         this.lng = data.results["0"].geometry.location.lng;
         this.center = [this.lat, this.lng];
         this.fitBounds = [[data.results["0"].geometry.viewport.northeast.lat, data.results["0"].geometry.viewport.northeast.lng],
-          [data.results["0"].geometry.viewport.southwest.lat, data.results["0"].geometry.viewport.southwest.lng];
+          [data.results["0"].geometry.viewport.southwest.lat, data.results["0"].geometry.viewport.southwest.lng]];
         this.allDataFetched = true;
 
       });
