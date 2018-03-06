@@ -9,8 +9,8 @@ import {LogindialogComponent} from "../logindialog/logindialog.component";
 })
 export class NavbarComponent{
 
-  animal: string;
   name: string;
+  password: string;
 
   constructor(public dialog: MatDialog) {}
 
@@ -18,12 +18,14 @@ export class NavbarComponent{
     let dialogRef = this.dialog.open(LogindialogComponent, {
       height: '400px',
       width: '600px',
-      data: { name: this.name, animal: this.animal }
+      data: { name: this.name, password: this.password}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+      console.log(result);
+      this.name = result;
+      //TODO: LOG IN
+
     });
   }
 

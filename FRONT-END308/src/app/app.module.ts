@@ -21,7 +21,6 @@ import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import { StateComponent } from './state/state.component';
 import {StateService} from "./state.service";
 import { NavbarComponent } from './navbar/navbar.component';
-import { CreateuserdialogComponent } from './createuserdialog/createuserdialog.component';
 import { LogindialogComponent } from './logindialog/logindialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 
@@ -32,7 +31,6 @@ import {MatDialogModule} from '@angular/material/dialog';
     AutoCompleteComponent,
     StateComponent,
     NavbarComponent,
-    CreateuserdialogComponent,
     LogindialogComponent
   ],
   entryComponents: [LogindialogComponent],

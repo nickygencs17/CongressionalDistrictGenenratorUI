@@ -1,18 +1,27 @@
 <h2 mat-dialog-title>Create Account</h2>
+<div mat-dialog-content>
 
-<ul>
-  <li>
-    <mat-form-field>
-      <input matInput placeholder="Name">
-    </mat-form-field>
-  </li>
-  <li>
-    <mat-form-field>
-      <input matInput placeholder="Password" type="password">
-    </mat-form-field>
-  </li>
-  <li>
-    <button mat-raised-button (click)="login()">Login</button>
-    <button mat-raised-button (click)="openCreateDialog()">Create Account</button>
-  </li>
-</ul>
+
+
+
+
+  <ul>
+    <li>
+      <mat-form-field>
+        <input matInput placeholder="Name" [(ngModel)]="data.name">
+      </mat-form-field>
+    </li>
+    <li>
+      <mat-form-field>
+        <input matInput placeholder="Password" type="password" [(ngModel)]="data.password">
+      </mat-form-field>
+    </li>
+
+  </ul>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="createAccount()">Create Account</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

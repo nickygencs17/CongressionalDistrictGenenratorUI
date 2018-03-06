@@ -12,22 +12,12 @@ export class LogindialogComponent {
     public dialogRef: MatDialogRef<LogindialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-
-
-  login(){
-    console.log("login");
-    //TODO: rest login then send to current component
-  }
-
-  openCreateDialog() {
-    console.log("CREATEUSER");
-    //TODO: create user modal
-    //https://material.angular.io/components/stepper/overview
-  }
-
-
   onNoClick(): void {
     this.dialogRef.close();
+  }
+  createAccount(){
+    console.log("CREATE ACCOUNT");
+    //TODO: Create Account
   }
 
 }
