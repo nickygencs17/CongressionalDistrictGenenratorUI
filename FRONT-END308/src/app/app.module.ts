@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { Mapd3Component } from './mapd3/mapd3.component';
-import {HttpClientModule} from '@angular/common/http';
 import { UsMapModule } from 'angular-us-map';
 import { UsMapService } from './us-map.service';
 import { routes } from './app.routes';
@@ -23,6 +22,8 @@ import {StateService} from "./state.service";
 import { NavbarComponent } from './navbar/navbar.component';
 import { LogindialogComponent } from './logindialog/logindialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { StateIdService } from './state-id.service';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatInputModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HttpClientJsonpModule,
     MatDialogModule,
     UsMapModule,
     MatAutocompleteModule,
@@ -54,7 +56,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     RouterModule.forRoot(routes, {
       useHash: true
     })],
-  providers: [UsMapService, StateService],
+  providers: [UsMapService, StateService,StateIdService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

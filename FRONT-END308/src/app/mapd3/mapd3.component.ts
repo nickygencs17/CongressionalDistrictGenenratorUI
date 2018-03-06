@@ -1,9 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { UsMapService } from '../us-map.service';
-import { Router } from "@angular/router";
-import { StateService } from "../state.service";
-import {latLng} from "leaflet";
-import {HttpClient} from "@angular/common/http";
+
 
 @Component({
   selector: 'app-mapd3',
@@ -16,7 +13,7 @@ export class Mapd3Component implements OnInit{
   public lat;
   public lng;
 
-  constructor(private usMapService: UsMapService, private state_service: StateService, private http: HttpClient) { }
+  constructor(private usMapService: UsMapService) { }
   coordinates: object;
 
   ngOnInit() {
