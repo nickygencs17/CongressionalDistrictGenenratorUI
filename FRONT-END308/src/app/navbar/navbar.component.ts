@@ -16,6 +16,7 @@ export class NavbarComponent{
   res: any;
   nav_bar_name = "Login";
   logged_in = false;
+  hostname = 'localhost:8080';
 
   constructor(public dialog: MatDialog, public router: Router, private http: HttpClient) {}
 
@@ -27,10 +28,10 @@ export class NavbarComponent{
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      this.name = result.name;
-      this.password = result.password;
-      this.login();
+        this.name = result.name;
+        this.password = result.password;
+        this.login();
+
     });
   }
 
@@ -41,17 +42,14 @@ export class NavbarComponent{
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
     headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    //event.preventDefault();
-    let body = JSON.stringify({ username, password });
-    this.http.get('http://localhost:8080/login', { headers: headers})
+
+    this.http.get('http://'+ this.hostname + '/login', { headers: headers})
       .subscribe((data) => {
-        console.log(data)
         this.res = data;
         if (this.res.entity.roles["0"]=='ROLE_USER'){
           this.logged_in=true;
           this.nav_bar_name=this.name;
         }
-
       },
         error => {
           console.log(error);

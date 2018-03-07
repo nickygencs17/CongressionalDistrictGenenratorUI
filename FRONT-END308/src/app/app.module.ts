@@ -14,7 +14,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatToolbar, MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule, MatSelectModule
 } from '@angular/material';
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import { StateComponent } from './state/state.component';
@@ -24,6 +24,8 @@ import { LogindialogComponent } from './logindialog/logindialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { StateIdService } from './state-id.service';
+import { CreateuserComponent } from './createuser/createuser.component';
+
 
 @NgModule({
   declarations: [
@@ -32,10 +34,12 @@ import { StateIdService } from './state-id.service';
     AutoCompleteComponent,
     StateComponent,
     NavbarComponent,
-    LogindialogComponent
+    LogindialogComponent,
+    CreateuserComponent
   ],
   entryComponents: [LogindialogComponent],
   imports: [
+    MatSelectModule,
     MatToolbarModule,
     MatButtonModule,
     MatRadioModule,
