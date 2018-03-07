@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-createuser',
@@ -9,24 +10,35 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 })
 export class CreateuserComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router:Router) { }
 
   ngOnInit() {
   }
 
   hostname = 'localhost:8080';
+  uname: any;
+  pass: any;
+  resJson: any;
+
 
   createNewAccount(){
-
     let body = {
-      username: this.user_name,
-      password: this.password_one
+      username: this.uname,
+      password: this.pass
     }
-    console.log(body);
-
-    this.http.post('http://'+this.hostname+'/login', body)
+    this.http.post('http://'+this.hostname+'/storage/user', body)
       .subscribe((data) => {
-          console.log(data);
+          this.resJson = data;
+          console.log(this.resJson.status);
+          if(this.resJson.status==201){
+              alert('CREATED');
+              this.router.navigate(['']);
+          }
+          else if (this.resJson.status==409){
+            alert('user exsits')
+            this.router.navigate(['']);
+          }
+
         },
         error => {
           alert('Username/Password Bad');
