@@ -25,6 +25,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { StateIdService } from './state-id.service';
 import { CreateuserComponent } from './createuser/createuser.component';
+import {UserService} from "./user.service";
 
 
 @NgModule({
@@ -60,7 +61,7 @@ import { CreateuserComponent } from './createuser/createuser.component';
     RouterModule.forRoot(routes, {
       useHash: true
     })],
-  providers: [UsMapService, StateService,StateIdService],
+  providers: [UsMapService, StateService,StateIdService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,15 +1,24 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {LogindialogComponent} from "../logindialog/logindialog.component";
 import {Router} from "@angular/router";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent{
+export class NavbarComponent implements OnInit{
+  ngOnInit(): void {
+    if(this.userService.loggedin==true) {
+
+      this.nav_bar_name = this.userService.user_name;
+      this.logged_in=true;
+    }
+
+  }
 
   name: string;
   password: string;
@@ -18,7 +27,7 @@ export class NavbarComponent{
   logged_in = false;
   hostname = 'localhost:8080';
 
-  constructor(public dialog: MatDialog, public router: Router, private http: HttpClient) {}
+  constructor(public dialog: MatDialog, public router: Router, private http: HttpClient, private userService:UserService) {}
 
   openDialog(): void {
     let dialogRef = this.dialog.open(LogindialogComponent, {
@@ -49,6 +58,8 @@ export class NavbarComponent{
         if (this.res.entity.roles["0"]=='ROLE_USER'){
           this.logged_in=true;
           this.nav_bar_name=this.name;
+          this.userService.user_name = this.name;
+          this.userService.loggedin=true;
         }
       },
         error => {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-createuser',
@@ -10,7 +11,7 @@ import {Router} from "@angular/router";
 })
 export class CreateuserComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router:Router) { }
+  constructor(private http: HttpClient, private router:Router, public user_service:UserService) { }
 
   ngOnInit() {
   }
@@ -32,6 +33,8 @@ export class CreateuserComponent implements OnInit {
           console.log(this.resJson.status);
           if(this.resJson.status==201){
               alert('CREATED');
+              this.user_service.loggedin =true;
+              this.user_service.user_name =this.uname;
               this.router.navigate(['']);
           }
           else if (this.resJson.status==409){
