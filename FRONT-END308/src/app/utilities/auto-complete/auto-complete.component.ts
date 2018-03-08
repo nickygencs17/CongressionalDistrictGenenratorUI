@@ -1,14 +1,15 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {FormControl} from '@angular/forms';
 
 import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
-import {Router} from "@angular/router";
+import {Router} from "@angular/router"
+import {StateService} from "../../state.service";
+import {HttpClient} from "@angular/common/http";
 
-import { Location } from '@angular/common';
 
-export class State {
+export class State  {
   constructor(public name: string, public population: string, public flag: string, public abbrv: string) { }
 }
 @Component({
@@ -313,7 +314,9 @@ export class AutoCompleteComponent {
     }
   ];
 
-  constructor(public router: Router) {
+  public stateId;
+
+  constructor(public router: Router, public state_service:StateService, private http: HttpClient) {
     this.stateCtrl = new FormControl();
     this.filteredStates = this.stateCtrl.valueChanges
       .pipe(
@@ -322,6 +325,7 @@ export class AutoCompleteComponent {
       );
   }
 
+
   filterStates(name: string) {
     for(let i=0; i<this.states.length; i++){
       if(this.states[i].name===name){
@@ -329,6 +333,8 @@ export class AutoCompleteComponent {
         location.reload();
       }
     }
+
+
 
     return this.states.filter(state =>
       state.name.toLowerCase().indexOf(name.toLowerCase()) === 0);

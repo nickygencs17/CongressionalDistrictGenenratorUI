@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { Mapd3Component } from './mapd3/mapd3.component';
-import {HttpClientModule} from '@angular/common/http';
 import { UsMapModule } from 'angular-us-map';
 import { UsMapService } from './us-map.service';
 import { routes } from './app.routes';
@@ -15,20 +14,33 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatToolbar, MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule, MatSelectModule
 } from '@angular/material';
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import { StateComponent } from './state/state.component';
 import {StateService} from "./state.service";
+import { NavbarComponent } from './navbar/navbar.component';
+import { LogindialogComponent } from './logindialog/logindialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { StateIdService } from './state-id.service';
+import { CreateuserComponent } from './createuser/createuser.component';
+import {UserService} from "./user.service";
+
 
 @NgModule({
   declarations: [
     AppComponent,
     Mapd3Component,
     AutoCompleteComponent,
-    StateComponent
+    StateComponent,
+    NavbarComponent,
+    LogindialogComponent,
+    CreateuserComponent
   ],
+  entryComponents: [LogindialogComponent],
   imports: [
+    MatSelectModule,
     MatToolbarModule,
     MatButtonModule,
     MatRadioModule,
@@ -40,6 +52,8 @@ import {StateService} from "./state.service";
     MatInputModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HttpClientJsonpModule,
+    MatDialogModule,
     UsMapModule,
     MatAutocompleteModule,
     MatFormFieldModule,
@@ -47,7 +61,7 @@ import {StateService} from "./state.service";
     RouterModule.forRoot(routes, {
       useHash: true
     })],
-  providers: [UsMapService, StateService],
+  providers: [UsMapService, StateService,StateIdService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,12 +1,5 @@
 
-<mat-toolbar color="primary">
-  <span>Eagles</span>
-
-  <!-- This fills the remaining space of the current row -->
-  <span class="example-fill-remaining-space"></span>
-
-  <span>Your Name Here</span>
-</mat-toolbar>
+<app-navbar></app-navbar>
 
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600">
@@ -17,6 +10,7 @@
       [attr.id]="coordinate.id"
       [attr.d]="coordinate.d"
       [routerLink]= "['/state', coordinate.id]"
+      (click)="onUsMapClick(coordinate.id)"
       [matTooltip]="coordinate.id"
     >
     </path>

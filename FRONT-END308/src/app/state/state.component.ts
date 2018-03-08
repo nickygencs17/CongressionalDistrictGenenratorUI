@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -6,6 +6,9 @@ import 'leaflet-providers';
 import {Layer, tileLayer, geoJSON,latLng} from 'leaflet';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { StateService} from "../state.service";
+import {StateIdService} from "../state-id.service";
+
 @Component({
   selector: 'app-state',
   templateUrl: './state.component.html',
@@ -13,31 +16,52 @@ import { Location } from '@angular/common';
 })
 export class StateComponent implements OnInit {
 
-
+  allDataFetched = false;
   id: string;
 
   goBack(): void {
     this.location.back();
   }
+  lat = 0;
+  lng = 0;
 
 
   layers: Layer[];
   layersControl: any;
-  options = {
-    zoom: 6,
-    center: latLng(41.2033, -74.2179)
-  };
-
+  center: any;
+  fitBounds: any;
+  data: any;
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
-              private location: Location) { }
+              private location: Location,
+              private state_service:StateService,
+              private state_id_service:StateIdService) { }
+
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    this.http.get<any>('/assets/data/' + this.id.toLowerCase() + '.geojson')
+    this.state_id_service.state_id=this.id;
+    this.state_service.getData()
+      .subscribe(response => {
+        this.data=response;
+        this.lat = this.data.results["0"].geometry.location.lat;
+        this.lng = this.data.results["0"].geometry.location.lng;
+        this.center = [this.lat, this.lng];
+        this.fitBounds = [[this.data.results["0"].geometry.viewport.northeast.lat, this.data.results["0"].geometry.viewport.northeast.lng],
+          [this.data.results["0"].geometry.viewport.southwest.lat, this.data.results["0"].geometry.viewport.southwest.lng]];
+        this.allDataFetched = true;
+
+      })
+
+
+
+
+
+    this.http.get<any>('/assets/data/USA/' + this.id.toUpperCase() + '.geojson')
       .subscribe(geo1 => {
         {
+
           let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
           let defaultOverlay = geoJSON(geo1);
           this.layers = [
