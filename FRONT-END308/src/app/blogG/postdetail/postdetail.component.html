@@ -1,0 +1,39 @@
+<div class="container"
+     fxLayout="row"
+     fxLayout.sm="column"
+     fxLayout.xs="column"
+     fxLayoutGap="10px"
+     fxLayoutGap.xs="0">
+
+  <div fxFlex = "40" *ngIf = "post">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h3>{{ post.title | uppercase }}</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <img md-card-image src = "{{ post.image }}" alt = "{{ post.title }}">
+      <mat-card-content>
+        <p> {{ post.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button md-button (click)="goBack()">BACK</button>
+        <button md-button> LIKE </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div fxFlex = "40" *ngIf = "post">
+    <div>
+      <h1> Comments </h1>
+      <mat-list>
+        <mat-list-item *ngFor= "let eachpost of post.comments">
+          <h3 md-line>{{eachpost.comment}}</h3>
+          <p md-line>{{eachpost.rating}} Stars</p>
+          <p md-line>{{eachpost.author}} {{eachpost.date | date}}</p>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+
+</div>
