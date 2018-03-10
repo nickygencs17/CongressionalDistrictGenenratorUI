@@ -24,14 +24,13 @@
   </div>
 
   <div fxFlex = "40" *ngIf = "post">
-    <div>
-      <h1> Comments </h1>
+    <h1> Comments </h1>
+    <div class = "leftalign">
       <mat-list>
         <mat-card *ngFor= "let eachcomment of post.comments">
-          <mat-card-header>
-            <h3>{{ eachcomment.author }}</h3>
-          </mat-card-header>
+
           <mat-card-content>
+            <h3>{{ eachcomment.author }}</h3>
             <p mat-line>{{ eachcomment.comment }}</p>
             <p mat-line>{{eachcomment.date | date}}</p>
           </mat-card-content>
