@@ -14,5 +14,8 @@ export class PostService {
   getPost(id: number): Post {
     return POSTS.filter((post) => (post.id === id))[0];
   }
+  addPost(post: Post): void {
+    POSTS.push(post);
+  }
 
 }

@@ -30,6 +30,7 @@ import { PostComponent } from './blogG/post/post.component';
 import { PostService } from './services/post.service';
 
 import 'hammerjs';
+import { AddpostComponent } from './blogG/addpost/addpost.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import 'hammerjs';
     AutoCompleteComponent,
     StateComponent,
     PostdetailComponent,
-    PostComponent
+    PostComponent,
+    AddpostComponent
   ],
   imports: [
     MatToolbarModule,

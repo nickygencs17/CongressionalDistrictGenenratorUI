@@ -1,0 +1,98 @@
+ <div class="mat-padding" layout-xs="column" layout="row" layout-align="center center">
+    <div flex-xs flex-gt-xs="40" layout="column" layout-align="center center">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            <h3>Create a new blog post</h3>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-form-field>
+            <input matInput placeholder="Title" [(ngModel)]="post.title">
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-content>
+          <mat-form-field>
+            <textarea matInput placeholder="Image URL" [(ngModel)]="post.image"></textarea>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-content>
+          <mat-form-field>
+            <textarea matInput placeholder="Description" [(ngModel)]="post.description"></textarea>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-content>
+          <mat-form-field>
+            <textarea matInput placeholder="Author"></textarea>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="basic" (click)="goBack()">Back</button>
+          <button mat-button color="primary" (click)="addpost()">Post</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+ </div>
+
+
+
+<!--<div ng-controller="AppCtrl as ctrl" class="md-padding selectdemoBasicUsage" ng-cloak="" ng-app="MyApp">-->
+  <!--<md-content class="md-padding" layout-xs="column" layout="row" layout-align="center center">-->
+    <!--<div flex-xs flex-gt-xs="40" layout="column" layout-align="center center">-->
+      <!--<md-card class="card-40-center">-->
+        <!--<md-card-title>-->
+          <!--<md-card-title-text>-->
+            <!--<span class="md-headline">Sign Up</span>-->
+          <!--</md-card-title-text>-->
+        <!--</md-card-title>-->
+        <!--<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="signup_form">-->
+          <!--<div class="md-padding" layout-align="center">-->
+            <!--<div layout="row">-->
+              <!--<md-input-container flex="100">-->
+                <!--<label>First name</label>-->
+                <!--<input>-->
+              <!--</md-input-container>-->
+              <!--<md-input-container flex="100">-->
+                <!--<label>Last name</label>-->
+                <!--<input>-->
+              <!--</md-input-container>-->
+            <!--</div>-->
+            <!--<div layout="row">-->
+              <!--<md-input-container flex="100">-->
+                <!--<label>Username</label>-->
+                <!--<input>-->
+              <!--</md-input-container>-->
+              <!--<md-input-container flex="100">-->
+                <!--<label>Email</label>-->
+                <!--<input type="email">-->
+              <!--</md-input-container>-->
+            <!--</div>-->
+            <!--<div layout="row">-->
+              <!--<md-input-container flex="100">-->
+                <!--<label>Password</label>-->
+                <!--<input type="password">-->
+              <!--</md-input-container>-->
+              <!--<md-input-container flex="100">-->
+                <!--<label>Repeat Password</label>-->
+                <!--<input type="password">-->
+              <!--</md-input-container>-->
+            <!--</div>-->
+
+
+            <!--<md-card-actions layout="row" layout-align="center">-->
+              <!--<br>-->
+              <!--<center>-->
+                <!--<md-button class="md-primary md-raised signup_button" type="submit">Sign Up</md-button>-->
+
+              <!--</center>-->
+        <!--</form>-->
+        <!--</md-card-actions>-->
+        <!--<md-card-content>-->
+
+        <!--</md-card-content>-->
+
+      <!--</md-card>-->
+    <!--</div>-->
+  <!--</md-content>-->
+<!--</div>-->

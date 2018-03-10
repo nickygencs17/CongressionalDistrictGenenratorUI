@@ -12,28 +12,23 @@ export const POSTS: Post[] = [
     comments: [
       {
         comment: "Not fair!",
-        author: "John Lemon",
+        author: "Rama Potturi",
         date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Paul McVites",
-        date: "2014-09-05T17:57:28.556094Z"
+        comment: "Against Democracy",
+        author: "Nick Genco",
+        date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Michael Jaikishan",
-        date: "2015-02-13T17:57:28.556094Z"
+        comment: "Courts should look into this",
+        author: "Ethan Kelly",
+        date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Ringo Starry",
-        date: "2013-12-02T17:57:28.556094Z"
-      },
-      {
-        comment: "Not fair!",
-        author: "25 Cent",
-        date: "2011-12-02T17:57:28.556094Z"
+        comment: "Jai nagar is better than this!",
+        author: "Rahul Agasthya",
+        date: "2012-10-16T17:57:28.556094Z"
       }
     ]
   },
@@ -48,28 +43,23 @@ export const POSTS: Post[] = [
     comments: [
       {
         comment: "Not fair!",
-        author: "John Lemon",
+        author: "Rama Potturi",
         date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Paul McVites",
-        date: "2014-09-05T17:57:28.556094Z"
+        comment: "Against Democracy",
+        author: "Nick Genco",
+        date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Michael Jaikishan",
-        date: "2015-02-13T17:57:28.556094Z"
+        comment: "Courts should look into this",
+        author: "Ethan Kelly",
+        date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Ringo Starry",
-        date: "2013-12-02T17:57:28.556094Z"
-      },
-      {
-        comment: "Not fair!",
-        author: "25 Cent",
-        date: "2011-12-02T17:57:28.556094Z"
+        comment: "Jai nagar is better than this!",
+        author: "Rahul Agasthya",
+        date: "2012-10-16T17:57:28.556094Z"
       }
     ]
   },
@@ -84,28 +74,23 @@ export const POSTS: Post[] = [
     comments: [
       {
         comment: "Not fair!",
-        author: "John Lemon",
+        author: "Rama Potturi",
         date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Paul McVites",
-        date: "2014-09-05T17:57:28.556094Z"
+        comment: "Against Democracy",
+        author: "Nick Genco",
+        date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Michael Jaikishan",
-        date: "2015-02-13T17:57:28.556094Z"
+        comment: "Courts should look into this",
+        author: "Ethan Kelly",
+        date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Ringo Starry",
-        date: "2013-12-02T17:57:28.556094Z"
-      },
-      {
-        comment: "Not fair!",
-        author: "25 Cent",
-        date: "2011-12-02T17:57:28.556094Z"
+        comment: "Jai nagar is better than this!",
+        author: "Rahul Agasthya",
+        date: "2012-10-16T17:57:28.556094Z"
       }
     ]
   },
@@ -120,28 +105,23 @@ export const POSTS: Post[] = [
     comments: [
       {
         comment: "Not fair!",
-        author: "John Lemon",
+        author: "Rama Potturi",
         date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Paul McVites",
-        date: "2014-09-05T17:57:28.556094Z"
+        comment: "Against Democracy",
+        author: "Nick Genco",
+        date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Michael Jaikishan",
-        date: "2015-02-13T17:57:28.556094Z"
+        comment: "Courts should look into this",
+        author: "Ethan Kelly",
+        date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Ringo Starry",
-        date: "2013-12-02T17:57:28.556094Z"
-      },
-      {
-        comment: "Not fair!",
-        author: "25 Cent",
-        date: "2011-12-02T17:57:28.556094Z"
+        comment: "Jai nagar is better than this!",
+        author: "Rahul Agasthya",
+        date: "2012-10-16T17:57:28.556094Z"
       }
     ]
   },
@@ -156,28 +136,23 @@ export const POSTS: Post[] = [
     comments: [
       {
         comment: "Not fair!",
-        author: "John Lemon",
+        author: "Rama Potturi",
         date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Paul McVites",
-        date: "2014-09-05T17:57:28.556094Z"
+        comment: "Against Democracy",
+        author: "Nick Genco",
+        date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Michael Jaikishan",
-        date: "2015-02-13T17:57:28.556094Z"
+        comment: "Courts should look into this",
+        author: "Ethan Kelly",
+        date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Ringo Starry",
-        date: "2013-12-02T17:57:28.556094Z"
-      },
-      {
-        comment: "Not fair!",
-        author: "25 Cent",
-        date: "2011-12-02T17:57:28.556094Z"
+        comment: "Jai nagar is better than this!",
+        author: "Rahul Agasthya",
+        date: "2012-10-16T17:57:28.556094Z"
       }
     ]
   },
@@ -192,28 +167,23 @@ export const POSTS: Post[] = [
     comments: [
       {
         comment: "Not fair!",
-        author: "John Lemon",
+        author: "Rama Potturi",
         date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Paul McVites",
-        date: "2014-09-05T17:57:28.556094Z"
+        comment: "Against Democracy",
+        author: "Nick Genco",
+        date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Michael Jaikishan",
-        date: "2015-02-13T17:57:28.556094Z"
+        comment: "Courts should look into this",
+        author: "Ethan Kelly",
+        date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Ringo Starry",
-        date: "2013-12-02T17:57:28.556094Z"
-      },
-      {
-        comment: "Not fair!",
-        author: "25 Cent",
-        date: "2011-12-02T17:57:28.556094Z"
+        comment: "Jai nagar is better than this!",
+        author: "Rahul Agasthya",
+        date: "2012-10-16T17:57:28.556094Z"
       }
     ]
   },
@@ -228,28 +198,23 @@ export const POSTS: Post[] = [
     comments: [
       {
         comment: "Not fair!",
-        author: "John Lemon",
+        author: "Rama Potturi",
         date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Paul McVites",
-        date: "2014-09-05T17:57:28.556094Z"
+        comment: "Against Democracy",
+        author: "Nick Genco",
+        date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Michael Jaikishan",
-        date: "2015-02-13T17:57:28.556094Z"
+        comment: "Courts should look into this",
+        author: "Ethan Kelly",
+        date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Ringo Starry",
-        date: "2013-12-02T17:57:28.556094Z"
-      },
-      {
-        comment: "Not fair!",
-        author: "25 Cent",
-        date: "2011-12-02T17:57:28.556094Z"
+        comment: "Jai nagar is better than this!",
+        author: "Rahul Agasthya",
+        date: "2012-10-16T17:57:28.556094Z"
       }
     ]
   },
@@ -264,28 +229,23 @@ export const POSTS: Post[] = [
     comments: [
       {
         comment: "Not fair!",
-        author: "John Lemon",
+        author: "Rama Potturi",
         date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Paul McVites",
-        date: "2014-09-05T17:57:28.556094Z"
+        comment: "Against Democracy",
+        author: "Nick Genco",
+        date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Michael Jaikishan",
-        date: "2015-02-13T17:57:28.556094Z"
+        comment: "Courts should look into this",
+        author: "Ethan Kelly",
+        date: "2012-10-16T17:57:28.556094Z"
       },
       {
-        comment: "Not fair!",
-        author: "Ringo Starry",
-        date: "2013-12-02T17:57:28.556094Z"
-      },
-      {
-        comment: "Not fair!",
-        author: "25 Cent",
-        date: "2011-12-02T17:57:28.556094Z"
+        comment: "Jai nagar is better than this!",
+        author: "Rahul Agasthya",
+        date: "2012-10-16T17:57:28.556094Z"
       }
     ]
   }
