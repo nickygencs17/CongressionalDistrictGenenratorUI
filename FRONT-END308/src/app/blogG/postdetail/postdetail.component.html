@@ -1,3 +1,4 @@
+
 <div class="container"
      fxLayout="column"
      fxLayout.sm="column"
@@ -12,7 +13,9 @@
           <h3>{{ post.title | uppercase }}</h3>
         </mat-card-title>
       </mat-card-header>
-      <img md-card-image src = "{{ post.image }}" alt = "{{ post.title }}">
+      <div>
+        <img md-card-image src = "{{ post.image }}" alt = "{{ post.title }}">
+      </div>
       <mat-card-content>
         <p> {{ post.description }}</p>
       </mat-card-content>
