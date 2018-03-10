@@ -27,10 +27,10 @@
     <div>
       <h1> Comments </h1>
       <mat-list>
-        <mat-list-item *ngFor= "let eachpost of post.comments">
-          <h3 md-line>{{eachpost.comment}}</h3>
-          <p md-line>{{eachpost.rating}} Stars</p>
-          <p md-line>{{eachpost.author}} {{eachpost.date | date}}</p>
+        <mat-list-item *ngFor= "let eachcomment of post.comments">
+          <h3 md-line>{{ eachcomment.comment }}</h3>
+          <p md-line>{{ eachcomment.rating }} Stars</p>
+          <p md-line>{{eachcomment.author}} {{eachcomment.date | date}}</p>
         </mat-list-item>
       </mat-list>
     </div>

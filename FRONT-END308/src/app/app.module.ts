@@ -6,6 +6,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { Mapd3Component } from './mapd3/mapd3.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -48,6 +49,7 @@ import 'hammerjs';
     BrowserModule,
     FormsModule,
     MatFormFieldModule,
+    FlexLayoutModule,
     MatInputModule,
     ReactiveFormsModule,
     HttpClientModule,
