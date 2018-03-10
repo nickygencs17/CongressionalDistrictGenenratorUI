@@ -1,5 +1,5 @@
 <div class="container"
-     fxLayout="row"
+     fxLayout="column"
      fxLayout.sm="column"
      fxLayout.xs="column"
      fxLayoutGap="10px"
@@ -27,11 +27,15 @@
     <div>
       <h1> Comments </h1>
       <mat-list>
-        <mat-list-item *ngFor= "let eachcomment of post.comments">
-          <h3 md-line>{{ eachcomment.comment }}</h3>
-          <p md-line>{{ eachcomment.rating }} Stars</p>
-          <p md-line>{{eachcomment.author}} {{eachcomment.date | date}}</p>
-        </mat-list-item>
+        <mat-card *ngFor= "let eachcomment of post.comments">
+          <mat-card-header>
+            <h3>{{ eachcomment.author }}</h3>
+          </mat-card-header>
+          <mat-card-content>
+            <p mat-line>{{ eachcomment.comment }}</p>
+            <p mat-line>{{eachcomment.date | date}}</p>
+          </mat-card-content>
+        </mat-card>
       </mat-list>
     </div>
   </div>
