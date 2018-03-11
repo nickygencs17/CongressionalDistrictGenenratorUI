@@ -1,0 +1,9 @@
+
+
+.container img {
+  max-height: 100%;
+  max-width: 60%;
+}
+.leftalign{
+  text-align: left;
+}

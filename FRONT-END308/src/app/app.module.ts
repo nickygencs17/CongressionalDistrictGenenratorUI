@@ -1,7 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+import {MatGridListModule} from '@angular/material/grid-list';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { Mapd3Component } from './mapd3/mapd3.component';
 import { UsMapModule } from 'angular-us-map';
@@ -11,21 +16,23 @@ import { RouterModule } from '@angular/router';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AutoCompleteComponent } from './utilities/auto-complete/auto-complete.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatToolbar, MatToolbarModule,
-  MatTooltipModule, MatSelectModule
+  MatButtonModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatToolbar, MatToolbarModule, MatSelectModule,
+  MatTooltipModule, MatDialogModule
 } from '@angular/material';
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import { StateComponent } from './state/state.component';
 import {StateService} from "./state.service";
-import { NavbarComponent } from './navbar/navbar.component';
-import { LogindialogComponent } from './logindialog/logindialog.component';
-import {MatDialogModule} from '@angular/material/dialog';
-import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
-import { StateIdService } from './state-id.service';
-import { CreateuserComponent } from './createuser/createuser.component';
+import {NavbarComponent} from "./navbar/navbar.component";
+import {LogindialogComponent} from "./logindialog/logindialog.component";
+import {CreateuserComponent} from "./createuser/createuser.component";
+import {PostdetailComponent} from "./blogG/postdetail/postdetail.component";
+import {AddpostComponent} from "./blogG/addpost/addpost.component";
+import {PostComponent} from "./blogG/post/post.component";
+import {HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
+import {StateIdService} from "./state-id.service";
 import {UserService} from "./user.service";
+import {PostService} from "./services/post.service";
 
 
 @NgModule({
@@ -36,7 +43,10 @@ import {UserService} from "./user.service";
     StateComponent,
     NavbarComponent,
     LogindialogComponent,
-    CreateuserComponent
+    CreateuserComponent,
+    PostdetailComponent,
+    PostComponent,
+    AddpostComponent
   ],
   entryComponents: [LogindialogComponent],
   imports: [
@@ -49,6 +59,7 @@ import {UserService} from "./user.service";
     BrowserModule,
     FormsModule,
     MatFormFieldModule,
+    FlexLayoutModule,
     MatInputModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -58,10 +69,14 @@ import {UserService} from "./user.service";
     MatAutocompleteModule,
     MatFormFieldModule,
     BrowserAnimationsModule,
+    MatListModule,
+    MatCardModule,
+    MatGridListModule,
     RouterModule.forRoot(routes, {
       useHash: true
     })],
-  providers: [UsMapService, StateService,StateIdService, UserService],
+
+  providers: [UsMapService, StateService,StateIdService, UserService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
