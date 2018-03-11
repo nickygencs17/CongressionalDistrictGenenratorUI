@@ -6,6 +6,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
 
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { Mapd3Component } from './mapd3/mapd3.component';
@@ -72,6 +74,7 @@ import {PostService} from "./services/post.service";
     MatListModule,
     MatCardModule,
     MatGridListModule,
+    AngularFontAwesomeModule,
     RouterModule.forRoot(routes, {
       useHash: true
     })],

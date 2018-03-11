@@ -3,3 +3,8 @@
      Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
 }
+
+.nav-bar {
+  margin-left: 1%;
+  margin-right: 1%;
+}

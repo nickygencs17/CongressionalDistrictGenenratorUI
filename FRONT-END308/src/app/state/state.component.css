@@ -1,6 +1,11 @@
 
 #autocomplete {
   margin: auto;
-  width: 50%;
+  width: 10%;
   padding: 10px;
+}
+
+.map {
+  width: 50%;
+  text-align: left;
 }
