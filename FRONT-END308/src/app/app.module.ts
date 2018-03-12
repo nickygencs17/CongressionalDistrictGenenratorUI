@@ -35,6 +35,7 @@ import {HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
 import {StateIdService} from "./state-id.service";
 import {UserService} from "./user.service";
 import {PostService} from "./services/post.service";
+import { WhitepageComponent } from './utilities/whitepage/whitepage.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import {PostService} from "./services/post.service";
     CreateuserComponent,
     PostdetailComponent,
     PostComponent,
-    AddpostComponent
+    AddpostComponent,
+    WhitepageComponent
   ],
   entryComponents: [LogindialogComponent],
   imports: [
