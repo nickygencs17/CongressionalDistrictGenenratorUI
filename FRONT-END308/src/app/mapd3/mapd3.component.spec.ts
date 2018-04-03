@@ -1,3 +1,4 @@
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Mapd3Component } from './mapd3.component';
@@ -10,7 +11,7 @@ describe('Mapd3Component', () => {
     TestBed.configureTestingModule({
       declarations: [ Mapd3Component ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,35 +1,22 @@
-
-
-
-<!--<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600">-->
-  <!--[attr.fill]="fillStateColor" [attr.stroke]="strokeColor" x="361" y="562" width="24" height="18" id="HI_1" (click)="onUsMapClick('HI')"/>-->
-  <!--<g>-->
-    <!--<path-->
-      <!--*ngFor="let coordinate of coordinates;let i = index"-->
-      <!--[attr.id]="coordinate.id"-->
-      <!--[attr.d]="coordinate.d"-->
-      <!--[routerLink]= "['/state', coordinate.id]"-->
-      <!--(click)="onUsMapClick(coordinate.id)"-->
-      <!--[matTooltip]="coordinate.id"-->
-    <!--&gt;-->
-    <!--</path>-->
-    <!--<g id="DC">-->
-      <!--<path id="DC1" fill="#D3D3D3" d="M801.8,253.8 l-1.1-1.6 -1-0.8 1.1-1.6 2.2,1.5z"/>-->
-      <!--<circle id="DC2" fill="#D3D3D3" stroke="#FFFFFF" stroke-width="1.5" cx="801.3" cy="251.8" r="5" opacity="0"/> &lt;!&ndash; Set opacity to "0" to hide DC circle &ndash;&gt;-->
-    <!--</g>-->
-  <!--</g>-->
-<!--</svg>-->
-<!--<br>-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600">
+  [attr.fill]="fillStateColor" [attr.stroke]="strokeColor" x="361" y="562" width="24" height="18" id="HI_1" (click)="onUsMapClick('HI')"/>
+  <g>
+    <path
+      *ngFor="let coordinate of coordinates;let i = index"
+      [attr.id]="coordinate.id"
+      [attr.d]="coordinate.d"
+      [routerLink]= "['/state', coordinate.id]"
+      (click)="onUsMapClick(coordinate.id)"
+      [matTooltip]="coordinate.id"
+    >
+    </path>
+    <g id="DC">
+      <path id="DC1" fill="#D3D3D3" d="M801.8,253.8 l-1.1-1.6 -1-0.8 1.1-1.6 2.2,1.5z"/>
+      <circle id="DC2" fill="#D3D3D3" stroke="#FFFFFF" stroke-width="1.5" cx="801.3" cy="251.8" r="5" opacity="0"/> <!-- Set opacity to "0" to hide DC circle -->
+    </g>
+  </g>
+</svg>
+<br>
 <div id="autocomplete">
   <app-auto-complete></app-auto-complete>
 </div>
-
-<div *ngIf="allDataFetched" class = "map">
-  <div leaflet style="height: 600px"
-       [leafletLayers]="layers"
-       [leafletLayersControl]="layersControl"
-       [leafletCenter]="center"
-       [leafletFitBounds]="fitBounds"></div>
-</div>
-<br>
-<br>

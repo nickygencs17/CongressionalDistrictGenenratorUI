@@ -3,7 +3,7 @@ import {MatDialog} from '@angular/material';
 import {LogindialogComponent} from "../logindialog/logindialog.component";
 import {Router} from "@angular/router";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {UserService} from "../user.service";
+import {UserService} from "../../user.service";
 
 @Component({
   selector: 'app-navbar',

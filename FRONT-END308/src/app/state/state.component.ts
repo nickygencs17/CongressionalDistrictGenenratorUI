@@ -38,6 +38,8 @@ export class StateComponent implements OnInit {
 
 
   ngOnInit() {
+
+
     this.id = this.route.snapshot.params['id'];
     this.state_id_service.state_id=this.id;
     this.state_service.getData()
