@@ -19,9 +19,6 @@ export class StateComponent implements OnInit {
   allDataFetched = false;
   id: string;
 
-  goBack(): void {
-    this.location.back();
-  }
   lat = 0;
   lng = 0;
 
