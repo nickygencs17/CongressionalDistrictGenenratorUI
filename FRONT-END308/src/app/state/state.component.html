@@ -4,10 +4,10 @@
 <br>
 
 <mat-radio-group>
-  <mat-radio-button value="4" (click)="displayStateBoundaries()">State</mat-radio-button>
-  <mat-radio-button value="1" (click)="displaySenateBoundaries()">Senate District</mat-radio-button>
-  <mat-radio-button value="2" (click)="displayAssemblyBoundaries()">State Legislation District</mat-radio-button>
-  <mat-radio-button value="3" (click)="displayCongressionalBoundaries()">Congressional District</mat-radio-button>
+  <mat-radio-button value="4" (click)="displayBoundaries('state')">State</mat-radio-button>
+  <mat-radio-button value="1" (click)="displayBoundaries('senate')">Senate District</mat-radio-button>
+  <mat-radio-button value="2" (click)="displayBoundaries('assembly')">State Legislation District</mat-radio-button>
+  <mat-radio-button value="3" (click)="displayBoundaries('congress')">Congressional District</mat-radio-button>
 </mat-radio-group>
 <br>
 <br>

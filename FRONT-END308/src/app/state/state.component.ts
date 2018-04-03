@@ -31,6 +31,7 @@ export class StateComponent implements OnInit {
   center: any;
   fitBounds: any;
   data: any;
+  layerData: any;
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
@@ -53,13 +54,44 @@ export class StateComponent implements OnInit {
         this.allDataFetched = true;
 
       });
-    this.displayStateBoundaries();
+    this.displayBoundaries('state');
   }
-  displayStateBoundaries(): void {
-    this.http.get<any>('/assets/data/USA/' + this.id.toUpperCase() + '.geojson')
+
+
+  displayBoundaries(type): void {
+
+    let url = '';
+    if(type === 'state'){
+      url = '/assets/data/USA/' + this.id.toUpperCase() + '.geojson';
+    }
+    if(type === 'senate'){
+      url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_UPPER.geojson';
+    }
+    if(type == 'assembly'){
+      url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_LOWER.geojson'
+    }
+    if(type == 'congress'){
+      url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_COMBINED_CONGRESS.geojson';
+    }
+
+
+    this.http.get<any>(url)
       .subscribe(geo1 => {
         let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
-        let defaultOverlay = geoJSON(geo1);
+        let defaultOverlay = geoJSON(geo1, {
+          onEachFeature: function (feature, layer) {
+            console.log(layer);
+
+            this.layerData = layer
+            layer.bindPopup('<h1></h1><p>name: '+this.layerData.feature.properties.district+'</p>');
+            layer.on('mouseover', function (e) {
+              this.openPopup();
+            });
+            layer.on('mouseout', function (e) {
+              this.closePopup();
+            });
+          }
+        });
         this.layers = [
           defaultBaseLayer,
           defaultOverlay
@@ -76,72 +108,5 @@ export class StateComponent implements OnInit {
 
       });
   }
-
-  displaySenateBoundaries(): void {
-    this.http.get<any>('/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_UPPER.geojson')
-    .subscribe(geo1 => {
-      let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
-      let defaultOverlay = geoJSON(geo1);
-      this.layers = [
-        defaultBaseLayer,
-        defaultOverlay
-      ];
-      this.layersControl = {
-        baseLayers: {
-          'OpenStreetMap Mapnik': defaultBaseLayer,
-          'OpenStreetMap BlackAndWhite': tileLayer.provider('OpenStreetMap.BlackAndWhite')
-        },
-        overlays: {
-          'Overlay One': defaultOverlay
-        }
-      };
-
-    });
-  }
-
-  displayCongressionalBoundaries(): void {
-    this.http.get<any>('/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_COMBINED_CONGRESS.geojson')
-      .subscribe(geo1 => {
-        let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
-        let defaultOverlay = geoJSON(geo1);
-        this.layers = [
-          defaultBaseLayer,
-          defaultOverlay
-        ];
-        this.layersControl = {
-          baseLayers: {
-            'OpenStreetMap Mapnik': defaultBaseLayer,
-            'OpenStreetMap BlackAndWhite': tileLayer.provider('OpenStreetMap.BlackAndWhite')
-          },
-          overlays: {
-            'Overlay One': defaultOverlay
-          }
-        };
-
-      });
-  }
-
-  displayAssemblyBoundaries(): void {
-    this.http.get<any>('/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_LOWER.geojson')
-      .subscribe(geo1 => {
-        let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
-        let defaultOverlay = geoJSON(geo1);
-        this.layers = [
-          defaultBaseLayer,
-          defaultOverlay
-        ];
-        this.layersControl = {
-          baseLayers: {
-            'OpenStreetMap Mapnik': defaultBaseLayer,
-            'OpenStreetMap BlackAndWhite': tileLayer.provider('OpenStreetMap.BlackAndWhite')
-          },
-          overlays: {
-            'Overlay One': defaultOverlay
-          }
-        };
-
-      });
-  }
-
 
 }
