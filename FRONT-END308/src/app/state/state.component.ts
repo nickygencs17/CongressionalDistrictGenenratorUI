@@ -52,32 +52,93 @@ export class StateComponent implements OnInit {
           [this.data.results["0"].geometry.viewport.southwest.lat, this.data.results["0"].geometry.viewport.southwest.lng]];
         this.allDataFetched = true;
 
-      })
-
-
-
-
-
+      });
+    this.displayStateBoundaries();
+  }
+  displayStateBoundaries(): void {
     this.http.get<any>('/assets/data/USA/' + this.id.toUpperCase() + '.geojson')
       .subscribe(geo1 => {
-        {
+        let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
+        let defaultOverlay = geoJSON(geo1);
+        this.layers = [
+          defaultBaseLayer,
+          defaultOverlay
+        ];
+        this.layersControl = {
+          baseLayers: {
+            'OpenStreetMap Mapnik': defaultBaseLayer,
+            'OpenStreetMap BlackAndWhite': tileLayer.provider('OpenStreetMap.BlackAndWhite')
+          },
+          overlays: {
+            'Overlay One': defaultOverlay
+          }
+        };
 
-          let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
-          let defaultOverlay = geoJSON(geo1);
-          this.layers = [
-            defaultBaseLayer,
-            defaultOverlay
-          ];
-          this.layersControl = {
-            baseLayers: {
-              'OpenStreetMap Mapnik': defaultBaseLayer,
-              'OpenStreetMap BlackAndWhite': tileLayer.provider('OpenStreetMap.BlackAndWhite')
-            },
-            overlays: {
-              'Overlay One': defaultOverlay
-            }
-          };
+      });
+  }
+
+  displaySenateBoundaries(): void {
+    this.http.get<any>('/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_UPPER.geojson')
+    .subscribe(geo1 => {
+      let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
+      let defaultOverlay = geoJSON(geo1);
+      this.layers = [
+        defaultBaseLayer,
+        defaultOverlay
+      ];
+      this.layersControl = {
+        baseLayers: {
+          'OpenStreetMap Mapnik': defaultBaseLayer,
+          'OpenStreetMap BlackAndWhite': tileLayer.provider('OpenStreetMap.BlackAndWhite')
+        },
+        overlays: {
+          'Overlay One': defaultOverlay
         }
+      };
+
+    });
+  }
+
+  displayCongressionalBoundaries(): void {
+    this.http.get<any>('/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_COMBINED_CONGRESS.geojson')
+      .subscribe(geo1 => {
+        let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
+        let defaultOverlay = geoJSON(geo1);
+        this.layers = [
+          defaultBaseLayer,
+          defaultOverlay
+        ];
+        this.layersControl = {
+          baseLayers: {
+            'OpenStreetMap Mapnik': defaultBaseLayer,
+            'OpenStreetMap BlackAndWhite': tileLayer.provider('OpenStreetMap.BlackAndWhite')
+          },
+          overlays: {
+            'Overlay One': defaultOverlay
+          }
+        };
+
+      });
+  }
+
+  displayAssemblyBoundaries(): void {
+    this.http.get<any>('/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_LOWER.geojson')
+      .subscribe(geo1 => {
+        let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
+        let defaultOverlay = geoJSON(geo1);
+        this.layers = [
+          defaultBaseLayer,
+          defaultOverlay
+        ];
+        this.layersControl = {
+          baseLayers: {
+            'OpenStreetMap Mapnik': defaultBaseLayer,
+            'OpenStreetMap BlackAndWhite': tileLayer.provider('OpenStreetMap.BlackAndWhite')
+          },
+          overlays: {
+            'Overlay One': defaultOverlay
+          }
+        };
 
       });
   }
