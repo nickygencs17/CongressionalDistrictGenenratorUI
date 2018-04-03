@@ -4,9 +4,10 @@
 <br>
 
 <mat-radio-group>
-  <mat-radio-button value="1">Senate District</mat-radio-button>
-  <mat-radio-button value="2">State Legislation District</mat-radio-button>
-  <mat-radio-button value="3">Congressional District</mat-radio-button>
+  <mat-radio-button value="4" (click)="displayBoundaries('state')">State</mat-radio-button>
+  <mat-radio-button value="1" (click)="displayBoundaries('senate')">Senate District</mat-radio-button>
+  <mat-radio-button value="2" (click)="displayBoundaries('assembly')">State Legislation District</mat-radio-button>
+  <mat-radio-button value="3" (click)="displayBoundaries('congress')">Congressional District</mat-radio-button>
 </mat-radio-group>
 <br>
 <br>
@@ -21,7 +22,5 @@
 <br>
 <br>
 <div>
-  <button mat-button>Algo 1</button>
-  <button mat-button>Algo 2</button>
-  <button mat-button>Algo 3</button>
+  <button mat-button>Run Redistrict Algorithim</button>
 </div>

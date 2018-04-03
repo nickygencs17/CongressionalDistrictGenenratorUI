@@ -25,8 +25,8 @@ import {
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import { StateComponent } from './state/state.component';
 import {StateService} from "./state.service";
-import {NavbarComponent} from "./navbar/navbar.component";
-import {LogindialogComponent} from "./logindialog/logindialog.component";
+import {NavbarComponent} from "./utilities/navbar/navbar.component";
+import {LogindialogComponent} from "./utilities/logindialog/logindialog.component";
 import {CreateuserComponent} from "./createuser/createuser.component";
 import {PostdetailComponent} from "./blogG/postdetail/postdetail.component";
 import {AddpostComponent} from "./blogG/addpost/addpost.component";

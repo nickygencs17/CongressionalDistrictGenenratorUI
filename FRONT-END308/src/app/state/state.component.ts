@@ -19,9 +19,6 @@ export class StateComponent implements OnInit {
   allDataFetched = false;
   id: string;
 
-  goBack(): void {
-    this.location.back();
-  }
   lat = 0;
   lng = 0;
 
@@ -31,6 +28,7 @@ export class StateComponent implements OnInit {
   center: any;
   fitBounds: any;
   data: any;
+  layerData: any;
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
@@ -40,6 +38,8 @@ export class StateComponent implements OnInit {
 
 
   ngOnInit() {
+
+
     this.id = this.route.snapshot.params['id'];
     this.state_id_service.state_id=this.id;
     this.state_service.getData()
@@ -52,35 +52,93 @@ export class StateComponent implements OnInit {
           [this.data.results["0"].geometry.viewport.southwest.lat, this.data.results["0"].geometry.viewport.southwest.lng]];
         this.allDataFetched = true;
 
-      })
+      });
+    this.displayBoundaries('state');
+  }
 
 
 
+  displayBoundaries(type): void {
+
+    let url = '';
+    if(type === 'state'){
+      url = '/assets/data/USA/' + this.id.toUpperCase() + '.geojson';
+    }
+    if(type === 'senate'){
+      url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_UPPER.geojson';
+    }
+    if(type == 'assembly'){
+      url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_LOWER.geojson'
+    }
+    if(type == 'congress'){
+      url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_COMBINED_CONGRESS.geojson';
+
+    }
 
 
-    this.http.get<any>('/assets/data/USA/' + this.id.toUpperCase() + '.geojson')
+    this.http.get<any>(url)
       .subscribe(geo1 => {
-        {
+        let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
+        let defaultOverlay = geoJSON(geo1, {
+          onEachFeature: function (feature, layer) {
 
-          let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
-          let defaultOverlay = geoJSON(geo1);
-          this.layers = [
-            defaultBaseLayer,
-            defaultOverlay
-          ];
-          this.layersControl = {
-            baseLayers: {
-              'OpenStreetMap Mapnik': defaultBaseLayer,
-              'OpenStreetMap BlackAndWhite': tileLayer.provider('OpenStreetMap.BlackAndWhite')
-            },
-            overlays: {
-              'Overlay One': defaultOverlay
+            this.layerData = layer
+            let color = '';
+            let val = Math.floor(Math.random() * 100) + 1;
+            //TODO: change random color
+            if(val%2==0){
+              color = "#FF0000";
             }
-          };
-        }
+            else {
+              color = "#0000FF"
+            }
+
+            this.layerData.options.color = color;
+
+            console.log(layer);
+
+            let popupContent = '';
+            if(type === 'state'){
+              //console.log(layer)
+              popupContent = '<h1>name: '+this.layerData.feature.properties.name+'</h1>';
+            }
+            if(type === 'senate'){
+              popupContent = '<h1>name: '+this.layerData.feature.properties.NAME+'</h1>';
+              //console.log(layer);
+            }
+            if(type == 'assembly'){
+              popupContent = '<h1>name: '+this.layerData.feature.properties.NAME+'</h1>';
+              //console.log(layer);
+            }
+            if(type == 'congress'){
+              //console.log(layer);
+              popupContent = '<h1>name: '+this.layerData.feature.properties.district+'</h1>';
+            }
+
+            layer.bindPopup(popupContent);
+            layer.on('mouseover', function (e) {
+              this.openPopup();
+            });
+            layer.on('mouseout', function (e) {
+              this.closePopup();
+            });
+          }
+        });
+        this.layers = [
+          defaultBaseLayer,
+          defaultOverlay
+        ];
+        this.layersControl = {
+          baseLayers: {
+            'OpenStreetMap Mapnik': defaultBaseLayer,
+            'OpenStreetMap BlackAndWhite': tileLayer.provider('OpenStreetMap.BlackAndWhite')
+          },
+          overlays: {
+            'Overlay One': defaultOverlay
+          }
+        };
 
       });
   }
-
 
 }

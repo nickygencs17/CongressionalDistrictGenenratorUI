@@ -4,7 +4,7 @@ path{
   pointer-events:all;
 }
 path:hover{
-  fill:red;
+  fill:#3f51b5;
   stroke:black;
 }
 #autocomplete {
@@ -20,5 +20,4 @@ svg{
      Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
 }
-
 
