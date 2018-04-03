@@ -62,7 +62,7 @@ export class StateComponent implements OnInit {
 
     let url = '';
     if(type === 'state'){
-      url = '/assets/data/USA/' + this.id.toUpperCase() + '.geojson';
+      url = '/assets/data/USA/' + this.id.toUpperCase() + '.geo.json';
     }
     if(type === 'senate'){
       url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_UPPER.geojson';
@@ -75,30 +75,30 @@ export class StateComponent implements OnInit {
 
     }
 
+
     this.http.get<any>(url)
       .subscribe(geo1 => {
         let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
         let defaultOverlay = geoJSON(geo1, {
           onEachFeature: function (feature, layer) {
-            let url = '';
 
             this.layerData = layer
 
             let popupContent = '';
             if(type === 'state'){
-              console.log(layer)
-              //TODO: somethings up our state geos this line only works for arkansas and our geo for alabama is congress geos???
-              popupContent = '<h1>name: '+this.layerData.feature.properties.NAME+'</h1>';
+              //console.log(layer)
+              popupContent = '<h1>name: '+this.layerData.feature.properties.name+'</h1>';
             }
             if(type === 'senate'){
               popupContent = '<h1>name: '+this.layerData.feature.properties.NAME+'</h1>';
-              console.log(layer);
+              //console.log(layer);
             }
             if(type == 'assembly'){
               popupContent = '<h1>name: '+this.layerData.feature.properties.NAME+'</h1>';
-              console.log(layer);
+              //console.log(layer);
             }
             if(type == 'congress'){
+              //console.log(layer);
               popupContent = '<h1>name: '+this.layerData.feature.properties.district+'</h1>';
             }
 
