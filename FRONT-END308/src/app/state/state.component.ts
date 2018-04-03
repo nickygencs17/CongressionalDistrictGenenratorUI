@@ -58,11 +58,12 @@ export class StateComponent implements OnInit {
   }
 
 
+
   displayBoundaries(type): void {
 
     let url = '';
     if(type === 'state'){
-      url = '/assets/data/USA/' + this.id.toUpperCase() + '.geo.json';
+      url = '/assets/data/USA/' + this.id.toUpperCase() + '.geojson';
     }
     if(type === 'senate'){
       url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_UPPER.geojson';
@@ -83,6 +84,19 @@ export class StateComponent implements OnInit {
           onEachFeature: function (feature, layer) {
 
             this.layerData = layer
+            let color = '';
+            let val = Math.floor(Math.random() * 100) + 1;
+            //TODO: change random color
+            if(val%2==0){
+              color = "#FF0000";
+            }
+            else {
+              color = "#0000FF"
+            }
+
+            this.layerData.options.color = color;
+
+            console.log(layer);
 
             let popupContent = '';
             if(type === 'state'){
