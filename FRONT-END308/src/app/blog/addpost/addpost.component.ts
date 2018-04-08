@@ -3,7 +3,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {Router} from "@angular/router";
 import {FormControl, Validators} from "@angular/forms";
 import { Location } from '@angular/common';
-import { Post } from '../../shared/post';
+import { Post } from '../../entitys/post';
 import { PostService } from '../../services/post.service';
 
 @Component({

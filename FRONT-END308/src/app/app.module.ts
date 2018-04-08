@@ -10,9 +10,9 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
-import { Mapd3Component } from './mapd3/mapd3.component';
+import { MapComponent } from './map/mapcomponent';
 import { UsMapModule } from 'angular-us-map';
-import { UsMapService } from './us-map.service';
+import { UsMapService } from './services/us-map.service';
 import { routes } from './app.routes';
 import { RouterModule } from '@angular/router';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -24,16 +24,16 @@ import {
 } from '@angular/material';
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import { StateComponent } from './state/state.component';
-import {StateService} from "./state.service";
+import {StateService} from "./services/state.service";
 import {NavbarComponent} from "./utilities/navbar/navbar.component";
 import {LogindialogComponent} from "./utilities/logindialog/logindialog.component";
 import {CreateuserComponent} from "./createuser/createuser.component";
-import {PostdetailComponent} from "./blogG/postdetail/postdetail.component";
-import {AddpostComponent} from "./blogG/addpost/addpost.component";
-import {PostComponent} from "./blogG/post/post.component";
+import {PostdetailComponent} from "./blog/postdetail/postdetail.component";
+import {AddpostComponent} from "./blog/addpost/addpost.component";
+import {PostComponent} from "./blog/post/post.component";
 import {HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
-import {StateIdService} from "./state-id.service";
-import {UserService} from "./user.service";
+import {StateIdService} from "./services/state-id.service";
+import {UserService} from "./services/user.service";
 import {PostService} from "./services/post.service";
 import { WhitepageComponent } from './utilities/whitepage/whitepage.component';
 
@@ -41,7 +41,7 @@ import { WhitepageComponent } from './utilities/whitepage/whitepage.component';
 @NgModule({
   declarations: [
     AppComponent,
-    Mapd3Component,
+    MapComponent,
     AutoCompleteComponent,
     StateComponent,
     NavbarComponent,

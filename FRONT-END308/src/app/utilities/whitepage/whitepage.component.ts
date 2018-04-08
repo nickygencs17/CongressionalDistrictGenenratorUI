@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router"
 import {HttpClient} from "@angular/common/http";
-import {StateIdService} from "../../state-id.service";
-import {StateService} from "../../state.service";
+import {StateIdService} from "../../services/state-id.service";
+import {StateService} from "../../services/state.service";
 import {Location} from "@angular/common";
 
 @Component({

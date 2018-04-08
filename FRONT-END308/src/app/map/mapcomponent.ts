@@ -1,13 +1,13 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import { UsMapService } from '../us-map.service';
+import { UsMapService } from '../services/us-map.service';
 
 
 @Component({
-  selector: 'app-mapd3',
-  templateUrl: './mapd3.component.html',
-  styleUrls: ['./mapd3.component.css']
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.css']
 })
-export class Mapd3Component implements OnInit{
+export class MapComponent implements OnInit{
 
   public stateId;
   public lat;

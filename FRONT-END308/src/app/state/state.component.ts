@@ -6,8 +6,8 @@ import 'leaflet-providers';
 import {Layer, tileLayer, geoJSON,latLng} from 'leaflet';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { StateService} from "../state.service";
-import {StateIdService} from "../state-id.service";
+import { StateService} from "../services/state.service";
+import {StateIdService} from "../services/state-id.service";
 
 @Component({
   selector: 'app-state',
