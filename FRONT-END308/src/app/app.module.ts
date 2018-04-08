@@ -36,6 +36,8 @@ import {StateIdService} from "./services/state-id.service";
 import {UserService} from "./services/user.service";
 import {PostService} from "./services/post.service";
 import { WhitepageComponent } from './utilities/whitepage/whitepage.component';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatExpansionModule} from '@angular/material/expansion'
 
 
 @NgModule({
@@ -56,6 +58,7 @@ import { WhitepageComponent } from './utilities/whitepage/whitepage.component';
   imports: [
     MatSelectModule,
     MatToolbarModule,
+    MatExpansionModule,
     MatButtonModule,
     MatRadioModule,
     MatTooltipModule,
@@ -63,6 +66,7 @@ import { WhitepageComponent } from './utilities/whitepage/whitepage.component';
     BrowserModule,
     FormsModule,
     MatFormFieldModule,
+    MatSliderModule,
     FlexLayoutModule,
     MatInputModule,
     ReactiveFormsModule,

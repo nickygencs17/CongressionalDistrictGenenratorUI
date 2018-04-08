@@ -3,7 +3,7 @@
 </div>
 <br>
 
-<mat-radio-group>
+<mat-radio-group *ngIf="eagleState">
   <mat-radio-button value="4" (click)="displayBoundaries('state')">State</mat-radio-button>
   <mat-radio-button value="1" (click)="displayBoundaries('senate')">Senate District</mat-radio-button>
   <mat-radio-button value="2" (click)="displayBoundaries('assembly')">State Legislation District</mat-radio-button>
@@ -12,15 +12,47 @@
 <br>
 <br>
 <br>
-<div *ngIf="allDataFetched" class = "map">
-<div leaflet style="height: 600px"
-     [leafletLayers]="layers"
-     [leafletLayersControl]="layersControl"
-     [leafletCenter]="center"
-     [leafletFitBounds]="fitBounds"></div>
+<div >
+  <div class="flex-container">
+    <div *ngIf="allDataFetched" class="map_eagle" leaflet style="height: 600px"
+         [leafletLayers]="layers"
+         [leafletLayersControl]="layersControl"
+         [leafletCenter]="center"
+         [leafletFitBounds]="fitBounds"></div>
+    <div>
+        <h3>State Information</h3>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            This is the expansion title
+          </mat-panel-title>
+          <mat-panel-description>
+            This is a summary of the content
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <p>This is the primary content of the panel.</p>
+
+      </mat-expansion-panel>
+    </div>
+
+  </div>
 </div>
+
 <br>
 <br>
-<div>
-  <button mat-button>Run Redistrict Algorithim</button>
+
+<div *ngIf="congressional_request">
+  <p >Population Deviation</p>
+  <mat-slider min="1" max="5" step="1" value="1"></mat-slider>
+  <div>
+    <button mat-button>Run Redistrict Algorithm</button>
+  </div>
+
+</div>
+<div *ngIf="!congressional_request">
+  <h3>Currently our redistricting application is only Available for Congressional Districts</h3>
+</div>
+<div *ngIf="!eagleState">
+  <h3>We are currently only supporting the following states IN, AR, and WV</h3>
 </div>

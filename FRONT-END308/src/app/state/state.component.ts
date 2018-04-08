@@ -29,6 +29,8 @@ export class StateComponent implements OnInit {
   fitBounds: any;
   data: any;
   layerData: any;
+  eagleState = false;
+  congressional_request = false;
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
@@ -42,6 +44,10 @@ export class StateComponent implements OnInit {
 
     this.id = this.route.snapshot.params['id'];
     this.state_id_service.state_id=this.id;
+    if(this.id == "IN" || this.id == "AR" || this.id == "WV"){
+      this.eagleState = true;
+    }
+
     this.state_service.getData()
       .subscribe(response => {
         this.data=response;
@@ -57,22 +63,26 @@ export class StateComponent implements OnInit {
   }
 
 
-
   displayBoundaries(type): void {
 
     let url = '';
     if(type === 'state'){
+      this.congressional_request = false;
       url = '/assets/data/USA/' + this.id.toUpperCase() + '.geojson';
     }
     if(type === 'senate'){
+      this.congressional_request = false;
       url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_UPPER.geojson';
     }
     if(type == 'assembly'){
+      this.congressional_request = false;
       url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_LOWER.geojson'
     }
     if(type == 'congress'){
+      if(this.eagleState){
+        this.congressional_request = true;
+      }
       url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_COMBINED_CONGRESS.geojson';
-
     }
 
 
@@ -95,23 +105,17 @@ export class StateComponent implements OnInit {
 
             this.layerData.options.color = color;
 
-            console.log(layer);
-
             let popupContent = '';
             if(type === 'state'){
-              //console.log(layer)
               popupContent = '<h1>name: '+this.layerData.feature.properties.name+'</h1>';
             }
             if(type === 'senate'){
               popupContent = '<h1>name: '+this.layerData.feature.properties.NAME+'</h1>';
-              //console.log(layer);
             }
             if(type == 'assembly'){
               popupContent = '<h1>name: '+this.layerData.feature.properties.NAME+'</h1>';
-              //console.log(layer);
             }
             if(type == 'congress'){
-              //console.log(layer);
               popupContent = '<h1>name: '+this.layerData.feature.properties.district+'</h1>';
             }
 

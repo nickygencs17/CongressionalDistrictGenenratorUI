@@ -6,6 +6,29 @@
 }
 
 .map {
+  display:block;
+  margin:auto;
+  width: 50%;
+}
+
+.map_eagle {
   width: 50%;
   text-align: left;
+}
+.right {
+  width: 50%;
+  text-align: right;
+}
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-container > div {
+  width: 50%;
+  text-align: center;
+}
+
+mat-slider {
+  width: 300px;
 }
