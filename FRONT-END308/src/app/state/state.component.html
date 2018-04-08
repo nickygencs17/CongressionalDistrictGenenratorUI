@@ -19,7 +19,7 @@
          [leafletLayersControl]="layersControl"
          [leafletCenter]="center"
          [leafletFitBounds]="fitBounds"></div>
-    <div>
+    <div *ngIf="eagleState">
         <h3>State Information</h3>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
