@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from "@angular/forms";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Router} from "@angular/router";
-import {UserService} from "../services/user.service";
+import {FormControl, Validators} from '@angular/forms';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Router} from '@angular/router';
+import { UserService } from '../services/user.service';
+import { User } from '../entities/user';
 
 @Component({
   selector: 'app-createuser',
@@ -11,41 +12,32 @@ import {UserService} from "../services/user.service";
 })
 export class CreateuserComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router:Router, public user_service:UserService) { }
+  user = new User();
+  constructor(private http: HttpClient, private router: Router, public user_service: UserService) { }
 
   ngOnInit() {
   }
 
-  hostname = 'localhost:8080';
-  uname: any;
-  pass: any;
-  resJson: any;
+  email = new FormControl('', [Validators.required, Validators.email]);
+  user_name = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)]);
+  first_name = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)]);
+  last_name = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)]);
+  address = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)]);
+  city = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)]);
+  state = new FormControl('', [Validators.required]);
+  zip = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)]);
+  password = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)]);
 
 
-  createNewAccount(){
-    let body = {
-      username: this.uname,
-      password: this.pass
-    }
-    this.http.post('http://'+this.hostname+'/storage/user', body)
-      .subscribe((data) => {
-          this.resJson = data;
-          console.log(this.resJson.status);
-          if(this.resJson.status==201){
-              alert('CREATED');
-              this.user_service.loggedin =true;
-              this.user_service.user_name =this.uname;
-              this.router.navigate(['']);
-          }
-          else if (this.resJson.status==409){
-            alert('user exsits')
-            this.router.navigate(['']);
-          }
+  createNewAccount() {
+     this.user.username = this.user_name.value;
+     this.user.user_password = this.password.value;
+     this.user.address = this.address.value;
+     this.user.zip = this.zip.value;
+     this.user.first_name = this.first_name.value;
+     this.user.last_name = this.last_name.value;
+     this.user_service.createUser(this.user);
 
-        },
-        error => {
-          alert('Username/Password Bad');
-        });
 
   }
 
@@ -59,16 +51,7 @@ export class CreateuserComponent implements OnInit {
     'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
   ];
 
-  email = new FormControl('', [Validators.required, Validators.email]);
-  user_name = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)])
-  first_name = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)])
-  last_name = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)])
-  address = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)])
-  city = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)])
-  state = new FormControl('', [Validators.required])
-  zip = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)])
-  password_one = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)])
-  password_two = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)])
+
 
   getEmailMessage() {
     return this.email.hasError('required') ? 'You must enter a value' :
@@ -105,18 +88,18 @@ export class CreateuserComponent implements OnInit {
   }
 
   getPasswordOneMessage() {
-    return this.password_one.hasError('required') ? 'You must enter a value' :
-      this.password_one.hasError('max') ? 'Greater than 10 chars' :
-        this.password_one.hasError('min') ? 'Not a least 2 chars' :
-          '';
+    // return this.password_one.hasError('required') ? 'You must enter a value' :
+    //   this.password_one.hasError('max') ? 'Greater than 10 chars' :
+    //     this.password_one.hasError('min') ? 'Not a least 2 chars' :
+    //       '';
 
   }
 
   getPasswordTwoMessage() {
-    return this.password_two.hasError('required') ? 'You must enter a value' :
-      this.password_two.hasError('max') ? 'Greater than 10 chars' :
-        this.password_two.hasError('min') ? 'Not a least 2 chars' :
-          '';
+    // return this.password_two.hasError('required') ? 'You must enter a value' :
+    //   this.password_two.hasError('max') ? 'Greater than 10 chars' :
+    //     this.password_two.hasError('min') ? 'Not a least 2 chars' :
+    //       '';
   }
 
   getZipMessage(){

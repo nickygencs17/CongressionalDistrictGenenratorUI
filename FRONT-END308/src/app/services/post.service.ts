@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {  Post } from '../entitys/post';
-import { POSTS } from '../entitys/posts';
+import {  Post } from '../entities/post';
+import { POSTS } from '../entities/posts';
 
 @Injectable()
 export class PostService {
