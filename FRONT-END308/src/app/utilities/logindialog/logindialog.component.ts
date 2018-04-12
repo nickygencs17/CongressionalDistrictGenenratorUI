@@ -21,10 +21,15 @@ export class LogindialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
+  login() {
+    this.dialogRef.close();
+    this.router.navigate(['']);
+  }
+
   createAccount(){
     console.log("CREATE ACCOUNT");
     this.dialogRef.close();
-    this.router.navigate(['create_user']);
+    this.router.navigate(['register']);
   }
 
   getPasswordMessage() {
@@ -34,7 +39,7 @@ export class LogindialogComponent {
           '';
   }
 
-  getUserNameMessage(){
+  getUserNameMessage() {
     return this.password.hasError('required') ? 'You must enter a value' :
       this.password.hasError('max') ? 'Greater than 10 chars' :
         this.password.hasError('min') ? 'Not a least 2 chars' :

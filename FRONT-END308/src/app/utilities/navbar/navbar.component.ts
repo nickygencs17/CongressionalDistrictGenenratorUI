@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
-import {LogindialogComponent} from "../logindialog/logindialog.component";
-import {Router} from "@angular/router";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {UserService} from "../../services/user.service";
+import { LogindialogComponent } from '../logindialog/logindialog.component';
+import {Router} from '@angular/router';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { UserService} from '../../services/user.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -11,69 +12,52 @@ import {UserService} from "../../services/user.service";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit{
-  ngOnInit(): void {
-    if(this.userService.loggedin==true) {
-
-      this.nav_bar_name = this.userService.user_name;
-      this.logged_in=true;
-    }
-
-  }
-
-  name: string;
+  currentUser: any;
+  username: string;
   password: string;
   res: any;
-  nav_bar_name = "Login";
-  logged_in = false;
-  hostname = 'localhost:8080';
+  nav_bar_name = 'Login';
+  logged_in: boolean;
+  ngOnInit(): void {
+    this.currentUser = localStorage.getItem('currentUser');
+    if (this.currentUser) {
+      this.nav_bar_name = this.currentUser.username;
+      this.logged_in = true;
+    }
+    else {
+      this.logged_in = false;
+    }
+  }
 
-  constructor(public dialog: MatDialog, public router: Router, private http: HttpClient, private userService:UserService) {}
+
+  constructor(public dialog: MatDialog,
+              public router: Router,
+              private http: HttpClient,
+              private userService: UserService,
+              private location: Location) {}
 
   openDialog(): void {
     let dialogRef = this.dialog.open(LogindialogComponent, {
       height: '400px',
       width: '600px',
-      data: { name: this.name, password: this.password}
+      data: { username: this.username, password: this.password }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-        this.name = result.name;
-        this.password = result.password;
-        this.login();
-
+    dialogRef.afterClosed().subscribe(data => {
+        this.username = data.username;
+        this.password = data.password;
+        this.userService.login(this.username, this.password);
+        location.reload();
     });
-  }
-
-
-  login() {
-    var username = this.name;
-    var password = this.password;
-    let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
-    headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
-
-    this.http.get('http://'+ this.hostname + '/login', { headers: headers})
-      .subscribe((data) => {
-        this.res = data;
-        if (this.res.entity.roles["0"]=='ROLE_USER'){
-          this.logged_in=true;
-          this.nav_bar_name=this.name;
-          this.userService.user_name = this.name;
-          this.userService.loggedin=true;
-        }
-      },
-        error => {
-          console.log(error);
-          alert('Username/Password Bad');
-        });
-  }
-
-  logout(){
-    console.log("logout");
   }
 
   goHome() {
     this.router.navigate(['']);
+  }
+
+  logout() {
+    this.userService.logout();
+    location.reload();
   }
 }
 

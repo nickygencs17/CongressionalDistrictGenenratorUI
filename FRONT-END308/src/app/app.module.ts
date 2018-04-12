@@ -37,7 +37,8 @@ import {UserService} from "./services/user.service";
 import {PostService} from "./services/post.service";
 import { WhitepageComponent } from './utilities/whitepage/whitepage.component';
 import {MatSliderModule} from '@angular/material/slider';
-import {MatExpansionModule} from '@angular/material/expansion'
+import {MatExpansionModule} from '@angular/material/expansion';
+import { AdminComponent } from './admin/admin.component'
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import {MatExpansionModule} from '@angular/material/expansion'
     PostdetailComponent,
     PostComponent,
     AddpostComponent,
-    WhitepageComponent
+    WhitepageComponent,
+    AdminComponent
   ],
   entryComponents: [LogindialogComponent],
   imports: [

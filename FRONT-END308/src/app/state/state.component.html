@@ -12,7 +12,20 @@
 <br>
 <br>
 <br>
-<div >
+
+<div *ngIf="congressional_request" class = "alogrithmChoices">
+  <p >Population Deviation</p>
+  <mat-slider min="1" max="5" step="1" value="3"></mat-slider>
+  <p >Fairness Coefficient</p>
+  <mat-slider min="1" max="5" step="1" value="3"></mat-slider>
+  <p >Compactness Coefficient</p>
+  <mat-slider min="1" max="5" step="1" value="3"></mat-slider>
+  <div>
+    <button mat-raised-button color="primary">Run Redistrict Algorithm</button>
+  </div>
+
+</div>
+<div>
   <div class="flex-container">
     <div *ngIf="allDataFetched" class="map_eagle" leaflet style="height: 600px"
          [leafletLayers]="layers"
@@ -42,14 +55,7 @@
 <br>
 <br>
 
-<div *ngIf="congressional_request">
-  <p >Population Deviation</p>
-  <mat-slider min="1" max="5" step="1" value="1"></mat-slider>
-  <div>
-    <button mat-button>Run Redistrict Algorithm</button>
-  </div>
 
-</div>
 <div *ngIf="!congressional_request">
   <h3>Currently our redistricting application is only Available for Congressional Districts</h3>
 </div>

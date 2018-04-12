@@ -316,7 +316,7 @@ export class AutoCompleteComponent {
 
   public stateId;
 
-  constructor(public router: Router, public state_service:StateService, private http: HttpClient) {
+  constructor(public router: Router, public state_service: StateService, private http: HttpClient) {
     this.stateCtrl = new FormControl();
     this.filteredStates = this.stateCtrl.valueChanges
       .pipe(
@@ -327,9 +327,9 @@ export class AutoCompleteComponent {
 
 
   filterStates(name: string) {
-    for(let i=0; i<this.states.length; i++){
-      if(this.states[i].name===name){
-        this.router.navigate(['/states/'+this.states[i].abbrv.toUpperCase()]);
+    for (let i = 0; i < this.states.length; i++) {
+      if (this.states[i].name === name) {
+        this.router.navigate(['/states/' + this.states[i].abbrv.toUpperCase()]);
       }
     }
 

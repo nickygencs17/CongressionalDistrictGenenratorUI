@@ -1,7 +1,14 @@
 
+<br>
+<br>
+
+<div class="center">
+
+  <h1>Register</h1>
 <hr>
 
-
+  <br>
+  <br>
 <ul>
   <li>
     <mat-form-field class="example-full-width">
@@ -9,64 +16,68 @@
       <mat-error *ngIf="user_name.invalid">{{getUserNameMessage()}}</mat-error>
     </mat-form-field>
   </li>
-  <!--<li>-->
-    <!--<mat-form-field class="example-full-width">-->
-      <!--<input matInput placeholder="Enter your first name" [formControl]="first_name" type="text" required>-->
-      <!--<mat-error *ngIf="first_name.invalid">{{getFirstNameMessage()}}</mat-error>-->
-    <!--</mat-form-field>-->
-  <!--</li>-->
-  <!--<li>-->
-  <!--<mat-form-field class="example-full-width">-->
-    <!--<input matInput placeholder="Enter your last name" [formControl]="last_name" type="text" required>-->
-    <!--<mat-error *ngIf="last_name.invalid">{{getLastNameMessage()}}</mat-error>-->
-  <!--</mat-form-field>-->
-  <!--</li>-->
+  <li>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter your first name" [formControl]="first_name" type="text" required>
+      <mat-error *ngIf="first_name.invalid">{{getFirstNameMessage()}}</mat-error>
+    </mat-form-field>
+  </li>
   <li>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Enter your password" [(ngModel)]="pass" [formControl]="password_one" type="password" required>
-    <mat-error *ngIf="password_one.invalid">{{getPasswordOneMessage()}}</mat-error>
+    <input matInput placeholder="Enter your last name" [formControl]="last_name" type="text" required>
+    <mat-error *ngIf="last_name.invalid">{{getLastNameMessage()}}</mat-error>
   </mat-form-field>
+  </li>
+  <li>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Enter your password" [(ngModel)]="pass" [formControl]="password" type="password" required>
+    <mat-error *ngIf="password.invalid">{{ getPasswordOneMessage() }}</mat-error>
+  </mat-form-field>
+  </li>
+  <li>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter your password" [formControl]="password_two" type="password" required>
+      <mat-error *ngIf="password_two.invalid">{{ getPasswordTwoMessage() }}</mat-error>
+    </mat-form-field>
   </li>
   <!--<li>-->
     <!--<mat-form-field class="example-full-width">-->
-      <!--<input matInput placeholder="Enter your password" [formControl]="password_two" type="password" required>-->
-      <!--<mat-error *ngIf="password_two.invalid">{{getPasswordTwoMessage()}}</mat-error>-->
-    <!--</mat-form-field>-->
-  <!--</li>-->
-  <!--<li>-->
-    <!--<mat-form-field class="example-full-width">-->
       <!--<input matInput placeholder="Enter your email" [formControl]="email" required>-->
-      <!--<mat-error *ngIf="email.invalid">{{getEmailMessage()}}</mat-error>-->
+      <!--&lt;!&ndash;<mat-error *ngIf="email.invalid">{{ getEmailMessage() }}</mat-error>&ndash;&gt;-->
     <!--</mat-form-field>-->
   <!--</li>-->
-  <!--<li>-->
-    <!--<mat-form-field class="example-full-width">-->
-      <!--<input matInput placeholder="Enter your street address" [formControl]="address" type="text" required>-->
-      <!--<mat-error *ngIf="address.invalid">{{getAddressMessage()}}</mat-error>-->
-    <!--</mat-form-field>-->
-  <!--</li>-->
-  <!--<li>-->
-    <!--<mat-form-field class="example-full-width">-->
-      <!--<input matInput placeholder="Enter your city" [formControl]="city" type="text" required>-->
-      <!--<mat-error *ngIf="city.invalid">{{getCityMessage()}}</mat-error>-->
-    <!--</mat-form-field>-->
-  <!--</li>-->
+  <li>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter your address" [formControl]="address" type="text" required>
+      <mat-error *ngIf="address.invalid">{{getAddressMessage()}}</mat-error>
+    </mat-form-field>
+  </li>
+  <li>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter your city" [formControl]="city" type="text" required>
+      <mat-error *ngIf="city.invalid">{{getCityMessage()}}</mat-error>
+    </mat-form-field>
+  </li>
 
-  <!--<li>-->
-    <!--<mat-form-field>-->
-      <!--<mat-select placeholder="State" required>-->
-        <!--<mat-option>None</mat-option>-->
-        <!--<mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>-->
-      <!--</mat-select>-->
+  <li>
+    <mat-form-field>
+        <mat-select placeholder="State" #stateValue  (change)="changeState($event.value)" required>>
+        <mat-option *ngFor="let state of states"  [value]="state" >{{state}}</mat-option>
+      </mat-select>
       <!--<mat-error *ngIf="state.invalid">{{getStateMessage()}}</mat-error>-->
-    <!--</mat-form-field>-->
-  <!--</li>-->
-  <!--<li>-->
-    <!--<mat-form-field class="example-full-width">-->
-      <!--<input matInput placeholder="Enter your zip" [formControl]="zip" type="number" required>-->
+    </mat-form-field>
+  </li>
+  <li>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Enter your zip" [formControl]="zip" type="number" required>
       <!--<mat-error *ngIf="zip.invalid">{{getZipMessage()}}</mat-error>-->
-    <!--</mat-form-field>-->
-  <!--</li>-->
+    </mat-form-field>
+  </li>
 
 </ul>
+  <br>
+  <br>
     <button mat-button (click)="createNewAccount()">Create Account</button>
+  <br>
+  <br>
+</div>

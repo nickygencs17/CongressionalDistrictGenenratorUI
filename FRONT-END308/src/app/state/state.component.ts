@@ -35,27 +35,27 @@ export class StateComponent implements OnInit {
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
               private location: Location,
-              private state_service:StateService,
-              private state_id_service:StateIdService) { }
+              private state_service: StateService,
+              private state_id_service: StateIdService) { }
 
 
   ngOnInit() {
 
 
     this.id = this.route.snapshot.params['id'];
-    this.state_id_service.state_id=this.id;
-    if(this.id == "IN" || this.id == "AR" || this.id == "WV"){
+    this.state_id_service.state_id = this.id;
+    if(this.id === 'IN' || this.id === 'AR' || this.id === 'WV'){
       this.eagleState = true;
     }
 
     this.state_service.getData()
       .subscribe(response => {
-        this.data=response;
-        this.lat = this.data.results["0"].geometry.location.lat;
-        this.lng = this.data.results["0"].geometry.location.lng;
+        this.data = response;
+        this.lat = this.data.results['0'].geometry.location.lat;
+        this.lng = this.data.results['0'].geometry.location.lng;
         this.center = [this.lat, this.lng];
-        this.fitBounds = [[this.data.results["0"].geometry.viewport.northeast.lat, this.data.results["0"].geometry.viewport.northeast.lng],
-          [this.data.results["0"].geometry.viewport.southwest.lat, this.data.results["0"].geometry.viewport.southwest.lng]];
+        this.fitBounds = [[this.data.results['0'].geometry.viewport.northeast.lat, this.data.results['0'].geometry.viewport.northeast.lng],
+          [this.data.results['0'].geometry.viewport.southwest.lat, this.data.results['0'].geometry.viewport.southwest.lng]];
         this.allDataFetched = true;
 
       });
@@ -66,20 +66,20 @@ export class StateComponent implements OnInit {
   displayBoundaries(type): void {
 
     let url = '';
-    if(type === 'state'){
+    if(type === 'state') {
       this.congressional_request = false;
       url = '/assets/data/USA/' + this.id.toUpperCase() + '.geojson';
     }
-    if(type === 'senate'){
+    if(type === 'senate') {
       this.congressional_request = false;
       url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_UPPER.geojson';
     }
-    if(type == 'assembly'){
+    if(type === 'assembly') {
       this.congressional_request = false;
       url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_LOWER.geojson'
     }
-    if(type == 'congress'){
-      if(this.eagleState){
+    if(type === 'congress') {
+      if(this.eagleState) {
         this.congressional_request = true;
       }
       url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_COMBINED_CONGRESS.geojson';
@@ -106,17 +106,17 @@ export class StateComponent implements OnInit {
             this.layerData.options.color = color;
 
             let popupContent = '';
-            if(type === 'state'){
-              popupContent = '<h1>name: '+this.layerData.feature.properties.name+'</h1>';
+            if (type === 'state') {
+              popupContent = '<h1>name: ' + this.layerData.feature.properties.name + '</h1>';
             }
-            if(type === 'senate'){
-              popupContent = '<h1>name: '+this.layerData.feature.properties.NAME+'</h1>';
+            if (type === 'senate') {
+              popupContent = '<h1>name: ' + this.layerData.feature.properties.NAME + '</h1>';
             }
-            if(type == 'assembly'){
-              popupContent = '<h1>name: '+this.layerData.feature.properties.NAME+'</h1>';
+            if (type === 'assembly') {
+              popupContent = '<h1>name: ' + this.layerData.feature.properties.NAME + '</h1>';
             }
-            if(type == 'congress'){
-              popupContent = '<h1>name: '+this.layerData.feature.properties.district+'</h1>';
+            if (type === 'congress') {
+              popupContent = '<h1>name: ' + this.layerData.feature.properties.district + '</h1>';
             }
 
             layer.bindPopup(popupContent);

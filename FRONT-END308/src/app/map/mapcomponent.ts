@@ -22,7 +22,7 @@ export class MapComponent implements OnInit{
 
   onUsMapClick(state){
     console.log(state);
-    this.stateId=state;
+    this.stateId = state;
 
   }
 
