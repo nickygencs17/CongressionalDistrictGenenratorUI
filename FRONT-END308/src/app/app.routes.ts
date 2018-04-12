@@ -14,7 +14,7 @@ export const routes: Routes = [
   { path: 'login',  component: MapComponent },
   { path: 'state/:id',  component: StateComponent },
   { path: 'states/:id',  component: WhitepageComponent },
-  { path: 'create_user',  component: CreateuserComponent },
+  { path: 'register',  component: CreateuserComponent },
   { path: 'blog',  component: PostComponent },
   { path: 'blog/posts/:id',  component: PostdetailComponent },
   { path: 'blog/addpost',  component: AddpostComponent },

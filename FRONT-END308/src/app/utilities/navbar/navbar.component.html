@@ -8,12 +8,11 @@
   <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>
 
-
   <div *ngIf="!logged_in">
     <a md-button (click)="openDialog()"><span class="fa fa-sign-in fa-lg"></span> Login</a>
+    <span class = "nav-bar" md-button routerLink="/register" routerLinkActive="active"> Register</span>
   </div>
-
   <div *ngIf="logged_in">
-    <span (click)="logout()">{{nav_bar_name}}</span>
+    <span (click)="logout()">logout</span>
   </div>
 </mat-toolbar>

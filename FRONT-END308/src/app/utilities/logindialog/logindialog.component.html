@@ -1,14 +1,9 @@
-<h2 mat-dialog-title>Create Account</h2>
+<h2 mat-dialog-title>Login</h2>
 <div mat-dialog-content>
-
-
-
-
-
   <ul>
     <li>
       <mat-form-field>
-        <input matInput placeholder="Name" [(ngModel)]="data.name">
+        <input matInput placeholder="Name" [(ngModel)]="data.username">
       </mat-form-field>
     </li>
     <li>
@@ -16,12 +11,10 @@
         <input matInput placeholder="Password" type="password" [(ngModel)]="data.password">
       </mat-form-field>
     </li>
-
   </ul>
 
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button (click)="createAccount()">Create Account</button>
   <button mat-button [mat-dialog-close]="data">Ok</button>
 </div>

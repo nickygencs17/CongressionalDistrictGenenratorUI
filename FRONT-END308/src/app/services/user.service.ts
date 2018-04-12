@@ -15,19 +15,43 @@ export class UserService {
   hostname = 'localhost:8080';
   currentUser = {
     username: '',
+    password: '',
     role: ''
   };
+  // login(username: string, password: string) {
+  //   console.log("LOGIN");
+  //   let headers = new HttpHeaders();
+  //   headers = headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
+  //   headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
+  //   this.http.get('http://' + this.hostname + '/login', { headers: headers })
+  //     .map(user => {
+  //       // login successful if there's a jwt token in the response
+  //       console.log(user);
+  //       if (user) {
+  //         // store user details and jwt token in local storage to keep user logged in between page refreshes
+  //         localStorage.setItem('currentUser', JSON.stringify(user));
+  //       }
+  //       return user;
+  //     });
+  //
+  // }
   login(username: string, password: string) {
-    return this.http.post<any>('/api/authenticate', { username: username, password: password })
-      .map(user => {
-        // login successful if there's a jwt token in the response
-        if (user && user.token) {
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
-        }
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
+    headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        return user;
-      });
+    this.http.get<any>('http://' + this.hostname + '/login', { headers: headers})
+      .subscribe((data) => {
+          this.currentUser.username = username;
+          this.currentUser.password = password;
+          this.currentUser.role = data.entity.roles['0'];
+          localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+         // localStorage.setItem()
+        },
+        error => {
+          console.log(error);
+          alert('Username/Password Bad');
+        });
   }
 
   logout() {

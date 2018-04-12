@@ -21,9 +21,9 @@ export class LogindialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  createAccount() {
+  login() {
     this.dialogRef.close();
-    this.router.navigate(['create_user']);
+    this.router.navigate(['']);
   }
 
   getPasswordMessage() {

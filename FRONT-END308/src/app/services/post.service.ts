@@ -1,14 +1,32 @@
 import { Injectable } from '@angular/core';
 import {  Post } from '../entities/post';
 import { POSTS } from '../entities/posts';
+import {Router} from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class PostService {
 
-  constructor() { }
+  hostname = 'localhost:8080';
+  resJson: any;
+  constructor(private router: Router, private http: HttpClient) { }
 
-  getPosts(): Post[] {
-    return POSTS;
+  getPosts(): any {
+    this.http.get('http://' + this.hostname + '/post/all')
+      .subscribe((data) => {
+          this.resJson = data;
+          console.log(this.resJson.status);
+          if (this.resJson.status === 201) {
+            return this.resJson.entity;
+          }
+          else if (this.resJson.status === 409) {
+            this.router.navigate(['']);
+          }
+
+        },
+        error => {
+          alert('Getting posts failed');
+        });
   }
 
   getPost(id: number): Post {
