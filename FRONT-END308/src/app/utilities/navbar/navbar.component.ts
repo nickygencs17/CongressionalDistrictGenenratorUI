@@ -12,7 +12,7 @@ import {UserService} from "../../services/user.service";
 })
 export class NavbarComponent implements OnInit{
   ngOnInit(): void {
-    if(this.userService.loggedin==true) {
+    if(this.userService.loggedin == true) {
 
       this.nav_bar_name = this.userService.user_name;
       this.logged_in=true;
@@ -55,7 +55,7 @@ export class NavbarComponent implements OnInit{
     this.http.get('http://'+ this.hostname + '/login', { headers: headers})
       .subscribe((data) => {
         this.res = data;
-        if (this.res.entity.roles["0"]=='ROLE_USER'){
+        if (this.res.entity.roles["0"] == 'ROLE_USER'){
           this.logged_in=true;
           this.nav_bar_name=this.name;
           this.userService.user_name = this.name;
