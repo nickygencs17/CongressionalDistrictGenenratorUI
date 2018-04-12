@@ -26,6 +26,12 @@ export class LogindialogComponent {
     this.router.navigate(['']);
   }
 
+  createAccount(){
+    console.log("CREATE ACCOUNT");
+    this.dialogRef.close();
+    this.router.navigate(['register']);
+  }
+
   getPasswordMessage() {
     return this.user_name.hasError('required') ? 'You must enter a value' :
       this.user_name.hasError('max') ? 'Greater than 10 chars' :

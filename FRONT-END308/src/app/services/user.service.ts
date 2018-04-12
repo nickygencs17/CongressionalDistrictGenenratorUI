@@ -18,23 +18,7 @@ export class UserService {
     password: '',
     role: ''
   };
-  // login(username: string, password: string) {
-  //   console.log("LOGIN");
-  //   let headers = new HttpHeaders();
-  //   headers = headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
-  //   headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
-  //   this.http.get('http://' + this.hostname + '/login', { headers: headers })
-  //     .map(user => {
-  //       // login successful if there's a jwt token in the response
-  //       console.log(user);
-  //       if (user) {
-  //         // store user details and jwt token in local storage to keep user logged in between page refreshes
-  //         localStorage.setItem('currentUser', JSON.stringify(user));
-  //       }
-  //       return user;
-  //     });
-  //
-  // }
+
   login(username: string, password: string) {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
@@ -46,11 +30,11 @@ export class UserService {
           this.currentUser.password = password;
           this.currentUser.role = data.entity.roles['0'];
           localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-         // localStorage.setItem()
         },
         error => {
           console.log(error);
           alert('Username/Password Bad');
+          return;
         });
   }
 
@@ -60,8 +44,10 @@ export class UserService {
   }
 
   createUser(user: User) {
-    this.http.post('http://' + this.hostname + '/storage/user', user)
+    console.log(user);
+    this.http.post('http://' + this.hostname + '/user', user)
      .subscribe((data) => {
+          console.log(data);
          this.resJson = data;
          console.log(this.resJson.status);
          if (this.resJson.status === 201) {

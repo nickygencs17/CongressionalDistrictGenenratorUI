@@ -25,7 +25,7 @@ export class PostService {
 
         },
         error => {
-          alert('Getting posts failed');
+          console.log(error);
         });
   }
 
