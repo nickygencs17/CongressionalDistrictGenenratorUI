@@ -18,17 +18,22 @@ export class NavbarComponent implements OnInit{
   res: any;
   nav_bar_name = 'Login';
   logged_in: boolean;
+  isAdmin: boolean;
   ngOnInit(): void {
-    this.currentUser = localStorage.getItem('currentUser');
+    this.currentUser = localStorage.getItem('currentUser');console.log(this.currentUser);
     if (this.currentUser) {
       this.nav_bar_name = this.currentUser.username;
       this.logged_in = true;
+      if(this.currentUser.role === 'ROLE_ADMIN') {
+        this.isAdmin = true;
+      }
     }
     else {
       this.logged_in = false;
+      this.isAdmin = false;
     }
-  }
 
+  }
 
   constructor(public dialog: MatDialog,
               public router: Router,
@@ -55,9 +60,11 @@ export class NavbarComponent implements OnInit{
     this.router.navigate(['']);
   }
 
+
   logout() {
     this.userService.logout();
     location.reload();
+    //this.router.navigate(['']);
   }
 }
 

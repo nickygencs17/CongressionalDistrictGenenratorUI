@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../entities/post';
 import { PostService } from '../../services/post.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -9,17 +10,23 @@ import { PostService } from '../../services/post.service';
 })
 export class PostComponent implements OnInit {
 
-  posts: Post[];
-  selectedPost: Post;
-  constructor(private postService: PostService) { }
+  posts: any[];
+  selectedPost: any;
+  constructor(private postService: PostService, private router: Router) { }
 
   ngOnInit() {
-    this.posts = this.postService.getPosts();
-  }
-
-
-  onSelect(post: Post) {
-    this.selectedPost = post;
+    this.postService.getPosts().subscribe((response) => {
+        if (response.status === 200) {
+          this.posts = response.entity;
+        }
+        else if (response.status === 409) {
+          this.router.navigate(['']);
+        }
+      }
+    ,
+      error => {
+        alert('Post Service error');
+      });
   }
 
 }

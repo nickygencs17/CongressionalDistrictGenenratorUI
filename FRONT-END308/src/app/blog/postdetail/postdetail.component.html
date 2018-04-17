@@ -14,10 +14,10 @@
         </mat-card-title>
       </mat-card-header>
       <div>
-        <img md-card-image src = "{{ post.image }}" alt = "{{ post.title }}">
+        <img md-card-image src = "{{ post.image_url }}" alt = "{{ post.title }}">
       </div>
       <mat-card-content>
-        <p> {{ post.description }}</p>
+        <p> {{ post.post_text }}</p>
       </mat-card-content>
       <mat-card-actions>
         <button mat-button color="basic" (click)="goBack()">Back</button>
@@ -29,12 +29,11 @@
     <h1> Comments </h1>
     <div class = "leftalign">
       <mat-list>
-        <mat-card *ngFor= "let eachcomment of post.comments">
+        <mat-card *ngFor= "let comment of comments">
 
           <mat-card-content>
-            <h3>{{ eachcomment.author }}</h3>
-            <p mat-line>{{ eachcomment.comment }}</p>
-            <p mat-line>{{eachcomment.date | date}}</p>
+            <h3>{{ comment.author }}</h3>
+            <p mat-line>{{ comment.comment_text }}</p>
           </mat-card-content>
         </mat-card>
       </mat-list>

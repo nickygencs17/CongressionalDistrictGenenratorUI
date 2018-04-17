@@ -18,6 +18,6 @@ export const routes: Routes = [
   { path: 'blog',  component: PostComponent },
   { path: 'blog/posts/:id',  component: PostdetailComponent },
   { path: 'blog/addpost',  component: AddpostComponent },
-  { path: 'admin',  component: AdminComponent },
+  { path: 'users',  component: AdminComponent },
   { path: '**',     component: MapComponent }
 ];

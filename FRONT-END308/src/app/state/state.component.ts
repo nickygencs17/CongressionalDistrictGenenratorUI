@@ -7,7 +7,9 @@ import {Layer, tileLayer, geoJSON,latLng} from 'leaflet';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { StateService} from "../services/state.service";
-import {StateIdService} from "../services/state-id.service";
+import { StateIdService } from "../services/state-id.service";
+import { Router } from '@angular/router';
+import { UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-state',
@@ -36,10 +38,17 @@ export class StateComponent implements OnInit {
               private route: ActivatedRoute,
               private location: Location,
               private state_service: StateService,
-              private state_id_service: StateIdService) { }
+              private state_id_service: StateIdService,
+              private router: Router,
+              private userService: UserService) { }
 
 
   ngOnInit() {
+
+    if(!this.userService.isLoggedIn()) {
+      alert("Please login");
+      this.router.navigate(['']);
+    }
 
 
     this.id = this.route.snapshot.params['id'];

@@ -12,25 +12,11 @@ export class PostService {
   constructor(private router: Router, private http: HttpClient) { }
 
   getPosts(): any {
-    this.http.get('http://' + this.hostname + '/post/all')
-      .subscribe((data) => {
-          this.resJson = data;
-          console.log(this.resJson.status);
-          if (this.resJson.status === 201) {
-            return this.resJson.entity;
-          }
-          else if (this.resJson.status === 409) {
-            this.router.navigate(['']);
-          }
-
-        },
-        error => {
-          console.log(error);
-        });
+    return this.http.get('http://' + this.hostname + '/post/all');
   }
 
-  getPost(id: number): Post {
-    return POSTS.filter((post) => (post.id === id))[0];
+  getPost(id: number): any {
+    return this.http.get('http://' + this.hostname + '/post/id/' + id);
   }
   addPost(post: Post): void {
     POSTS.push(post);

@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+///<reference path="../utilities/navbar/navbar.component.ts"/>
+import {Injectable, ViewChild} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { User } from '../entities/user';
 
 @Injectable()
@@ -11,6 +12,7 @@ export class UserService {
   constructor(private http: HttpClient, private router: Router) { }
   user_name: string;
   loggedin: boolean;
+  isAdmin: boolean;
   resJson: any;
   hostname = 'localhost:8080';
   currentUser = {
@@ -23,7 +25,7 @@ export class UserService {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
     headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
-
+    console.log("login" + this.currentUser);
     this.http.get<any>('http://' + this.hostname + '/login', { headers: headers})
       .subscribe((data) => {
           this.currentUser.username = username;
@@ -41,6 +43,9 @@ export class UserService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+    this.loggedin = false;
+    this.user_name = '';
+    //this.router.navigate(['']);
   }
 
   createUser(user: User) {
@@ -70,24 +75,25 @@ export class UserService {
        });
   }
   getUsers(): any {
-    this.http.get('http://' + this.hostname + '/user/all')
-      .subscribe((data) => {
-          this.resJson = data;
-          console.log(this.resJson.status);
-          if (this.resJson.status === 201) {
-            return data;
-          }
-          else if (this.resJson.status === 409) {
-            alert('Error getting users');
-            this.router.navigate(['']);
-          }
+    let headers = new HttpHeaders();
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if(this.currentUser.role != 'ROLE_ADMIN') {
+      alert("Not Authorized");
+      this.router.navigate(['']);
+    }
+    headers = headers.append('Authorization', 'Basic ' + btoa(this.currentUser.username + ':' + this.currentUser.password));
+    headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        },
-        error => {
-          alert('Error getting users using GET request');
-          this.router.navigate(['']);
-        });
+    return this.http.get<any>('http://' + this.hostname + '/user/all', { headers: headers});
+
   }
+
+  isLoggedIn(): boolean {
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if(this.currentUser) return true;
+    return false;
+  }
+
 }
 
 
