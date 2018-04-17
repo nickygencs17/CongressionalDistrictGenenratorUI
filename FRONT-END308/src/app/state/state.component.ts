@@ -50,7 +50,6 @@ export class StateComponent implements OnInit {
       this.router.navigate(['']);
     }
 
-
     this.id = this.route.snapshot.params['id'];
     this.state_id_service.state_id = this.id;
     if(this.id === 'IN' || this.id === 'AR' || this.id === 'WV'){
@@ -101,7 +100,7 @@ export class StateComponent implements OnInit {
         let defaultOverlay = geoJSON(geo1, {
           onEachFeature: function (feature, layer) {
 
-            this.layerData = layer
+            this.layerData = layer;
             let color = '';
             let val = Math.floor(Math.random() * 100) + 1;
             //TODO: change random color
