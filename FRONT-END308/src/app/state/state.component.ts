@@ -86,6 +86,10 @@ export class StateComponent implements OnInit {
       this.congressional_request = false;
       url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_LOWER.geojson'
     }
+    if(type === 'precinct') {
+      this.congressional_request = false;
+      url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_VDS.geojson'
+    }
     if(type === 'congress') {
       if(this.eagleState) {
         this.congressional_request = true;
@@ -127,6 +131,8 @@ export class StateComponent implements OnInit {
             if (type === 'congress') {
               popupContent = '<h1>name: ' + this.layerData.feature.properties.district + '</h1>';
             }
+
+
 
             layer.bindPopup(popupContent);
             layer.on('mouseover', function (e) {
