@@ -116,7 +116,7 @@ export class StateComponent implements OnInit {
             }
 
             this.layerData.options.color = color;
-            this.layerData.options.weight = 1;
+            this.layerData.options.weight = 0.7;
 
             let popupContent = '';
             if (type === 'state') {

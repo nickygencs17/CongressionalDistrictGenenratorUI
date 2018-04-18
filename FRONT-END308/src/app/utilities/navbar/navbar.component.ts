@@ -63,8 +63,8 @@ export class NavbarComponent implements OnInit{
 
   logout() {
     this.userService.logout();
+    location.assign('');
     location.reload();
-    //this.router.navigate(['']);
   }
 }
 

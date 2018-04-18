@@ -329,7 +329,8 @@ export class AutoCompleteComponent {
   filterStates(name: string) {
     for (let i = 0; i < this.states.length; i++) {
       if (this.states[i].name === name) {
-        this.router.navigate(['/states/' + this.states[i].abbrv.toUpperCase()]);
+        location.replace('#/state/' + this.states[i].abbrv.toUpperCase());
+        location.reload();
       }
     }
 

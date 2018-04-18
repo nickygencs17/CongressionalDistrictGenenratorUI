@@ -35,7 +35,6 @@ import {HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
 import {StateIdService} from "./services/state-id.service";
 import {UserService} from "./services/user.service";
 import {PostService} from "./services/post.service";
-import { WhitepageComponent } from './utilities/whitepage/whitepage.component';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { AdminComponent } from './admin/admin.component'
@@ -53,7 +52,6 @@ import { AdminComponent } from './admin/admin.component'
     PostdetailComponent,
     PostComponent,
     AddpostComponent,
-    WhitepageComponent,
     AdminComponent
   ],
   entryComponents: [LogindialogComponent],

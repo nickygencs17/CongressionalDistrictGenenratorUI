@@ -26,18 +26,18 @@ export class UserService {
     headers = headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
     headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
     console.log("login" + this.currentUser);
-    this.http.get<any>('http://' + this.hostname + '/login', { headers: headers})
-      .subscribe((data) => {
-          this.currentUser.username = username;
-          this.currentUser.password = password;
-          this.currentUser.role = data.entity.roles['0'];
-          localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-        },
-        error => {
-          console.log(error);
-          alert('Username/Password Bad');
-          return;
-        });
+    this.http.get<any>('http://' + this.hostname + '/login', { headers: headers}).subscribe((data) => {
+        this.currentUser.username = username;
+        this.currentUser.password = password;
+        this.currentUser.role = data.entity.roles['0'];
+        localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+      },
+      error => {
+        console.log(error);
+        alert('Username/Password Bad');
+        return;
+      });
+
   }
 
   logout() {
