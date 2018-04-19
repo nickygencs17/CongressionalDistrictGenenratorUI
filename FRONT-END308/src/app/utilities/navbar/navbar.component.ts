@@ -12,6 +12,10 @@ import { Location } from '@angular/common';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit{
+
+
+
+
   currentUser: any;
   username: string;
   password: string;
@@ -20,7 +24,7 @@ export class NavbarComponent implements OnInit{
   logged_in: boolean;
   isAdmin: boolean;
   ngOnInit(): void {
-    this.currentUser = localStorage.getItem('currentUser');console.log(this.currentUser);
+    this.currentUser = localStorage.getItem('currentUser');
     if (this.currentUser) {
       this.nav_bar_name = this.currentUser.username;
       this.logged_in = true;
@@ -39,7 +43,8 @@ export class NavbarComponent implements OnInit{
               public router: Router,
               private http: HttpClient,
               private userService: UserService,
-              private location: Location) {}
+              public location: Location) {}
+
 
   openDialog(): void {
     let dialogRef = this.dialog.open(LogindialogComponent, {
@@ -49,11 +54,31 @@ export class NavbarComponent implements OnInit{
     });
 
     dialogRef.afterClosed().subscribe(data => {
+
         this.username = data.username;
         this.password = data.password;
-        this.userService.login(this.username, this.password);
-        location.reload();
+        this.userService.login(this.username, this.password)
+          .subscribe((data) => {
+              console.log(data.status);
+              console.log(this.username + this.password);
+              this.userService.currentUser.username = this.username;
+              this.userService.currentUser.password = this.password;
+              this.userService.currentUser.role = data.entity.roles['0'];
+              localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+              this.reload_fun();
+
+            },
+            error => {
+              return;
+            });
+
+
     });
+
+  }
+
+  reload_fun(): any {
+    location.reload();
   }
 
   goHome() {
