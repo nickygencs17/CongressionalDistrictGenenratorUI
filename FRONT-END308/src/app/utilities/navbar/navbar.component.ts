@@ -55,23 +55,27 @@ export class NavbarComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(data => {
 
-        this.username = data.username;
-        this.password = data.password;
-        this.userService.login(this.username, this.password)
-          .subscribe((data) => {
-              console.log(data.status);
-              console.log(this.username + this.password);
-              this.userService.currentUser.username = this.username;
-              this.userService.currentUser.password = this.password;
-              this.userService.currentUser.role = data.entity.roles['0'];
-              localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-              this.reload_fun();
+        if(!data){
+          return;
+        }
+        else{
+          this.username = data.username;
+          this.password = data.password;
+          this.userService.login(this.username, this.password)
+            .subscribe((data) => {
+                console.log(data.status);
+                console.log(this.username + this.password);
+                this.userService.currentUser.username = this.username;
+                this.userService.currentUser.password = this.password;
+                this.userService.currentUser.role = data.entity.roles['0'];
+                localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+                this.reload_fun();
 
-            },
-            error => {
-              return;
-            });
-
+              },
+              error => {
+                return;
+              });
+        }
 
     });
 
