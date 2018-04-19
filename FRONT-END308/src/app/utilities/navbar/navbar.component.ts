@@ -68,7 +68,6 @@ export class NavbarComponent implements OnInit{
                 this.userService.currentUser.username = this.username;
                 this.userService.currentUser.password = this.password;
                 this.userService.currentUser.role = data.entity.roles['0'];
-                localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
                 this.reload_fun();
 
               },
@@ -82,6 +81,7 @@ export class NavbarComponent implements OnInit{
   }
 
   reload_fun(): any {
+    localStorage.setItem('currentUser', JSON.stringify(this.userService.currentUser));
     location.reload();
   }
 
