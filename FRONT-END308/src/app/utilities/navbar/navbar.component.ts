@@ -55,9 +55,10 @@ export class NavbarComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(data => {
 
-        if(!data){
+        if(data){
           this.userService.login(data.username, data.password)
             .subscribe((data) => {
+              console.log("here");
                 this.userService.currentUser =  {
                   username: data.username,
                   password: data.password,
