@@ -65,10 +65,17 @@ export class NavbarComponent implements OnInit{
             .subscribe((data) => {
                 console.log(data.status);
                 console.log(this.username + this.password);
-                this.userService.currentUser.username = this.username;
-                this.userService.currentUser.password = this.password;
+                this.userService.currentUser =  {
+                  username: '',
+                  password: '',
+                  role: ''
+                };
+                this.userService.currentUser.username = data.username;
+                this.userService.currentUser.password = data.password;
                 this.userService.currentUser.role = data.entity.roles['0'];
+                localStorage.setItem('currentUser', JSON.stringify(this.userService.currentUser));
                 this.reload_fun();
+
 
               },
               error => {
@@ -81,7 +88,6 @@ export class NavbarComponent implements OnInit{
   }
 
   reload_fun(): any {
-    localStorage.setItem('currentUser', JSON.stringify(this.userService.currentUser));
     location.reload();
   }
 

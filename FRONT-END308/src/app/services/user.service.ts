@@ -40,8 +40,11 @@ export class UserService {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.loggedin = false;
-    this.user_name = '';
-    //this.router.navigate(['']);
+    this.currentUser = {
+      username: '',
+      password: '',
+      role: ''
+    };
   }
 
   createUser(user: User) {
