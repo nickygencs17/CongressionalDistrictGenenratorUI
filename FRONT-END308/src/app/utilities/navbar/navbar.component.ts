@@ -58,7 +58,6 @@ export class NavbarComponent implements OnInit{
         if(data){
           this.userService.login(data.username, data.password)
             .subscribe((data) => {
-              console.log("here");
                 this.userService.currentUser =  {
                   username: data.username,
                   password: data.password,
