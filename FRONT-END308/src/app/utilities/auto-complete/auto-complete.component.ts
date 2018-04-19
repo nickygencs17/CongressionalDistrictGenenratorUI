@@ -314,7 +314,6 @@ export class AutoCompleteComponent {
     }
   ];
 
-  public stateId;
 
   constructor(public router: Router, public state_service: StateService, private http: HttpClient) {
     this.stateCtrl = new FormControl();

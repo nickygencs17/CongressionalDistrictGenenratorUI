@@ -37,8 +37,6 @@ export class CreateuserComponent implements OnInit {
 
 createNewAccount() {
 
-      console.log(this.password_two);
-      console.log(this.password);
       if(this.password==this.password_two){
         alert("Passwords do not match");
         return;

@@ -26,7 +26,6 @@ export class UserService {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
     headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    console.log("login" + this.currentUser);
     return this.http.get<any>('http://' + this.hostname + '/login', { headers: headers})
       .catch((e: any) => Observable.throw(this.errorHandler(e)));
   }
@@ -40,11 +39,6 @@ export class UserService {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.loggedin = false;
-    this.currentUser = {
-      username: '',
-      password: '',
-      role: ''
-    };
   }
 
   createUser(user: User) {

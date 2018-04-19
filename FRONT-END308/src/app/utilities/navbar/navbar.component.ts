@@ -19,11 +19,12 @@ export class NavbarComponent implements OnInit{
   currentUser: any;
   username: string;
   password: string;
-  res: any;
   nav_bar_name = 'Login';
   logged_in: boolean;
   isAdmin: boolean;
+
   ngOnInit(): void {
+
     this.currentUser = localStorage.getItem('currentUser');
     if (this.currentUser) {
       this.nav_bar_name = this.currentUser.username;
@@ -42,8 +43,7 @@ export class NavbarComponent implements OnInit{
   constructor(public dialog: MatDialog,
               public router: Router,
               private http: HttpClient,
-              private userService: UserService,
-              public location: Location) {}
+              private userService: UserService) {}
 
 
   openDialog(): void {
@@ -56,31 +56,23 @@ export class NavbarComponent implements OnInit{
     dialogRef.afterClosed().subscribe(data => {
 
         if(!data){
-          return;
-        }
-        else{
-          this.username = data.username;
-          this.password = data.password;
-          this.userService.login(this.username, this.password)
+          this.userService.login(data.username, data.password)
             .subscribe((data) => {
-                console.log(data.status);
-                console.log(this.username + this.password);
                 this.userService.currentUser =  {
-                  username: '',
-                  password: '',
-                  role: ''
+                  username: data.username,
+                  password: data.password,
+                  role: data.entity.roles['0']
                 };
-                this.userService.currentUser.username = data.username;
-                this.userService.currentUser.password = data.password;
-                this.userService.currentUser.role = data.entity.roles['0'];
                 localStorage.setItem('currentUser', JSON.stringify(this.userService.currentUser));
                 this.reload_fun();
-
 
               },
               error => {
                 return;
               });
+        }
+        else{
+          return;
         }
 
     });
