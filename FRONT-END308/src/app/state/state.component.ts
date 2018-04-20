@@ -120,7 +120,29 @@ export class StateComponent implements OnInit {
 
             let popupContent = '';
             if (type === 'state') {
-              popupContent = '<h1>name: ' + this.layerData.feature.properties.name + '</h1>';
+              if(this.layerData.feature.properties.name == 'Indiana'){
+                this.layerData.options.color = 'red';
+                popupContent =
+                  '<p>name: ' + this.layerData.feature.properties.name +'</p>'+
+                  '<p>gov: Eric Holcomb </p>';
+
+              }
+              else if(this.layerData.feature.properties.name == 'Arkansas'){
+                this.layerData.options.color = 'red';
+                popupContent =
+                  '<p>name: ' + this.layerData.feature.properties.name +'</p>'+
+                  '<p>gov: Asa Hutchinson</p>';
+              }
+              else if(this.layerData.feature.properties.name == 'West Virginia'){
+                this.layerData.options.color = 'red';
+                popupContent =
+                  '<p>name: ' + this.layerData.feature.properties.name +'</p>'+
+                  '<p>gov: Jim Justice</p>';
+              }
+              else{
+                popupContent = '<h1>name: ' + this.layerData.feature.properties.name + '</h1>';
+                this.layerData.options.color = 'grey';
+              }
             }
             if (type === 'senate') {
               popupContent =
