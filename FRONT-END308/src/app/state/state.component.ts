@@ -105,17 +105,17 @@ export class StateComponent implements OnInit {
           onEachFeature: function (feature, layer) {
 
             this.layerData = layer;
-            let color = '';
-            let val = Math.floor(Math.random() * 100) + 1;
-            //TODO: change random color
-            if(val%2==0){
-              color = "#FF0000";
-            }
-            else {
-              color = "#0000FF"
-            }
+            // let color = '';
+            // let val = Math.floor(Math.random() * 100) + 1;
+            // //TODO: change random color
+            // if(val%2==0){
+            //   color = "#FF0000";
+            // }
+            // else {
+            //   color = "#0000FF"
+            // }
 
-            this.layerData.options.color = color;
+            //this.layerData.options.color = color;
             this.layerData.options.weight = 0.7;
 
             let popupContent = '';
@@ -123,10 +123,16 @@ export class StateComponent implements OnInit {
               popupContent = '<h1>name: ' + this.layerData.feature.properties.name + '</h1>';
             }
             if (type === 'senate') {
-              popupContent = '<h1>name: ' + this.layerData.feature.properties.NAME + '</h1>';
+              popupContent =
+                '<p>name: ' + this.layerData.feature.properties.NAME +'</p>'+
+                '<p>rep: '+this.layerData.feature.properties.REP+'</p>';
+              this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
             if (type === 'assembly') {
-              popupContent = '<h1>name: ' + this.layerData.feature.properties.NAME + '</h1>';
+              popupContent =
+                '<p>name: ' + this.layerData.feature.properties.NAME +'</p>'+
+                '<p>rep: '+this.layerData.feature.properties.REP+'</p>';
+              this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
             if (type === 'congress') {
               popupContent = '<h1>name: ' + this.layerData.feature.properties.district + '</h1>';
