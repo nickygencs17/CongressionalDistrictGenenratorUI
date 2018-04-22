@@ -67,19 +67,41 @@ export class UserService {
          alert('Username/Password Bad');
        });
   }
-  getUsers(): any {
-    let headers = new HttpHeaders();
-    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    if(this.currentUser.role != 'ROLE_ADMIN') {
-      alert("Not Authorized");
-      this.router.navigate(['']);
-    }
-    headers = headers.append('Authorization', 'Basic ' + btoa(this.currentUser.username + ':' + this.currentUser.password));
-    headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
+  // getUsers(): any {
+  //   let headers = new HttpHeaders();
+  //   this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  //   if(this.currentUser.role != 'ROLE_ADMIN') {
+  //     alert("Not Authorized");
+  //     this.router.navigate(['']);
+  //   }
+  //   headers = headers.append('Authorization', 'Basic ' + btoa(this.currentUser.username + ':' + this.currentUser.password));
+  //   headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
+  //
+  //   return this.http.get<any>('http://' + this.hostname + '/user/all', { headers: headers});
+  //
+  // }
 
-    return this.http.get<any>('http://' + this.hostname + '/user/all', { headers: headers});
+  getUsers(): Observable<any> {
 
+      let headers = new HttpHeaders();
+      this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      if(this.currentUser.role != 'ROLE_ADMIN') {
+        alert("Not Authorized");
+        this.router.navigate(['']);
+      }
+      headers = headers.append('Authorization', 'Basic ' + btoa(this.currentUser.username + ':' + this.currentUser.password));
+      headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+      console.log(this.currentUser);
+      console.log("here");
+
+    return this.http
+      .get<any>('http://' + this.hostname + '/user/all', { headers: headers})
+      .catch((error: any) => Observable.throw(error));
   }
+
+
+
 
   isLoggedIn(): boolean {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));

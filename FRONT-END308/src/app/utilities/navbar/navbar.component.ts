@@ -57,13 +57,14 @@ export class NavbarComponent implements OnInit{
 
         if(data){
           this.userService.login(data.username, data.password)
-            .subscribe((data) => {
+            .subscribe((res_data) => {
                 this.userService.currentUser =  {
                   username: data.username,
                   password: data.password,
-                  role: data.entity.roles['0']
+                  role: res_data.entity.roles['0']
                 };
                 localStorage.setItem('currentUser', JSON.stringify(this.userService.currentUser));
+                console.log(this.userService.currentUser);
                 this.reload_fun();
 
               },
