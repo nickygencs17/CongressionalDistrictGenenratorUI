@@ -1,6 +1,6 @@
 ///<reference path="../utilities/navbar/navbar.component.ts"/>
 import {Injectable, ViewChild} from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
@@ -45,7 +45,6 @@ export class UserService {
     console.log(user);
     this.http.post('http://' + this.hostname + '/user', user)
      .subscribe((data) => {
-          console.log(data);
          this.resJson = data;
          console.log(this.resJson.status);
          if (this.resJson.status === 201) {
@@ -67,20 +66,6 @@ export class UserService {
          alert('Username/Password Bad');
        });
   }
-  // getUsers(): any {
-  //   let headers = new HttpHeaders();
-  //   this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  //   if(this.currentUser.role != 'ROLE_ADMIN') {
-  //     alert("Not Authorized");
-  //     this.router.navigate(['']);
-  //   }
-  //   headers = headers.append('Authorization', 'Basic ' + btoa(this.currentUser.username + ':' + this.currentUser.password));
-  //   headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
-  //
-  //   return this.http.get<any>('http://' + this.hostname + '/user/all', { headers: headers});
-  //
-  // }
-
   getUsers(): Observable<any> {
 
       let headers = new HttpHeaders();
@@ -91,9 +76,6 @@ export class UserService {
       }
       headers = headers.append('Authorization', 'Basic ' + btoa(this.currentUser.username + ':' + this.currentUser.password));
       headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
-
-      console.log(this.currentUser);
-      console.log("here");
 
     return this.http
       .get<any>('http://' + this.hostname + '/user/all', { headers: headers})
@@ -109,6 +91,37 @@ export class UserService {
     return false;
   }
 
+  deleteUser(username: string): Observable<any> {
+    console.log("here");
+    let headers = new HttpHeaders();
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if(this.currentUser.role != 'ROLE_ADMIN') {
+      alert("Not Authorized");
+      this.router.navigate(['']);
+    }
+    headers = headers.append('Authorization', 'Basic ' + btoa(this.currentUser.username + ':' + this.currentUser.password));
+    headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    return this.http
+      .delete<any>('http://' + this.hostname + '/user/delete?username=' + username, { headers: headers})
+      .catch((error: any) => Observable.throw(error));
+
+  }
+
+  editUser(new_user): Observable<any> {
+    let headers = new HttpHeaders();
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if(this.currentUser.role != 'ROLE_ADMIN') {
+      alert("Not Authorized");
+      this.router.navigate(['']);
+    }
+
+    headers = headers.append('Authorization', 'Basic ' + btoa(this.currentUser.username + ':' + this.currentUser.password));
+    console.log(new_user);
+
+      return this.http.post('http://' + this.hostname + '/user/edit', new_user, {headers:headers})
+      .catch((error: any) => Observable.throw(error));
+  }
 }
 
 

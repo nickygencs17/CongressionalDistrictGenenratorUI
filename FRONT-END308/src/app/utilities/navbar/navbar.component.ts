@@ -22,14 +22,17 @@ export class NavbarComponent implements OnInit{
   nav_bar_name = 'Login';
   logged_in: boolean;
   isAdmin: boolean;
+  displayName  = 'v';
 
   ngOnInit(): void {
 
     this.currentUser = localStorage.getItem('currentUser');
     if (this.currentUser) {
-      this.nav_bar_name = this.currentUser.username;
+      let userJson = JSON.parse(this.currentUser);
+      console.log(userJson);
+      this.nav_bar_name = userJson.username;
       this.logged_in = true;
-      if(this.currentUser.role === 'ROLE_ADMIN') {
+      if(userJson.role === 'ROLE_ADMIN') {
         this.isAdmin = true;
       }
     }
@@ -63,6 +66,7 @@ export class NavbarComponent implements OnInit{
                   password: data.password,
                   role: res_data.entity.roles['0']
                 };
+                this.userService.user_name = data.username;
                 localStorage.setItem('currentUser', JSON.stringify(this.userService.currentUser));
                 console.log(this.userService.currentUser);
                 this.reload_fun();
@@ -81,6 +85,9 @@ export class NavbarComponent implements OnInit{
   }
 
   reload_fun(): any {
+
+    this.displayName = this.userService.currentUser.username;
+    console.log(this.displayName);
     location.reload();
   }
 

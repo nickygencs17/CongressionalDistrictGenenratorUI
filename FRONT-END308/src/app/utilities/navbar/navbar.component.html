@@ -3,8 +3,8 @@
   <span class = "nav-bar" md-button routerLink="" routerLinkActive="active"><span class="fa fa-info fa-lg"></span> About</span>
   <span class = "nav-bar" md-button routerLink="/blog" routerLinkActive="active"><span class="fa fa-list fa-lg"></span> Blog</span>
   <span class = "nav-bar" md-button routerLink="/blog" routerLinkActive="active"> Voting District</span>
-  <span *ngIf="logged_in" class = "nav-bar" md-button routerLink="/users" routerLinkActive="active"> Users</span>
-  <span *ngIf="logged_in" class = "nav-bar" md-button routerLink="" routerLinkActive="active"> Log</span>
+  <span *ngIf="isAdmin" class = "nav-bar" md-button routerLink="/users" routerLinkActive="active"> Users</span>
+  <span *ngIf="isAdmin" class = "nav-bar" md-button routerLink="" routerLinkActive="active"> Log</span>
 
 
 
@@ -13,9 +13,10 @@
 
   <div *ngIf="!logged_in">
     <a md-button (click)="openDialog()"><span class="fa fa-sign-in fa-lg"></span> Login</a>
-    <span class = "nav-bar" md-button routerLink="/register" routerLinkActive="active"> Register</span>
   </div>
   <div *ngIf="logged_in">
-    <span (click)="logout()">logout</span>
+    <span *ngIf="isAdmin"> Admin - </span>
+    <span>{{nav_bar_name}}</span>
+    <a md-button (click)="logout()"><span class="fa fa-sign-in fa-lg"></span> Logout</a>
   </div>
 </mat-toolbar>
