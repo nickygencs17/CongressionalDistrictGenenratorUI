@@ -64,7 +64,7 @@ export class AdminComponent implements OnInit {
       population_coefficient: pop_coef,
       fairness_coefficient: fair_coef,
       compactness_coefficient: com_coef
-    }
+    };
     if(state_id.length>2){
       alert("State ID Greater than 2")
     }

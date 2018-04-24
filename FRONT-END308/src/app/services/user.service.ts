@@ -49,6 +49,10 @@ export class UserService {
          console.log(this.resJson.status);
          if (this.resJson.status === 201) {
              alert('CREATED');
+             if(localStorage.getItem('currentUser')) {
+               this.router.navigate(['']);
+               return;
+             }
              this.loggedin = true;
              this.user_name = user.username;
              this.currentUser.username = user.username;
