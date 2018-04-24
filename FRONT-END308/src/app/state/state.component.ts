@@ -105,17 +105,6 @@ export class StateComponent implements OnInit {
           onEachFeature: function (feature, layer) {
 
             this.layerData = layer;
-            // let color = '';
-            // let val = Math.floor(Math.random() * 100) + 1;
-            // //TODO: change random color
-            // if(val%2==0){
-            //   color = "#FF0000";
-            // }
-            // else {
-            //   color = "#0000FF"
-            // }
-
-            //this.layerData.options.color = color;
             this.layerData.options.weight = 0.7;
 
             let popupContent = '';
@@ -158,6 +147,12 @@ export class StateComponent implements OnInit {
             }
             if (type === 'congress') {
               popupContent = '<h1>name: ' + this.layerData.feature.properties.district + '</h1>';
+            }
+            if(type === 'precinct'){
+              popupContent =
+                '<p>name: ' + this.layerData.feature.properties.NAME10 +'</p>'+
+                '<p>compactness: '+this.layerData.feature.properties.COMPACTNESS+'</p>';
+              this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
 
 
