@@ -52,6 +52,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PresidentelectiontableComponent } from './utilities/presidentelectiontable/presidentelectiontable.component';
 import { CongresselectiontableComponent } from './utilities/congresselectiontable/congresselectiontable.component';
+import {LogComponent} from "./log/log.component";
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { CongresselectiontableComponent } from './utilities/congresselectiontabl
     AdminComponent,
     TableComponent,
     PresidentelectiontableComponent,
-    CongresselectiontableComponent
+    CongresselectiontableComponent,
+    LogComponent
   ],
   entryComponents: [LogindialogComponent],
   imports: [
