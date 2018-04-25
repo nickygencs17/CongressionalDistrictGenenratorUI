@@ -1,4 +1,4 @@
-<div class = "container" fxLayout = "column" fxLayoutGap = "10px">
+<div class="container" fxLayout="column" fxLayoutGap="10px">
   <div fxFlex>
     <div>
       <h3>Gerrymanderring Blog</h3>
@@ -6,7 +6,7 @@
     </div>
   </div>
   <div fxFlex>
-    <mat-grid-list cols = "4" rowHeight = "500px" >
+    <mat-grid-list cols="4" rowHeight="500px">
       <mat-grid-tile *ngFor="let post of posts" [routerLink]="['/blog/posts/', post.post_id]">
         <mat-card>
           <mat-card-header>

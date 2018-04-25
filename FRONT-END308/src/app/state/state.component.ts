@@ -1,15 +1,14 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'leaflet-providers';
-import {Layer, tileLayer, geoJSON,latLng} from 'leaflet';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { StateService} from "../services/state.service";
-import { StateIdService } from "../services/state-id.service";
-import { Router } from '@angular/router';
-import { UserService} from '../services/user.service';
+import {geoJSON, Layer, tileLayer} from 'leaflet';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Location} from '@angular/common';
+import {StateService} from "../services/state.service";
+import {StateIdService} from "../services/state-id.service";
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-state',
@@ -41,19 +40,20 @@ export class StateComponent implements OnInit {
               private state_service: StateService,
               private state_id_service: StateIdService,
               private router: Router,
-              private userService: UserService) { }
+              private userService: UserService) {
+  }
 
 
   ngOnInit() {
 
-    if(!this.userService.isLoggedIn()) {
+    if (!this.userService.isLoggedIn()) {
       alert("Please login");
       this.router.navigate(['']);
     }
 
     this.id = this.route.snapshot.params['id'];
     this.state_id_service.state_id = this.id;
-    if(this.id === 'IN' || this.id === 'AR' || this.id === 'WV'){
+    if (this.id === 'IN' || this.id === 'AR' || this.id === 'WV') {
       this.eagleState = true;
     }
 
@@ -75,27 +75,27 @@ export class StateComponent implements OnInit {
   displayBoundaries(type): void {
     this.isLoadingResults = true;
     let url = '';
-    if(type === 'state') {
+    if (type === 'state') {
       this.congressional_request = false;
       url = '/assets/data/USA/' + this.id.toUpperCase() + '.geojson';
     }
-    if(type === 'senate') {
+    if (type === 'senate') {
       this.congressional_request = false;
-      url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_UPPER.geojson';
+      url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_UPPER.geojson';
     }
-    if(type === 'assembly') {
+    if (type === 'assembly') {
       this.congressional_request = false;
-      url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_LOWER.geojson'
+      url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_LOWER.geojson'
     }
-    if(type === 'precinct') {
+    if (type === 'precinct') {
       this.congressional_request = true;
-      url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_VDS.geojson'
+      url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_VDS.geojson'
     }
-    if(type === 'congress') {
-      if(this.eagleState) {
+    if (type === 'congress') {
+      if (this.eagleState) {
         this.congressional_request = false;
       }
-      url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_COMBINED_CONGRESS.geojson';
+      url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_COMBINED_CONGRESS.geojson';
     }
 
 
@@ -110,53 +110,52 @@ export class StateComponent implements OnInit {
 
             let popupContent = '';
             if (type === 'state') {
-              if(this.layerData.feature.properties.name == 'Indiana'){
+              if (this.layerData.feature.properties.name == 'Indiana') {
                 this.layerData.options.color = 'red';
                 popupContent =
-                  '<p>name: ' + this.layerData.feature.properties.name +'</p>'+
+                  '<p>name: ' + this.layerData.feature.properties.name + '</p>' +
                   '<p>gov: Eric Holcomb </p>';
 
               }
-              else if(this.layerData.feature.properties.name == 'Arkansas'){
+              else if (this.layerData.feature.properties.name == 'Arkansas') {
                 this.layerData.options.color = 'red';
                 popupContent =
-                  '<p>name: ' + this.layerData.feature.properties.name +'</p>'+
+                  '<p>name: ' + this.layerData.feature.properties.name + '</p>' +
                   '<p>gov: Asa Hutchinson</p>';
               }
-              else if(this.layerData.feature.properties.name == 'West Virginia'){
+              else if (this.layerData.feature.properties.name == 'West Virginia') {
                 this.layerData.options.color = 'red';
                 popupContent =
-                  '<p>name: ' + this.layerData.feature.properties.name +'</p>'+
+                  '<p>name: ' + this.layerData.feature.properties.name + '</p>' +
                   '<p>gov: Jim Justice</p>';
               }
-              else{
+              else {
                 popupContent = '<h1>name: ' + this.layerData.feature.properties.name + '</h1>';
                 this.layerData.options.color = 'grey';
               }
             }
             if (type === 'senate') {
               popupContent =
-                '<p>name: ' + this.layerData.feature.properties.NAME +'</p>'+
-                '<p>rep: '+this.layerData.feature.properties.REP+'</p>';
+                '<p>name: ' + this.layerData.feature.properties.NAME + '</p>' +
+                '<p>rep: ' + this.layerData.feature.properties.REP + '</p>';
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
             if (type === 'assembly') {
               popupContent =
-                '<p>name: ' + this.layerData.feature.properties.NAME +'</p>'+
-                '<p>rep: '+this.layerData.feature.properties.REP+'</p>';
+                '<p>name: ' + this.layerData.feature.properties.NAME + '</p>' +
+                '<p>rep: ' + this.layerData.feature.properties.REP + '</p>';
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
             if (type === 'congress') {
               popupContent = '<h1>name: ' + this.layerData.feature.properties.District + '</h1>';
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
-            if(type === 'precinct'){
+            if (type === 'precinct') {
               popupContent =
-                '<p>name: ' + this.layerData.feature.properties.NAME10 +'</p>'+
-                '<p>compactness: '+this.layerData.feature.properties.COMPACTNESS+'</p>';
+                '<p>name: ' + this.layerData.feature.properties.NAME10 + '</p>' +
+                '<p>compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>';
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
-
 
 
             layer.bindPopup(popupContent);

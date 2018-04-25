@@ -1,30 +1,37 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
 
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { AppComponent } from './app.component';
-import { MapComponent } from './map/mapcomponent';
-import { UsMapModule } from 'angular-us-map';
-import { UsMapService } from './services/us-map.service';
-import { routes } from './app.routes';
-import { RouterModule } from '@angular/router';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {AppComponent} from './app.component';
+import {MapComponent} from './map/mapcomponent';
+import {UsMapModule} from 'angular-us-map';
+import {UsMapService} from './services/us-map.service';
+import {routes} from './app.routes';
+import {RouterModule} from '@angular/router';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import { AutoCompleteComponent } from './utilities/auto-complete/auto-complete.component';
+import {AutoCompleteComponent} from './utilities/auto-complete/auto-complete.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
-  MatButtonModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatPaginatorModule, MatToolbarModule,
+  MatButtonModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatPaginatorModule,
+  MatRadioModule,
   MatSelectModule,
-  MatTooltipModule, MatSortModule, MatDialogModule, MatProgressBarModule
+  MatSortModule,
+  MatToolbarModule,
+  MatTooltipModule
 } from '@angular/material';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
-import { StateComponent } from './state/state.component';
+import {StateComponent} from './state/state.component';
 import {StateService} from './services/state.service';
 import {NavbarComponent} from './utilities/navbar/navbar.component';
 import {LogindialogComponent} from './utilities/logindialog/logindialog.component';
@@ -38,9 +45,9 @@ import {UserService} from './services/user.service';
 import {PostService} from './services/post.service';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { AdminComponent } from './admin/admin.component'
+import {AdminComponent} from './admin/admin.component'
 import {MatTabsModule} from '@angular/material/tabs';
-import { TableComponent } from './utilities/table/table.component';
+import {TableComponent} from './utilities/table/table.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
@@ -96,7 +103,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
       useHash: true
     })],
 
-  providers: [UsMapService, StateService,StateIdService, UserService, PostService],
+  providers: [UsMapService, StateService, StateIdService, UserService, PostService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

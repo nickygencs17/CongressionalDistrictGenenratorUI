@@ -1,20 +1,24 @@
-path{
-  fill:none;
-  stroke:black;
-  pointer-events:all;
+path {
+  fill: none;
+  stroke: black;
+  pointer-events: all;
 }
-path:hover{
-  fill:#3f51b5;
-  stroke:black;
+
+path:hover {
+  fill: #3f51b5;
+  stroke: black;
 }
+
 #autocomplete {
   margin: auto;
   width: 50%;
   padding: 10px;
 }
-svg{
+
+svg {
   width: 50%;
 }
+
 .example-fill-remaining-space {
   /* This fills the remaining space, by using flexbox.
      Every toolbar row uses a flexbox row layout. */

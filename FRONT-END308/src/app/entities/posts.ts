@@ -1,4 +1,4 @@
-import { Post } from './post';
+import {Post} from './post';
 
 export const POSTS: Post[] = [
   {
@@ -8,7 +8,7 @@ export const POSTS: Post[] = [
     description: 'Gerrymandering is a practice intended to establish a political advantage for a particular party or group by manipulating district boundaries. The resulting district is known as a gerrymander, however that word is also a verb for the process. ',
     date: "2014-09-05T17:57:28.556094Z",
     author: "Ram",
-    likes:5,
+    likes: 5,
     comments: [
       {
         comment: "Not fair!",
@@ -39,7 +39,7 @@ export const POSTS: Post[] = [
     description: 'Gerrymandering is a practice intended to establish a political advantage for a particular party or group by manipulating district boundaries. The resulting district is known as a gerrymander, however that word is also a verb for the process. ',
     date: "2014-09-05T17:57:28.556094Z",
     author: "Ram",
-    likes:5,
+    likes: 5,
     comments: [
       {
         comment: "Not fair!",
@@ -70,7 +70,7 @@ export const POSTS: Post[] = [
     description: 'Gerrymandering is a practice intended to establish a political advantage for a particular party or group by manipulating district boundaries. The resulting district is known as a gerrymander, however that word is also a verb for the process. ',
     date: "2014-09-05T17:57:28.556094Z",
     author: "Ram",
-    likes:5,
+    likes: 5,
     comments: [
       {
         comment: "Not fair!",
@@ -101,7 +101,7 @@ export const POSTS: Post[] = [
     description: 'Gerrymandering is a practice intended to establish a political advantage for a particular party or group by manipulating district boundaries. The resulting district is known as a gerrymander, however that word is also a verb for the process. ',
     date: "2014-09-05T17:57:28.556094Z",
     author: "Ram",
-    likes:5,
+    likes: 5,
     comments: [
       {
         comment: "Not fair!",
@@ -132,7 +132,7 @@ export const POSTS: Post[] = [
     description: 'Gerrymandering is a practice intended to establish a political advantage for a particular party or group by manipulating district boundaries. The resulting district is known as a gerrymander, however that word is also a verb for the process. ',
     date: "2014-09-05T17:57:28.556094Z",
     author: "Ram",
-    likes:5,
+    likes: 5,
     comments: [
       {
         comment: "Not fair!",
@@ -163,7 +163,7 @@ export const POSTS: Post[] = [
     description: 'Gerrymandering is a practice intended to establish a political advantage for a particular party or group by manipulating district boundaries. The resulting district is known as a gerrymander, however that word is also a verb for the process. ',
     date: "2014-09-05T17:57:28.556094Z",
     author: "Ram",
-    likes:5,
+    likes: 5,
     comments: [
       {
         comment: "Not fair!",
@@ -194,7 +194,7 @@ export const POSTS: Post[] = [
     description: 'Gerrymandering is a practice intended to establish a political advantage for a particular party or group by manipulating district boundaries. The resulting district is known as a gerrymander, however that word is also a verb for the process. ',
     date: "2014-09-05T17:57:28.556094Z",
     author: "Ram",
-    likes:5,
+    likes: 5,
     comments: [
       {
         comment: "Not fair!",
@@ -225,7 +225,7 @@ export const POSTS: Post[] = [
     description: 'Gerrymandering is a practice intended to establish a political advantage for a particular party or group by manipulating district boundaries. The resulting district is known as a gerrymander, however that word is also a verb for the process. ',
     date: "2014-09-05T17:57:28.556094Z",
     author: "Ram",
-    likes:5,
+    likes: 5,
     comments: [
       {
         comment: "Not fair!",

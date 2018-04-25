@@ -8,6 +8,7 @@ import {catchError} from 'rxjs/operators/catchError';
 import {map} from 'rxjs/operators/map';
 import {startWith} from 'rxjs/operators/startWith';
 import {switchMap} from 'rxjs/operators/switchMap';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-table',
@@ -22,17 +23,21 @@ export class TableComponent implements OnInit {
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
-  res:any;
+  res: any;
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
-    this.exampleDatabase = new ExampleHttpDao(this.http);
+
+    this.exampleDatabase = new ExampleHttpDao(this.http, this.route);
 
     console.log(this.exampleDatabase)
+
 
     // If the user changes the sort order, reset back to the first page.
 
@@ -90,12 +95,16 @@ export interface Officials {
 }
 
 
-/** An example database that the data source uses to retrieve data for the table. */
 export class ExampleHttpDao {
-  constructor(private http: HttpClient) {}
+
+  id: string;
+
+  constructor(private http: HttpClient, private route: ActivatedRoute) {
+  }
 
   getRepoIssues(sort: string, full_name: string): Observable<GerymanderingApi> {
-    const requestUrl = 'http://localhost:8080/state/sateInfo/wv';
+    this.id = this.route.snapshot.params['id'];
+    const requestUrl = 'http://localhost:8080/state/sateInfo/' + this.id;
 
     return this.http.get<GerymanderingApi>(requestUrl);
   }
