@@ -87,12 +87,12 @@ export class StateComponent implements OnInit {
       url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_LOWER.geojson'
     }
     if(type === 'precinct') {
-      this.congressional_request = false;
+      this.congressional_request = true;
       url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_VDS.geojson'
     }
     if(type === 'congress') {
       if(this.eagleState) {
-        this.congressional_request = true;
+        this.congressional_request = false;
       }
       url = '/assets/data/' + this.id.toUpperCase()  + '/' + this.id.toUpperCase() + '_COMBINED_CONGRESS.geojson';
     }
