@@ -6,6 +6,7 @@ import {AddpostComponent} from './blog/addpost/addpost.component';
 import {PostdetailComponent} from './blog/postdetail/postdetail.component';
 import {PostComponent} from './blog/post/post.component';
 import {AdminComponent} from './admin/admin.component';
+import {LogComponent} from "./log/log.component";
 
 
 export const routes: Routes = [
@@ -17,5 +18,6 @@ export const routes: Routes = [
   {path: 'blog/posts/:id', component: PostdetailComponent},
   {path: 'blog/addpost', component: AddpostComponent},
   {path: 'users', component: AdminComponent},
+  {path: 'log', component: LogComponent},
   {path: '**', component: MapComponent}
 ];

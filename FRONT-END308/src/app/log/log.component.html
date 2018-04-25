@@ -1,0 +1,40 @@
+
+
+<h1>Log Component</h1>
+
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults || isRateLimitReached">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+      Please connect Backend.
+    </div>
+  </div>
+
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+
+  <mat-table #table [dataSource]="dataSource" matSort class="example-table">
+
+    <ng-container matColumnDef="time_date">
+      <mat-header-cell *matHeaderCellDef>Time</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.time_date}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="log_details">
+      <mat-header-cell *matHeaderCellDef>Details</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.log_details}}</mat-cell>
+    </ng-container>
+
+
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
