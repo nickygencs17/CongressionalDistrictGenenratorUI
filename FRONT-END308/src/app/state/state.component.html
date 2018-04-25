@@ -2,7 +2,16 @@
   <app-auto-complete></app-auto-complete>
 </div>
 <br>
+<div *ngIf="eagleState">
+  <div *ngIf="!congressional_request">
+    <h3>Currently our redistricting application is only Available for Individual Precincts</h3>
+  </div>
+</div>
+<div *ngIf="!eagleState">
+  <h3>We are currently only supporting the following states IN, AR, and WV</h3>
+</div>
 
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
 <mat-radio-group *ngIf="eagleState">
   <mat-radio-button value="4" (click)="displayBoundaries('state')">State</mat-radio-button>
   <mat-radio-button value="1" (click)="displayBoundaries('senate')">Senate District</mat-radio-button>
@@ -14,12 +23,13 @@
 <br>
 <br>
 
-<div *ngIf="congressional_request" class = "alogrithmChoices">
-  <p >Population Deviation</p>
+
+<div *ngIf="congressional_request" class="alogrithmChoices">
+  <p>Population Deviation</p>
   <mat-slider min="1" max="5" step="1" value="3"></mat-slider>
-  <p >Fairness Coefficient</p>
+  <p>Fairness Coefficient</p>
   <mat-slider min="1" max="5" step="1" value="3"></mat-slider>
-  <p >Compactness Coefficient</p>
+  <p>Compactness Coefficient</p>
   <mat-slider min="1" max="5" step="1" value="3"></mat-slider>
   <div>
     <button mat-raised-button color="primary">Run Redistrict Algorithm</button>
@@ -34,7 +44,7 @@
          [leafletCenter]="center"
          [leafletFitBounds]="fitBounds"></div>
     <div *ngIf="eagleState">
-        <h3>State Information</h3>
+      <h3>State Information</h3>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -56,10 +66,37 @@
 <br>
 <br>
 
-
-<div *ngIf="!congressional_request">
-  <h3>Currently our redistricting application is only Available for Congressional Districts</h3>
-</div>
-<div *ngIf="!eagleState">
-  <h3>We are currently only supporting the following states IN, AR, and WV</h3>
+<div *ngIf="eagleState">
+  <mat-card>
+    <mat-card-content>
+      <h2 class="example-h2">State Information</h2>
+      <mat-tab-group class="demo-tab-group">
+        <mat-tab label="Current Officals">
+          <div class="demo-tab-content">
+            <app-table></app-table>
+          </div>
+        </mat-tab>
+        <mat-tab label="Election Info">
+          <div class="demo-tab-content">
+            <mat-card>
+              <mat-card-content>
+                <mat-tab-group class="demo-tab-group">
+                  <mat-tab label="Congress">
+                    <div class="demo-tab-content">
+                      <app-congresselectiontable></app-congresselectiontable>
+                    </div>
+                  </mat-tab>
+                  <mat-tab label="President">
+                    <div class="demo-tab-content">
+                      <app-presidentelectiontable></app-presidentelectiontable>
+                    </div>
+                  </mat-tab>
+                </mat-tab-group>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
 </div>

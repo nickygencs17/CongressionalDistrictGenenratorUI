@@ -1,5 +1,5 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import { UsMapService } from '../services/us-map.service';
+import {Component, OnInit} from '@angular/core';
+import {UsMapService} from '../services/us-map.service';
 
 
 @Component({
@@ -7,24 +7,24 @@ import { UsMapService } from '../services/us-map.service';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit{
+export class MapComponent implements OnInit {
 
   public stateId;
   public lat;
   public lng;
-
-  constructor(private usMapService: UsMapService) { }
   coordinates: object;
+
+  constructor(private usMapService: UsMapService) {
+  }
 
   ngOnInit() {
     this.usMapService.getUsMapCoordinates().then(data => this.coordinates = data);
   }
 
-  onUsMapClick(state){
+  onUsMapClick(state) {
     this.stateId = state;
 
   }
-
 
 
 }

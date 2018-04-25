@@ -1,4 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl} from '@angular/forms';
 
 import {Observable} from 'rxjs/Observable';
@@ -9,9 +9,11 @@ import {StateService} from "../../services/state.service";
 import {HttpClient} from "@angular/common/http";
 
 
-export class State  {
-  constructor(public name: string, public population: string, public flag: string, public abbrv: string) { }
+export class State {
+  constructor(public name: string, public population: string, public flag: string, public abbrv: string) {
+  }
 }
+
 @Component({
   selector: 'app-auto-complete',
   templateUrl: './auto-complete.component.html',
@@ -34,7 +36,7 @@ export class AutoCompleteComponent {
       population: '4.8M',
       flag: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_Alabama.svg',
       abbrv: 'AL'
-    },{
+    }, {
       name: 'Arkansas',
       population: '2.9M',
       flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Arkansas.svg',
@@ -169,7 +171,7 @@ export class AutoCompleteComponent {
       population: '6.0M',
       flag: 'https://upload.wikimedia.org/wikipedia/commons/5/5a/Flag_of_Missouri.svg',
       abbrv: 'MO'
-    },{
+    }, {
       name: 'Mississippi',
       population: '2.9M',
       flag: 'https://upload.wikimedia.org/wikipedia/commons/4/42/Flag_of_Mississippi.svg',
@@ -235,7 +237,7 @@ export class AutoCompleteComponent {
       population: '3.9M',
       flag: 'https://upload.wikimedia.org/wikipedia/commons/6/6e/Flag_of_Oklahoma.svg',
       abbrv: 'OK'
-    },   {
+    }, {
       name: 'Oregon',
       population: '4.0M',
       flag: 'https://upload.wikimedia.org/wikipedia/commons/b/b9/Flag_of_Oregon.svg',
@@ -268,7 +270,7 @@ export class AutoCompleteComponent {
       population: '6.7M',
       flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9e/Flag_of_Tennessee.svg',
       abbrv: 'TN'
-    },{
+    }, {
       name: 'Texas',
       population: '28.3M',
       flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Texas.svg',
@@ -332,7 +334,6 @@ export class AutoCompleteComponent {
         location.reload();
       }
     }
-
 
 
     return this.states.filter(state =>

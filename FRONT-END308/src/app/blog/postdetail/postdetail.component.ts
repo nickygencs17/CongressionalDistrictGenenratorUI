@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Post } from "../../entities/post";
-import { PostService } from '../../services/post.service';
-import { Router } from '@angular/router';
-import { Params, ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {PostService} from '../../services/post.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-postdetail',
@@ -18,7 +16,8 @@ export class PostdetailComponent implements OnInit {
   constructor(private postservice: PostService,
               private route: ActivatedRoute,
               private location: Location,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
     let id = +this.route.snapshot.params['id'];
@@ -35,7 +34,8 @@ export class PostdetailComponent implements OnInit {
       ,
       error => {
         alert('Post Service error');
-      });;
+      });
+    ;
   }
 
   goBack(): void {

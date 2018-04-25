@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from '../services/user.service';
+import {Router} from '@angular/router';
 import {User} from "../entities/user";
-import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-admin',
@@ -12,25 +11,26 @@ import {Subscription} from 'rxjs/Subscription';
 export class AdminComponent implements OnInit {
 
   users: User[];
-  constructor(private userService: UserService, private router: Router) { }
 
+  constructor(private userService: UserService, private router: Router) {
+  }
 
 
   ngOnInit() {
     this.userService.getUsers()
-    .subscribe((res_data) => {
-        if (res_data.status === 200) {
-          this.users = res_data.entity;
-        }
-        else if (res_data.status === 409) {
-          alert('Error getting users');
+      .subscribe((res_data) => {
+          if (res_data.status === 200) {
+            this.users = res_data.entity;
+          }
+          else if (res_data.status === 409) {
+            alert('Error getting users');
+            this.router.navigate(['']);
+          }
+        },
+        error => {
+          alert('Error getting users using GET request');
           this.router.navigate(['']);
-        }
-      },
-      error => {
-         alert('Error getting users using GET request');
-         this.router.navigate(['']);
-      });
+        });
   }
 
 
@@ -65,10 +65,10 @@ export class AdminComponent implements OnInit {
       fairness_coefficient: fair_coef,
       compactness_coefficient: com_coef
     };
-    if(state_id.length>2){
+    if (state_id.length > 2) {
       alert("State ID Greater than 2")
     }
-    else{
+    else {
       this.userService.editUser(new_user)
         .subscribe((res_data) => {
             if (res_data.status === 200) {

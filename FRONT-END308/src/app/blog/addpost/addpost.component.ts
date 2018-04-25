@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {FormControl, Validators} from "@angular/forms";
-import { Location } from '@angular/common';
-import { Post } from '../../entities/post';
-import { PostService } from '../../services/post.service';
+import {Location} from '@angular/common';
+import {Post} from '../../entities/post';
+import {PostService} from '../../services/post.service';
 
 @Component({
   selector: 'app-addpost',
@@ -14,9 +12,12 @@ import { PostService } from '../../services/post.service';
 export class AddpostComponent implements OnInit {
 
   post = new Post();
+
   constructor(public location: Location,
               public router: Router,
-              public postservice: PostService) { }
+              public postservice: PostService) {
+  }
+
   ngOnInit() {
   }
 
@@ -27,6 +28,7 @@ export class AddpostComponent implements OnInit {
   onNoClick(): void {
 
   }
+
   addpost() {
 
   }
