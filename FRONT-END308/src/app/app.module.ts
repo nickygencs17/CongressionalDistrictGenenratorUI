@@ -22,22 +22,23 @@ import {
   MatButtonModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatToolbar, MatToolbarModule, MatSelectModule,
   MatTooltipModule, MatDialogModule
 } from '@angular/material';
-import {LeafletModule} from "@asymmetrik/ngx-leaflet";
+import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 import { StateComponent } from './state/state.component';
-import {StateService} from "./services/state.service";
-import {NavbarComponent} from "./utilities/navbar/navbar.component";
-import {LogindialogComponent} from "./utilities/logindialog/logindialog.component";
-import {CreateuserComponent} from "./createuser/createuser.component";
-import {PostdetailComponent} from "./blog/postdetail/postdetail.component";
-import {AddpostComponent} from "./blog/addpost/addpost.component";
-import {PostComponent} from "./blog/post/post.component";
-import {HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
-import {StateIdService} from "./services/state-id.service";
-import {UserService} from "./services/user.service";
-import {PostService} from "./services/post.service";
+import {StateService} from './services/state.service';
+import {NavbarComponent} from './utilities/navbar/navbar.component';
+import {LogindialogComponent} from './utilities/logindialog/logindialog.component';
+import {CreateuserComponent} from './createuser/createuser.component';
+import {PostdetailComponent} from './blog/postdetail/postdetail.component';
+import {AddpostComponent} from './blog/addpost/addpost.component';
+import {PostComponent} from './blog/post/post.component';
+import {HttpClientJsonpModule, HttpClientModule} from '@angular/common/http';
+import {StateIdService} from './services/state-id.service';
+import {UserService} from './services/user.service';
+import {PostService} from './services/post.service';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { AdminComponent } from './admin/admin.component'
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { AdminComponent } from './admin/admin.component'
   ],
   entryComponents: [LogindialogComponent],
   imports: [
+    MatTabsModule,
     MatSelectModule,
     MatToolbarModule,
     MatExpansionModule,
