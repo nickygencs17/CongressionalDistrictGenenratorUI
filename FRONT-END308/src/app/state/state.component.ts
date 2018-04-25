@@ -146,7 +146,8 @@ export class StateComponent implements OnInit {
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
             if (type === 'congress') {
-              popupContent = '<h1>name: ' + this.layerData.feature.properties.district + '</h1>';
+              popupContent = '<h1>name: ' + this.layerData.feature.properties.District + '</h1>';
+              this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
             if(type === 'precinct'){
               popupContent =
