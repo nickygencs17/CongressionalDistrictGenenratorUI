@@ -1,0 +1,68 @@
+
+
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults || isRateLimitReached">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+      Please connect Backend.
+    </div>
+  </div>
+
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+
+  <mat-table #table [dataSource]="dataSource" matSort class="example-table">
+
+    <ng-container matColumnDef="election_year">
+      <mat-header-cell *matHeaderCellDef>Year</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.election_year}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="pres_name">
+      <mat-header-cell *matHeaderCellDef>President</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.pres_name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="vpres_name">
+      <mat-header-cell *matHeaderCellDef>Vice President</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.vpres_name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="party">
+      <mat-header-cell *matHeaderCellDef>Party</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.party}}</mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="votes_for">
+      <mat-header-cell *matHeaderCellDef>Votes</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.votes_for}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="vote_percent">
+      <mat-header-cell *matHeaderCellDef>Vote Percentage</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.vote_percent}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ec_vote">
+      <mat-header-cell *matHeaderCellDef>Electoral College Vote</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.ec_vote}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="is_winner">
+      <mat-header-cell *matHeaderCellDef>Winner</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.is_winner}}</mat-cell>
+    </ng-container>
+
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

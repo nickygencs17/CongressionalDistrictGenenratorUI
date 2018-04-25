@@ -1,3 +1,5 @@
+
+
 <div class="example-container mat-elevation-z8">
   <div class="example-loading-shade"
        *ngIf="isLoadingResults || isRateLimitReached">
@@ -13,27 +15,33 @@
     </mat-form-field>
   </div>
 
-
   <mat-table #table [dataSource]="dataSource" matSort class="example-table">
 
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.full_name}}</mat-cell>
+    <ng-container matColumnDef="election_year">
+      <mat-header-cell *matHeaderCellDef>Year</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.election_year}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="type">
-      <mat-header-cell *matHeaderCellDef> Type</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.type_office}}</mat-cell>
+    <ng-container matColumnDef="candidate_name">
+      <mat-header-cell *matHeaderCellDef>Candidate Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.candidate_name}}</mat-cell>
     </ng-container>
+
 
     <ng-container matColumnDef="party">
       <mat-header-cell *matHeaderCellDef>Party</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.party}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="created">
+
+    <ng-container matColumnDef="percent_of_votes">
+      <mat-header-cell *matHeaderCellDef>Vote Percentage</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.percent_of_votes}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="congress_id">
       <mat-header-cell *matHeaderCellDef>District</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.district_id}}</mat-cell>
+      <mat-cell *matCellDef="let row">{{ row.congress_id}}</mat-cell>
     </ng-container>
 
 
