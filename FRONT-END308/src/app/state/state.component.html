@@ -2,7 +2,16 @@
   <app-auto-complete></app-auto-complete>
 </div>
 <br>
+<div *ngIf="eagleState">
+<div *ngIf="!congressional_request">
+  <h3>Currently our redistricting application is only Available for Individual Precincts</h3>
+</div>
+</div>
+<div *ngIf="!eagleState">
+  <h3>We are currently only supporting the following states IN, AR, and WV</h3>
+</div>
 
+<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
 <mat-radio-group *ngIf="eagleState">
   <mat-radio-button value="4" (click)="displayBoundaries('state')">State</mat-radio-button>
   <mat-radio-button value="1" (click)="displayBoundaries('senate')">Senate District</mat-radio-button>
@@ -13,6 +22,7 @@
 <br>
 <br>
 <br>
+
 
 <div *ngIf="congressional_request" class = "alogrithmChoices">
   <p >Population Deviation</p>
@@ -57,60 +67,19 @@
 <br>
 
 
-<div *ngIf="!congressional_request">
-  <h3>Currently our redistricting application is only Available for Congressional Districts</h3>
-</div>
-<div *ngIf="!eagleState">
-  <h3>We are currently only supporting the following states IN, AR, and WV</h3>
-</div>
-
-
 <mat-card>
   <mat-card-content>
-    <h2 class="example-h2">Tabs with text labels</h2>
+    <h2 class="example-h2">State Information</h2>
     <mat-tab-group class="demo-tab-group">
-      <mat-tab label="Tab 1">
+      <mat-tab label="State Info">
         <div class="demo-tab-content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
-          Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
-          In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
-          feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
-          orci enim rutrum enim, vel tempor sapien arcu a tellus.
+          <app-table></app-table>
         </div>
       </mat-tab>
-      <mat-tab label="Tab 2">
+      <mat-tab label="Election Info">
         <div class="demo-tab-content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
-          Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
-          In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
-          feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
-          orci enim rutrum enim, vel tempor sapien arcu a tellus.
+
         </div>
-      </mat-tab>
-      <mat-tab label="Tab 3" disabled>
-        No content
-      </mat-tab>
-      <mat-tab label="Tab 4">
-        <div class="demo-tab-content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
-          Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
-          In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
-          feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
-          orci enim rutrum enim, vel tempor sapien arcu a tellus.
-          <br />
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue.
-          Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
-          In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec,
-          feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor,
-          orci enim rutrum enim, vel tempor sapien arcu a tellus.
-        </div>
-      </mat-tab>
-      <mat-tab label="Tab 5">
-        No content
-      </mat-tab>
-      <mat-tab label="Tab 6">
-        No content
       </mat-tab>
     </mat-tab-group>
   </mat-card-content>

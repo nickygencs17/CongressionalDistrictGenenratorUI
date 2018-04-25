@@ -19,8 +19,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AutoCompleteComponent } from './utilities/auto-complete/auto-complete.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
-  MatButtonModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatToolbar, MatToolbarModule, MatSelectModule,
-  MatTooltipModule, MatDialogModule
+  MatButtonModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatPaginatorModule, MatToolbarModule,
+  MatSelectModule,
+  MatTooltipModule, MatSortModule, MatDialogModule, MatProgressBarModule
 } from '@angular/material';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 import { StateComponent } from './state/state.component';
@@ -39,6 +40,9 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { AdminComponent } from './admin/admin.component'
 import {MatTabsModule} from '@angular/material/tabs';
+import { TableComponent } from './utilities/table/table.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -53,10 +57,15 @@ import {MatTabsModule} from '@angular/material/tabs';
     PostdetailComponent,
     PostComponent,
     AddpostComponent,
-    AdminComponent
+    AdminComponent,
+    TableComponent
   ],
   entryComponents: [LogindialogComponent],
   imports: [
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatTableModule,
     MatTabsModule,
     MatSelectModule,
     MatToolbarModule,

@@ -33,6 +33,7 @@ export class StateComponent implements OnInit {
   layerData: any;
   eagleState = false;
   congressional_request = false;
+  isLoadingResults = false;
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
@@ -72,7 +73,7 @@ export class StateComponent implements OnInit {
 
 
   displayBoundaries(type): void {
-
+    this.isLoadingResults = true;
     let url = '';
     if(type === 'state') {
       this.congressional_request = false;
@@ -182,6 +183,7 @@ export class StateComponent implements OnInit {
         };
 
       });
+    this.isLoadingResults = false;
   }
 
 }
