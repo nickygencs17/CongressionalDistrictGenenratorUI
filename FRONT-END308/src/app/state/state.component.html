@@ -11,20 +11,20 @@
   <h3>We are currently only supporting the following states IN, AR, and WV</h3>
 </div>
 
-<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+
 <mat-radio-group *ngIf="eagleState">
-  <mat-radio-button value="4" (click)="displayBoundaries('state')">State</mat-radio-button>
-  <mat-radio-button value="1" (click)="displayBoundaries('senate')">Senate District</mat-radio-button>
-  <mat-radio-button value="2" (click)="displayBoundaries('assembly')">State Legislation District</mat-radio-button>
-  <mat-radio-button value="3" (click)="displayBoundaries('congress')">Congressional District</mat-radio-button>
-  <mat-radio-button value="3" (click)="displayBoundaries('precinct')">Precincts</mat-radio-button>
+  <mat-radio-button value="1" [checked] = true (click)="displayBoundaries('state')">State</mat-radio-button>
+  <mat-radio-button value="2" (click)="displayBoundaries('senate')">Senate District</mat-radio-button>
+  <mat-radio-button value="3" (click)="displayBoundaries('assembly')">State Legislation District</mat-radio-button>
+  <mat-radio-button value="4" (click)="displayBoundaries('congress')">Congressional District</mat-radio-button>
+  <mat-radio-button value="5" (click)="displayBoundaries('precinct')">Precincts</mat-radio-button>
 </mat-radio-group>
 <br>
 <br>
 <br>
 
 
-<div *ngIf="congressional_request" class="alogrithmChoices">
+<div *ngIf="congressional_request && !isLoadingResults" class="alogrithmChoices">
   <p>Population Deviation</p>
   <mat-slider min="1" max="5" step="1" value="3" #pcoefficient></mat-slider>
   <p>Fairness Coefficient</p>
@@ -35,9 +35,14 @@
     <button mat-raised-button color="primary" (click)="runAlgo(pcoefficient.value, ccoefficient.value, fcoefficient.value)">Run Redistrict Algorithm</button>
   </div>
 </div>
-<div>
+<div id="wrapper" *ngIf="isLoadingResults">
+  <div id="yourdiv"><mat-spinner style="text-align: center" *ngIf="isLoadingResults"></mat-spinner></div>
+</div>
+
+<div *ngIf="allDataFetched && !isLoadingResults">
+
   <div class="flex-container">
-    <div *ngIf="allDataFetched" class="map_eagle" leaflet style="height: 600px"
+    <div  class="map_eagle" leaflet style="height: 600px"
          [leafletLayers]="layers"
          [leafletLayersControl]="layersControl"
          [leafletCenter]="center"

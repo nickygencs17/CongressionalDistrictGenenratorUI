@@ -179,7 +179,9 @@ export class StateComponent implements OnInit {
             layer.on('mouseout', function (e) {
               this.closePopup();
             });
+
           }
+
         });
         this.layers = [
           defaultBaseLayer,
@@ -194,23 +196,18 @@ export class StateComponent implements OnInit {
             'Overlay One': defaultOverlay
           }
         };
+        this.isLoadingResults = false;
 
       });
-    this.isLoadingResults = false;
   }
 
   runAlgo(pcoefficient, ccoefficient, fcoefficient) {
-    //console.log("run algo clicked");
-    //console.log(this.id + pcoefficient + ccoefficient + fcoefficient);
+    this.isLoadingResults = true;
     this.state_service.runAlgo(this.id, pcoefficient,ccoefficient,fcoefficient).subscribe((data) => {
         this.res_json = data;
-        //console.log(this.res_json.entity.moves);
         for(var i = 0; i < this.res_json.entity.moves.length; i++){
-          // console.log(this.res_json.entity.moves[i].geoId);
-          // console.log(this.res_json.entity.moves[i].colorChange);
           this.map.set(this.res_json.entity.moves[i].geoId,this.res_json.entity.moves[i].colorChange);
         }
-        console.log(this.map);
         this.displayBoundaries('precinct');
       },
       error => {
