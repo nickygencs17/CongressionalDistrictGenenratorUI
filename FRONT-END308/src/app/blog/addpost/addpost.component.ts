@@ -4,6 +4,8 @@ import {Location} from '@angular/common';
 import {Post} from '../../entities/post';
 import {PostService} from '../../services/post.service';
 import { DatePipe } from '@angular/common';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-addpost',
@@ -13,8 +15,12 @@ import { DatePipe } from '@angular/common';
 export class AddpostComponent implements OnInit {
 
   post = new Post();
+  hostname = 'localhost:8080';
+  resJson: any;
+  currentUser: any;
 
-  constructor(public location: Location,
+  constructor(private http: HttpClient,
+              public location: Location,
               public router: Router,
               private datePipe: DatePipe) {
   }
@@ -41,6 +47,30 @@ export class AddpostComponent implements OnInit {
       title: new_post.title
     }
     console.log(new_post_res);
+
+    console.log("here");
+
+    this.currentUser = localStorage.getItem('currentUser');
+    console.log(this.currentUser);
+    let userJson = JSON.parse(this.currentUser);
+
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Basic ' + btoa(userJson.username + ':' + userJson.password));
+
+
+    this.http.post<any>('http://' + this.hostname + '/post', new_post_res, {headers: headers})
+      .subscribe((data) => {
+          this.resJson = data;
+          console.log(this.resJson);
+          if (this.resJson.status === 201) {
+            alert('CREATED');
+            this.location.back();
+
+          }
+        },
+        error => {
+          alert(error);
+        });
   }
 }
 

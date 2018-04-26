@@ -1,3 +1,4 @@
+<div #scrollMe style="overflow: scroll; height: xyz;">
 <div class="container"
      fxLayout="column"
      fxLayout.sm="column"
@@ -39,4 +40,20 @@
     </div>
   </div>
 
+</div>
+
+
+<div *ngIf="!addComment" style="text-align: center">
+  <button mat-raised-button color="primary" (click)="addCommentFun()">Add Comment</button>
+</div>
+<div *ngIf="addComment">
+  <div>
+  <mat-form-field>
+  <textarea matInput placeholder="Comment" matTextareaAutosize matAutosizeMinRows="5"
+            matAutosizeMaxRows="200" #textarea></textarea>
+  </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" (click)="addCommentFun()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="save(textarea.value)">Save</button>
+</div>
 </div>

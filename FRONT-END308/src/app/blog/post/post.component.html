@@ -1,9 +1,13 @@
+
 <div class="container" fxLayout="column" fxLayoutGap="10px">
   <div fxFlex>
     <div>
       <h3>Gerrymanderring Blog</h3>
       <hr>
     </div>
+  </div>
+  <div *ngIf="isAdmin" style="text-align: center">
+    <button mat-raised-button color="primary" [routerLink] = "['/blog/addpost']">Add Post</button>
   </div>
   <div fxFlex>
     <mat-grid-list cols="4" rowHeight="500px">
@@ -24,4 +28,4 @@
     </mat-grid-list>
 
   </div>
-</div>
+
