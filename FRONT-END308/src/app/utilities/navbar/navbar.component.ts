@@ -64,7 +64,7 @@ export class NavbarComponent implements OnInit {
               };
               this.userService.user_name = data.username;
               localStorage.setItem('currentUser', JSON.stringify(this.userService.currentUser));
-      
+
               this.reload_fun();
 
             },

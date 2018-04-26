@@ -24,7 +24,7 @@ export class StateComponent implements OnInit {
   lng = 0;
 
   map = new Map();
-  res_json:any;
+  res_json: any;
 
 
   layers: Layer[];
@@ -106,7 +106,7 @@ export class StateComponent implements OnInit {
       .subscribe(geo1 => {
         let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
         let defaultOverlay = geoJSON(geo1, {
-          onEachFeature:(feature, layer) => {
+          onEachFeature: (feature, layer) => {
 
             this.layerData = layer;
             this.layerData.options.weight = 0.7;
@@ -158,17 +158,17 @@ export class StateComponent implements OnInit {
                 '<p>name: ' + this.layerData.feature.properties.NAME10 + '</p>' +
                 '<p>compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>';
 
-                if(this.map.size > 0){
-                  if(this.map.has(this.layerData.feature.properties.GEOID10)){
-                    this.layerData.options.color = this.map.get(this.layerData.feature.properties.GEOID10);
-                  }
-                  else{
-                    this.layerData.options.color = this.layerData.feature.properties.COLOR;
-                  }
+              if (this.map.size > 0) {
+                if (this.map.has(this.layerData.feature.properties.GEOID10)) {
+                  this.layerData.options.color = this.map.get(this.layerData.feature.properties.GEOID10);
                 }
-                else{
+                else {
                   this.layerData.options.color = this.layerData.feature.properties.COLOR;
                 }
+              }
+              else {
+                this.layerData.options.color = this.layerData.feature.properties.COLOR;
+              }
 
             }
 
@@ -203,10 +203,10 @@ export class StateComponent implements OnInit {
 
   runAlgo(pcoefficient, ccoefficient, fcoefficient) {
     this.isLoadingResults = true;
-    this.state_service.runAlgo(this.id, pcoefficient,ccoefficient,fcoefficient).subscribe((data) => {
+    this.state_service.runAlgo(this.id, pcoefficient, ccoefficient, fcoefficient).subscribe((data) => {
         this.res_json = data;
-        for(var i = 0; i < this.res_json.entity.moves.length; i++){
-          this.map.set(this.res_json.entity.moves[i].geoId,this.res_json.entity.moves[i].colorChange);
+        for (var i = 0; i < this.res_json.entity.moves.length; i++) {
+          this.map.set(this.res_json.entity.moves[i].geoId, this.res_json.entity.moves[i].colorChange);
         }
         this.displayBoundaries('precinct');
       },
@@ -216,6 +216,7 @@ export class StateComponent implements OnInit {
 
   }
 }
+
 /*
     "moves": [
       {
