@@ -53,6 +53,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PresidentelectiontableComponent } from './utilities/presidentelectiontable/presidentelectiontable.component';
 import { CongresselectiontableComponent } from './utilities/congresselectiontable/congresselectiontable.component';
 import {LogComponent} from "./log/log.component";
+import {DatePipe} from '@angular/common';
 
 
 @NgModule({
@@ -109,7 +110,7 @@ import {LogComponent} from "./log/log.component";
       useHash: true
     })],
 
-  providers: [UsMapService, StateService, StateIdService, UserService, PostService],
+  providers: [UsMapService, StateService, StateIdService, UserService, PostService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {
