@@ -8,7 +8,7 @@ import {PostComponent} from './blog/post/post.component';
 import {AdminComponent} from './admin/admin.component';
 import {LogComponent} from "./log/log.component";
 import {AboutComponent} from "./about/about.component";
-import {VotingComponent} from "./voting/voting.component";
+import {VotingComponent} from "./utilities/voting/voting.component";
 
 
 export const routes: Routes = [

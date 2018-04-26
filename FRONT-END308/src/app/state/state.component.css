@@ -42,3 +42,11 @@ mat-slider {
   align-items: center;
 
 }
+
+#wrapper {
+  text-align: center;
+}
+
+#yourdiv {
+  display: inline-block;
+}
