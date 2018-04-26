@@ -18,8 +18,7 @@ import {ActivatedRoute} from "@angular/router";
 export class CongresselectiontableComponent implements OnInit {
 
 
-
-  displayedColumns = ['election_year', 'candidate_name','party', 'percent_of_votes','congress_id'];
+  displayedColumns = ['election_year', 'candidate_name', 'party', 'percent_of_votes', 'congress_id'];
   exampleDatabase: ExampleHttpDao | null;
   dataSource = new MatTableDataSource();
 
@@ -39,11 +38,6 @@ export class CongresselectiontableComponent implements OnInit {
 
     this.exampleDatabase = new ExampleHttpDao(this.http, this.route);
 
-    console.log(this.exampleDatabase)
-
-
-    // If the user changes the sort order, reset back to the first page.
-
     merge(this.sort.sortChange)
       .pipe(
         startWith({}),
@@ -54,8 +48,6 @@ export class CongresselectiontableComponent implements OnInit {
         }),
         map(data => {
           this.res = data;
-          console.log(this.res.entity.CONGRESS_ELECTION_INFO);
-          // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
           this.resultsLength = this.res.entity.CONGRESS_ELECTION_INFO.length;
@@ -64,7 +56,6 @@ export class CongresselectiontableComponent implements OnInit {
         }),
         catchError(() => {
           this.isLoadingResults = false;
-          // Catch if the GitHub API has reached its rate limit. Return empty data.
           this.isRateLimitReached = true;
           return observableOf([]);
         })
@@ -72,8 +63,8 @@ export class CongresselectiontableComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
 
@@ -116,15 +107,3 @@ export class ExampleHttpDao {
   }
 }
 
-/*
-      {
-        "id": 410,
-        "is_winner": true,
-        "percent_of_votes": 70.3,
-        "party": "democratic",
-        "candidate_name": "Alan Mollohan",
-        "congress_id": "wv_cd_1",
-        "state_id": "wv",
-        "election_year": 1994
-      }
- */

@@ -7,6 +7,8 @@ import {PostdetailComponent} from './blog/postdetail/postdetail.component';
 import {PostComponent} from './blog/post/post.component';
 import {AdminComponent} from './admin/admin.component';
 import {LogComponent} from "./log/log.component";
+import {AboutComponent} from "./about/about.component";
+import {VotingComponent} from "./voting/voting.component";
 
 
 export const routes: Routes = [
@@ -15,6 +17,8 @@ export const routes: Routes = [
   {path: 'state/:id', component: StateComponent},
   {path: 'register', component: CreateuserComponent},
   {path: 'blog', component: PostComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'voting', component: VotingComponent},
   {path: 'blog/posts/:id', component: PostdetailComponent},
   {path: 'blog/addpost', component: AddpostComponent},
   {path: 'users', component: AdminComponent},

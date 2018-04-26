@@ -44,11 +44,9 @@ export class UserService {
   }
 
   createUser(user: User) {
-    console.log(user);
     this.http.post('http://' + this.hostname + '/user', user)
       .subscribe((data) => {
           this.resJson = data;
-          console.log(this.resJson.status);
           if (this.resJson.status === 201) {
             alert('CREATED');
             if (localStorage.getItem('currentUser')) {
@@ -97,7 +95,7 @@ export class UserService {
   }
 
   deleteUser(username: string): Observable<any> {
-    console.log("here");
+
     let headers = new HttpHeaders();
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (this.currentUser.role != 'ROLE_ADMIN') {
@@ -122,7 +120,7 @@ export class UserService {
     }
 
     headers = headers.append('Authorization', 'Basic ' + btoa(this.currentUser.username + ':' + this.currentUser.password));
-    console.log(new_user);
+
 
     return this.http.post('http://' + this.hostname + '/user/edit', new_user, {headers: headers})
       .catch((error: any) => Observable.throw(error));

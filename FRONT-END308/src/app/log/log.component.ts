@@ -28,8 +28,8 @@ export class LogComponent implements OnInit {
   res: any;
 
 
-@ViewChild(MatPaginator) paginator: MatPaginator;
-@ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
@@ -40,16 +40,13 @@ export class LogComponent implements OnInit {
 
   ngOnInit() {
 
-    if(!this.userService.isLoggedIn()) {
+    if (!this.userService.isLoggedIn()) {
       alert("Please login");
       this.router.navigate(['']);
 
     }
-    console.log(this.userService.currentUser);
 
-    this.exampleDatabase = new ExampleHttpDao(this.http,this.userService);
-
-    console.log(this.exampleDatabase)
+    this.exampleDatabase = new ExampleHttpDao(this.http, this.userService);
 
 
     // If the user changes the sort order, reset back to the first page.
@@ -64,7 +61,6 @@ export class LogComponent implements OnInit {
         }),
         map(data => {
           this.res = data;
-          console.log(this.res.entity);
           // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
@@ -121,6 +117,6 @@ export class ExampleHttpDao {
 
     const requestUrl = 'http://localhost:8080/log/all';
 
-    return this.http.get<GerymanderingApi>(requestUrl,{headers: headers});
+    return this.http.get<GerymanderingApi>(requestUrl, {headers: headers});
   }
 }

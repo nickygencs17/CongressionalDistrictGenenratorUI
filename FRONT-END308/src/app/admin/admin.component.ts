@@ -37,7 +37,6 @@ export class AdminComponent implements OnInit {
   deleteUser(username: string) {
     this.userService.deleteUser(username)
       .subscribe((res_data) => {
-          console.log(res_data);
           if (res_data.status === 204) {
             this.reload_fun();
           }

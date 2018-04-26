@@ -32,7 +32,6 @@ export class NavbarComponent implements OnInit {
     this.currentUser = localStorage.getItem('currentUser');
     if (this.currentUser) {
       let userJson = JSON.parse(this.currentUser);
-      console.log(userJson);
       this.nav_bar_name = userJson.username;
       this.logged_in = true;
       if (userJson.role === 'ROLE_ADMIN') {
@@ -65,7 +64,7 @@ export class NavbarComponent implements OnInit {
               };
               this.userService.user_name = data.username;
               localStorage.setItem('currentUser', JSON.stringify(this.userService.currentUser));
-              console.log(this.userService.currentUser);
+      
               this.reload_fun();
 
             },
@@ -84,7 +83,6 @@ export class NavbarComponent implements OnInit {
   reload_fun(): any {
 
     this.displayName = this.userService.currentUser.username;
-    console.log(this.displayName);
     location.reload();
   }
 

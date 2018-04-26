@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CongresselectiontableComponent } from './congresselectiontable.component';
+import {CongresselectiontableComponent} from './congresselectiontable.component';
 
 describe('CongresselectiontableComponent', () => {
   let component: CongresselectiontableComponent;
@@ -8,9 +8,9 @@ describe('CongresselectiontableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CongresselectiontableComponent ]
+      declarations: [CongresselectiontableComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

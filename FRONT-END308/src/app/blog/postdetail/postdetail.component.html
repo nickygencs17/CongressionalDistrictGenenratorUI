@@ -1,59 +1,59 @@
 <div #scrollMe style="overflow: scroll; height: xyz;">
-<div class="container"
-     fxLayout="column"
-     fxLayout.sm="column"
-     fxLayout.xs="column"
-     fxLayoutGap="10px"
-     fxLayoutGap.xs="0">
+  <div class="container"
+       fxLayout="column"
+       fxLayout.sm="column"
+       fxLayout.xs="column"
+       fxLayoutGap="10px"
+       fxLayoutGap.xs="0">
 
-  <div fxFlex="40" *ngIf="post">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>
-          <h3>{{ post.title | uppercase }}</h3>
-        </mat-card-title>
-      </mat-card-header>
-      <div>
-        <img md-card-image src="{{ post.image_url }}" alt="{{ post.title }}">
-      </div>
-      <mat-card-content>
-        <p> {{ post.post_text }}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button color="basic" (click)="goBack()">Back</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-
-  <div fxFlex="40" *ngIf="post">
-    <h1> Comments </h1>
-    <div class="leftalign">
-      <mat-list>
-        <mat-card *ngFor="let comment of comments">
-
-          <mat-card-content>
-            <h3>{{ comment.author }}</h3>
-            <p mat-line>{{ comment.comment_text }}</p>
-          </mat-card-content>
-        </mat-card>
-      </mat-list>
+    <div fxFlex="40" *ngIf="post">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            <h3>{{ post.title | uppercase }}</h3>
+          </mat-card-title>
+        </mat-card-header>
+        <div>
+          <img md-card-image src="{{ post.image_url }}" alt="{{ post.title }}">
+        </div>
+        <mat-card-content>
+          <p> {{ post.post_text }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="basic" (click)="goBack()">Back</button>
+        </mat-card-actions>
+      </mat-card>
     </div>
+
+    <div fxFlex="40" *ngIf="post">
+      <h1> Comments </h1>
+      <div class="leftalign">
+        <mat-list>
+          <mat-card *ngFor="let comment of comments">
+
+            <mat-card-content>
+              <h3>{{ comment.author }}</h3>
+              <p mat-line>{{ comment.comment_text }}</p>
+            </mat-card-content>
+          </mat-card>
+        </mat-list>
+      </div>
+    </div>
+
   </div>
 
-</div>
 
-
-<div *ngIf="!addComment" style="text-align: center">
-  <button mat-raised-button color="primary" (click)="addCommentFun()">Add Comment</button>
-</div>
-<div *ngIf="addComment">
-  <div>
-  <mat-form-field>
+  <div *ngIf="!addComment" style="text-align: center">
+    <button mat-raised-button color="primary" (click)="addCommentFun()">Add Comment</button>
+  </div>
+  <div *ngIf="addComment">
+    <div>
+      <mat-form-field>
   <textarea matInput placeholder="Comment" matTextareaAutosize matAutosizeMinRows="5"
             matAutosizeMaxRows="200" #textarea></textarea>
-  </mat-form-field>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" (click)="addCommentFun()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="save(textarea.value)">Save</button>
   </div>
-  <button mat-raised-button color="primary" (click)="addCommentFun()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="save(textarea.value)">Save</button>
-</div>
 </div>

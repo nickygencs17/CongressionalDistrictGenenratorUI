@@ -1,5 +1,3 @@
-
-
 <div class="example-container mat-elevation-z8">
   <div class="example-loading-shade"
        *ngIf="isLoadingResults || isRateLimitReached">
@@ -58,8 +56,6 @@
       <mat-header-cell *matHeaderCellDef>Winner</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.is_winner}}</mat-cell>
     </ng-container>
-
-
 
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

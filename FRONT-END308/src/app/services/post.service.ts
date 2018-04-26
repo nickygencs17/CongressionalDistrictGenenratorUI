@@ -22,8 +22,8 @@ export class PostService {
   }
 
   addPost(post: Post): void {
-    //POSTS.push(post);
-    console.log(post);
+    POSTS.push(post);
+
   }
 
 }

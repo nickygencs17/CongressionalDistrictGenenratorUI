@@ -28,7 +28,6 @@ export class LogindialogComponent {
   }
 
   createAccount() {
-    console.log("CREATE ACCOUNT");
     this.dialogRef.close();
     this.router.navigate(['register']);
   }

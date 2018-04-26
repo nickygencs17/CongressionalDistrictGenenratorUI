@@ -15,7 +15,7 @@ export class PostComponent implements OnInit {
   isAdmin: boolean;
   currentUser: any;
 
-  constructor(private postService: PostService, private router: Router, private userService:UserService) {
+  constructor(private postService: PostService, private router: Router, private userService: UserService) {
 
   }
 
@@ -24,7 +24,7 @@ export class PostComponent implements OnInit {
     this.currentUser = localStorage.getItem('currentUser');
     if (this.currentUser) {
       let userJson = JSON.parse(this.currentUser);
-      console.log(userJson);
+
       if (userJson.role === 'ROLE_ADMIN') {
         this.isAdmin = true;
       }
@@ -32,7 +32,6 @@ export class PostComponent implements OnInit {
     else {
       this.isAdmin = false;
     }
-
 
 
     this.postService.getPosts().subscribe((response) => {

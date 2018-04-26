@@ -1,9 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {PostService} from '../../services/post.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Location} from '@angular/common';
+import {DatePipe, Location} from '@angular/common';
 import {HttpClient, HttpHeaders} from "@angular/common/http"
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-postdetail',
@@ -19,6 +18,7 @@ export class PostdetailComponent implements OnInit {
   resJson: any;
   currentUser: any;
   post_id: number;
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
   constructor(private postservice: PostService,
               private route: ActivatedRoute,
@@ -28,8 +28,6 @@ export class PostdetailComponent implements OnInit {
               private http: HttpClient,) {
   }
 
-  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
-
   ngOnInit() {
     this.scrollToBottom();
     let id = +this.route.snapshot.params['id'];
@@ -38,7 +36,6 @@ export class PostdetailComponent implements OnInit {
         if (response.status === 200) {
           this.post = response.entity.POST;
           this.comments = response.entity.COMMENTS;
-          console.log(response.entity);
         }
         else if (response.status === 409) {
           this.router.navigate(['']);
@@ -55,10 +52,9 @@ export class PostdetailComponent implements OnInit {
     this.location.back();
   }
 
-  addCommentFun(){
+  addCommentFun() {
 
     this.addComment = !this.addComment;
-    console.log(this.addComment);
     this.scrollToBottom();
 
   }
@@ -66,10 +62,7 @@ export class PostdetailComponent implements OnInit {
   save(comment_text) {
 
 
-    console.log("here");
-
     this.currentUser = localStorage.getItem('currentUser');
-    console.log(this.currentUser);
     let userJson = JSON.parse(this.currentUser);
 
     let headers = new HttpHeaders();
@@ -79,16 +72,14 @@ export class PostdetailComponent implements OnInit {
     let new_comment_res = {
       author: userJson.username,
       comment_text: comment_text,
-      comment_time_date: this.datePipe.transform(date,"medium").toString(),
+      comment_time_date: this.datePipe.transform(date, "medium").toString(),
       post_id: this.post_id
     }
 
-    console.log(new_comment_res);
 
     this.http.post<any>('http://' + this.hostname + '/post/comment', new_comment_res, {headers: headers})
       .subscribe((data) => {
           this.resJson = data;
-          console.log(this.resJson);
           if (this.resJson.status === 201) {
             alert('CREATED');
             location.reload();
@@ -104,9 +95,11 @@ export class PostdetailComponent implements OnInit {
   scrollToBottom(): void {
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch(err) { }
+    } catch (err) {
+    }
   }
 }
+
 /*
 {
   "author": "string",

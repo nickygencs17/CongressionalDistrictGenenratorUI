@@ -16,7 +16,7 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./presidentelectiontable.component.css']
 })
 export class PresidentelectiontableComponent implements OnInit {
-  displayedColumns = ['election_year', 'pres_name','vpres_name', 'party', 'votes_for','vote_percent','ec_vote','is_winner'];
+  displayedColumns = ['election_year', 'pres_name', 'vpres_name', 'party', 'votes_for', 'vote_percent', 'ec_vote', 'is_winner'];
   exampleDatabase: ExampleHttpDao | null;
   dataSource = new MatTableDataSource();
 
@@ -36,10 +36,6 @@ export class PresidentelectiontableComponent implements OnInit {
 
     this.exampleDatabase = new ExampleHttpDao(this.http, this.route);
 
-    console.log(this.exampleDatabase)
-
-
-    // If the user changes the sort order, reset back to the first page.
 
     merge(this.sort.sortChange)
       .pipe(
@@ -51,8 +47,6 @@ export class PresidentelectiontableComponent implements OnInit {
         }),
         map(data => {
           this.res = data;
-          console.log(this.res.entity.PRESIDENT_ELECTION_INFO);
-          // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
           this.resultsLength = this.res.entity.PRESIDENT_ELECTION_INFO.length;
@@ -61,7 +55,6 @@ export class PresidentelectiontableComponent implements OnInit {
         }),
         catchError(() => {
           this.isLoadingResults = false;
-          // Catch if the GitHub API has reached its rate limit. Return empty data.
           this.isRateLimitReached = true;
           return observableOf([]);
         })
@@ -69,8 +62,8 @@ export class PresidentelectiontableComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
 
@@ -113,18 +106,3 @@ export class ExampleHttpDao {
     return this.http.get<GerymanderingApi>(requestUrl);
   }
 }
-
-/*
-      {
-        "id": 3,
-        "election_year": 2016,
-        "party": "democratic",
-        "pres_name": "hillary clinton",
-        "vpres_name": "tim kaine",
-        "votes_for": 188794,
-        "vote_percent": 26.43,
-        "ec_vote": 0,
-        "state_id": "wv",
-        "is_winner": false
-      }
- */

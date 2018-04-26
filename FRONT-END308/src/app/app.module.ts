@@ -50,10 +50,12 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {TableComponent} from './utilities/table/table.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { PresidentelectiontableComponent } from './utilities/presidentelectiontable/presidentelectiontable.component';
-import { CongresselectiontableComponent } from './utilities/congresselectiontable/congresselectiontable.component';
+import {PresidentelectiontableComponent} from './utilities/presidentelectiontable/presidentelectiontable.component';
+import {CongresselectiontableComponent} from './utilities/congresselectiontable/congresselectiontable.component';
 import {LogComponent} from "./log/log.component";
 import {DatePipe} from '@angular/common';
+import {AboutComponent} from './about/about.component';
+import {VotingComponent} from './voting/voting.component';
 
 
 @NgModule({
@@ -72,7 +74,9 @@ import {DatePipe} from '@angular/common';
     TableComponent,
     PresidentelectiontableComponent,
     CongresselectiontableComponent,
-    LogComponent
+    LogComponent,
+    AboutComponent,
+    VotingComponent
   ],
   entryComponents: [LogindialogComponent],
   imports: [
@@ -110,7 +114,7 @@ import {DatePipe} from '@angular/common';
       useHash: true
     })],
 
-  providers: [UsMapService, StateService, StateIdService, UserService, PostService,DatePipe],
+  providers: [UsMapService, StateService, StateIdService, UserService, PostService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {

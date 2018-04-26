@@ -36,10 +36,6 @@ export class TableComponent implements OnInit {
 
     this.exampleDatabase = new ExampleHttpDao(this.http, this.route);
 
-    console.log(this.exampleDatabase)
-
-
-    // If the user changes the sort order, reset back to the first page.
 
     merge(this.sort.sortChange)
       .pipe(
@@ -51,8 +47,6 @@ export class TableComponent implements OnInit {
         }),
         map(data => {
           this.res = data;
-          console.log(this.res.entity.CURRENT_OFFICIALS);
-          // Flip flag to show that loading has finished.
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
           this.resultsLength = this.res.entity.CURRENT_OFFICIALS.length;
@@ -61,7 +55,6 @@ export class TableComponent implements OnInit {
         }),
         catchError(() => {
           this.isLoadingResults = false;
-          // Catch if the GitHub API has reached its rate limit. Return empty data.
           this.isRateLimitReached = true;
           return observableOf([]);
         })
@@ -69,8 +62,8 @@ export class TableComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
 
