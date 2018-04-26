@@ -23,6 +23,9 @@ export class StateComponent implements OnInit {
   lat = 0;
   lng = 0;
 
+  map = new Map();
+  res_json:any;
+
 
   layers: Layer[];
   layersControl: any;
@@ -103,7 +106,7 @@ export class StateComponent implements OnInit {
       .subscribe(geo1 => {
         let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
         let defaultOverlay = geoJSON(geo1, {
-          onEachFeature: function (feature, layer) {
+          onEachFeature:(feature, layer) => {
 
             this.layerData = layer;
             this.layerData.options.weight = 0.7;
@@ -134,29 +137,40 @@ export class StateComponent implements OnInit {
                 this.layerData.options.color = 'grey';
               }
             }
-            if (type === 'senate') {
+            else if (type === 'senate') {
               popupContent =
                 '<p>name: ' + this.layerData.feature.properties.NAME + '</p>' +
                 '<p>rep: ' + this.layerData.feature.properties.REP + '</p>';
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
-            if (type === 'assembly') {
+            else if (type === 'assembly') {
               popupContent =
                 '<p>name: ' + this.layerData.feature.properties.NAME + '</p>' +
                 '<p>rep: ' + this.layerData.feature.properties.REP + '</p>';
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
-            if (type === 'congress') {
+            else if (type === 'congress') {
               popupContent = '<h1>name: ' + this.layerData.feature.properties.District + '</h1>';
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
-            if (type === 'precinct') {
+            else if (type === 'precinct') {
               popupContent =
                 '<p>name: ' + this.layerData.feature.properties.NAME10 + '</p>' +
                 '<p>compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>';
-              this.layerData.options.color = this.layerData.feature.properties.COLOR;
-            }
 
+                if(this.map.size > 0){
+                  if(this.map.has(this.layerData.feature.properties.GEOID10)){
+                    this.layerData.options.color = this.map.get(this.layerData.feature.properties.GEOID10);
+                  }
+                  else{
+                    this.layerData.options.color = this.layerData.feature.properties.COLOR;
+                  }
+                }
+                else{
+                  this.layerData.options.color = this.layerData.feature.properties.COLOR;
+                }
+
+            }
 
             layer.bindPopup(popupContent);
             layer.on('mouseover', function (e) {
@@ -185,4 +199,34 @@ export class StateComponent implements OnInit {
     this.isLoadingResults = false;
   }
 
+  runAlgo(pcoefficient, ccoefficient, fcoefficient) {
+    //console.log("run algo clicked");
+    //console.log(this.id + pcoefficient + ccoefficient + fcoefficient);
+    this.state_service.runAlgo(this.id, pcoefficient,ccoefficient,fcoefficient).subscribe((data) => {
+        this.res_json = data;
+        //console.log(this.res_json.entity.moves);
+        for(var i = 0; i < this.res_json.entity.moves.length; i++){
+          // console.log(this.res_json.entity.moves[i].geoId);
+          // console.log(this.res_json.entity.moves[i].colorChange);
+          this.map.set(this.res_json.entity.moves[i].geoId,this.res_json.entity.moves[i].colorChange);
+        }
+        console.log(this.map);
+        this.displayBoundaries('precinct');
+      },
+      error => {
+        alert('Username/Password Bad');
+      });
+
+  }
 }
+/*
+    "moves": [
+      {
+        "stateId": "WV",
+        "originCongressionalDistrictId": "wv_cd_1",
+        "targetCongressionalDistrictId": "wv_cd_2",
+        "movingPrecinctId": "wv_vd_47",
+        "geoId": "540174",
+        "colorChange": "blue"
+      }
+ */

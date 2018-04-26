@@ -55,7 +55,7 @@ import {CongresselectiontableComponent} from './utilities/congresselectiontable/
 import {LogComponent} from "./log/log.component";
 import {DatePipe} from '@angular/common';
 import {AboutComponent} from './about/about.component';
-import {VotingComponent} from './voting/voting.component';
+import {VotingComponent} from './utilities/voting/voting.component';
 
 
 @NgModule({
