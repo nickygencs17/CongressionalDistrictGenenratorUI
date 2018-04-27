@@ -58,7 +58,9 @@ export class UserService {
             this.currentUser.username = user.username;
             this.currentUser.role = 'ROLE_USER';
             localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+            location.reload();
             this.router.navigate(['']);
+
           }
           else if (this.resJson.status === 409) {
             alert('user exsits');

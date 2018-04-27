@@ -23,7 +23,7 @@ export class CreateuserComponent implements OnInit {
   address = new FormControl('', [Validators.required]);
   city = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)]);
   state = new FormControl('', [Validators.required]);
-  zip = new FormControl('', [Validators.required, Validators.max(5), Validators.min(5)]);
+  zip = new FormControl('', [Validators.required]);
   password = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)]);
   password_two = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)]);
   states = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'];
