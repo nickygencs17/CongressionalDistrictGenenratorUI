@@ -33,7 +33,7 @@ export class PostdetailComponent implements OnInit {
 
     this.currentUser = localStorage.getItem('currentUser');
     let userJson = JSON.parse(this.currentUser);
-    if(userJson){
+    if (userJson) {
       this.isLogggedIn = true;
     }
     this.scrollToBottom();

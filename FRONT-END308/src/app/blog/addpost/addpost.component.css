@@ -7,6 +7,7 @@
 .example-container > * {
   width: 80%;
 }
-mat-form-field{
+
+mat-form-field {
   width: 80% !important;
 }

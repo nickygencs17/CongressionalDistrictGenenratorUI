@@ -37,7 +37,6 @@ export class AddpostComponent implements OnInit {
     var date = new Date();
 
 
-
     this.currentUser = localStorage.getItem('currentUser');
 
     let userJson = JSON.parse(this.currentUser);
@@ -46,7 +45,7 @@ export class AddpostComponent implements OnInit {
     headers = headers.append('Authorization', 'Basic ' + btoa(userJson.username + ':' + userJson.password));
 
     let new_post_res = {
-      author: userJson.username ,
+      author: userJson.username,
       image_url: new_post.image,
       post_text: new_post.description,
       time_date: this.datePipe.transform(date, "medium").toString(),
