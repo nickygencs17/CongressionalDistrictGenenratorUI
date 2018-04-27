@@ -62,7 +62,7 @@
 
     <li>
       <mat-form-field>
-        <mat-select placeholder="State" #stateValue (change)="changeState($event.value)" required>>
+        <mat-select placeholder="State" #stateValue (change)="changeState($event.value)" required>
           <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
         </mat-select>
         <!--<mat-error *ngIf="state.invalid">{{getStateMessage()}}</mat-error>-->
