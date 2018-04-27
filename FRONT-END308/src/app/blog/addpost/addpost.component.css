@@ -1,8 +1,12 @@
 .example-container {
   display: flex;
   flex-direction: column;
+  width: 80%;
 }
 
 .example-container > * {
-  width: 50%;
+  width: 80%;
+}
+mat-form-field{
+  width: 80% !important;
 }

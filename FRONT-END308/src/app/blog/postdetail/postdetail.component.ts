@@ -18,6 +18,7 @@ export class PostdetailComponent implements OnInit {
   resJson: any;
   currentUser: any;
   post_id: number;
+  isLogggedIn: boolean;
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
   constructor(private postservice: PostService,
@@ -29,6 +30,12 @@ export class PostdetailComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.currentUser = localStorage.getItem('currentUser');
+    let userJson = JSON.parse(this.currentUser);
+    if(userJson){
+      this.isLogggedIn = true;
+    }
     this.scrollToBottom();
     let id = +this.route.snapshot.params['id'];
     this.post_id = id;

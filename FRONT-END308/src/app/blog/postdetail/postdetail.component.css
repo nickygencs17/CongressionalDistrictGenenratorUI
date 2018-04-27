@@ -7,3 +7,6 @@
 .leftalign {
   text-align: left;
 }
+mat-form-field{
+  width: 100% !important;
+}

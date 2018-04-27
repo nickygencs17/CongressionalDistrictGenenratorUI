@@ -35,13 +35,7 @@ export class AddpostComponent implements OnInit {
 
   addpost(new_post) {
     var date = new Date();
-    let new_post_res = {
-      author: new_post.author,
-      image_url: new_post.image,
-      post_text: new_post.description,
-      time_date: this.datePipe.transform(date, "medium").toString(),
-      title: new_post.title
-    }
+
 
 
     this.currentUser = localStorage.getItem('currentUser');
@@ -50,6 +44,14 @@ export class AddpostComponent implements OnInit {
 
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', 'Basic ' + btoa(userJson.username + ':' + userJson.password));
+
+    let new_post_res = {
+      author: userJson.username ,
+      image_url: new_post.image,
+      post_text: new_post.description,
+      time_date: this.datePipe.transform(date, "medium").toString(),
+      title: new_post.title
+    }
 
 
     this.http.post<any>('http://' + this.hostname + '/post', new_post_res, {headers: headers})

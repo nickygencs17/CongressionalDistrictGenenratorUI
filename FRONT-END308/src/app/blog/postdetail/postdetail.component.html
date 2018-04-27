@@ -20,7 +20,7 @@
           <p> {{ post.post_text }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button color="basic" (click)="goBack()">Back</button>
+          <button mat-raised-button color="primary" (click)="goBack()">Back</button>
         </mat-card-actions>
       </mat-card>
     </div>
@@ -33,6 +33,7 @@
 
             <mat-card-content>
               <h3>{{ comment.author }}</h3>
+              <h3>{{comment.comment_time_date}}</h3>
               <p mat-line>{{ comment.comment_text }}</p>
             </mat-card-content>
           </mat-card>
@@ -43,7 +44,7 @@
   </div>
 
 
-  <div *ngIf="!addComment" style="text-align: center">
+  <div *ngIf="!addComment && isLogggedIn" style="text-align: center">
     <button mat-raised-button color="primary" (click)="addCommentFun()">Add Comment</button>
   </div>
   <div *ngIf="addComment">
