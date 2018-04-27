@@ -1,3 +1,13 @@
 ul {
   list-style-type: none;
 }
+mat-form-field {
+  width: 100% !important;
+}
+#wrapper {
+  text-align: center;
+}
+
+#yourdiv {
+  display: inline-block;
+}

@@ -1,9 +1,10 @@
+<div id="wrapper">
 <h2 mat-dialog-title>Login</h2>
 <div mat-dialog-content>
   <ul>
     <li>
       <mat-form-field>
-        <input matInput placeholder="Name" [(ngModel)]="data.username">
+        <input matInput placeholder="Username" [(ngModel)]="data.username">
       </mat-form-field>
     </li>
     <li>
@@ -14,8 +15,10 @@
   </ul>
 
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data">Ok</button>
-  <button mat-button (click)="createAccount()">Create Account</button>
+<div mat-dialog-actions id="yourdiv">
+  <button mat-raised-button color="primary" (click)="onNoClick()">No Thanks</button>
+  <button mat-raised-button color="primary"(click)="createAccount()">Create Account</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data">Ok</button>
 </div>
+</div>
+
