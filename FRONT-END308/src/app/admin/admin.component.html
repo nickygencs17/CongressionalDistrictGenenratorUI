@@ -5,77 +5,83 @@
       <hr>
     </div>
   </div>
-  <button mat-button color="basic" md-button routerLink="/register" routerLinkActive="active">Add New User</button>
-  <div fxFlex>
-    <mat-expansion-panel *ngFor="let user of users">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{ user.username }}
-        </mat-panel-title>
-        <mat-panel-description>
-          {{ user.first_name}} {{ user.last_name }}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div>
-        <mat-form-field>
-          <input matInput placeholder="First name" value="{{ user.first_name }}" type="text" #firstName>
-        </mat-form-field>
 
-        <mat-form-field>
-          <input matInput placeholder="Last name" value="{{ user.last_name }}" type="text" #lastName>
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field>
-          <input matInput placeholder="Password" value="{{ user.user_password }}" type="text" #password>
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field>
-          <input matInput placeholder="City" value="{{ user.city }}" type="text" #city>
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field>
-          <input matInput placeholder="Address" value="{{ user.address }}" type="text" #address>
-        </mat-form-field>
-        <div>
-          <mat-form-field>
-            <input matInput placeholder="State" value="{{ user.state_id }}" type="text" #state_id>
-          </mat-form-field>
-        </div>
+  <div id="wrapper">
+    <div id="yourdiv">
+      <div fxFlex>
+        <button mat-raised-button color="primary" [routerLink]="['/register']">Add New User</button>
+        <br>
 
-        <mat-form-field>
-          <input matInput placeholder="Zip" value="{{ user.zip }}" type="number" #zip>
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field>
-          <input matInput placeholder="Population coefficient" value="{{ user.population_coefficient }}" type="number"
-                 #pop_coef>
-        </mat-form-field>
+        <mat-expansion-panel *ngFor="let user of users">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ user.username }}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{ user.first_name}} {{ user.last_name }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="First name" value="{{ user.first_name }}" type="text" #firstName>
+            </mat-form-field>
 
-        <mat-form-field>
-          <input matInput placeholder="Fairness coefficient" value="{{ user.fairness_coefficient }}" type="number"
-                 #fair_coef>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Compactness coefficient" value="{{ user.compactness_coefficient }}" type="number"
-                 #com_coef>
-        </mat-form-field>
-      </div>
+            <mat-form-field>
+              <input matInput placeholder="Last name" value="{{ user.last_name }}" type="text" #lastName>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Password" value="{{ user.user_password }}" type="text" #password>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="City" value="{{ user.city }}" type="text" #city>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Address" value="{{ user.address }}" type="text" #address>
+            </mat-form-field>
+            <div>
+              <mat-form-field>
+                <input matInput placeholder="State" value="{{ user.state_id }}" type="text" #state_id>
+              </mat-form-field>
+            </div>
 
-      <button mat-button color="basic"
-              (click)="saveUser(user.username, firstName.value, lastName.value, password.value, city.value, address.value, state_id.value, zip.value, pop_coef.value, fair_coef.value, com_coef.value)">
-        Save
-      </button>
-      <button mat-button color="primary" (click)="deleteUser(user.username)">Delete</button>
-    </mat-expansion-panel>
+            <mat-form-field>
+              <input matInput placeholder="Zip" value="{{ user.zip }}" type="number" #zip>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Population coefficient" value="{{ user.population_coefficient }}"
+                     type="number"
+                     #pop_coef>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Fairness coefficient" value="{{ user.fairness_coefficient }}" type="number"
+                     #fair_coef>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Compactness coefficient" value="{{ user.compactness_coefficient }}"
+                     type="number"
+                     #com_coef>
+            </mat-form-field>
+          </div>
+
+          <button mat-button color="basic"
+                  (click)="saveUser(user.username, firstName.value, lastName.value, password.value, city.value, address.value, state_id.value, zip.value, pop_coef.value, fair_coef.value, com_coef.value)">
+            Save
+          </button>
+          <button mat-button color="primary" (click)="deleteUser(user.username)">Delete</button>
+        </mat-expansion-panel>
+      </div>
+    </div>
+
   </div>
 </div>
-
-
-
-
 
 

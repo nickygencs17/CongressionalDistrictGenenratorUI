@@ -36,6 +36,7 @@ export class StateComponent implements OnInit {
   eagleState = false;
   congressional_request = false;
   isLoadingResults = false;
+  precientCall = false;
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
@@ -91,6 +92,7 @@ export class StateComponent implements OnInit {
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_LOWER.geojson'
     }
     if (type === 'precinct') {
+      this.precientCall = true;
       this.congressional_request = true;
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_VDS.geojson'
     }

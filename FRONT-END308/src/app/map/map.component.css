@@ -10,9 +10,7 @@ path:hover {
 }
 
 #autocomplete {
-  margin: auto;
-  width: 50%;
-  padding: 10px;
+  display: inline-block;
 }
 
 svg {
@@ -20,8 +18,11 @@ svg {
 }
 
 .example-fill-remaining-space {
-  /* This fills the remaining space, by using flexbox.
-     Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
 }
+
+#wrapper {
+  text-align: center;
+}
+
 
