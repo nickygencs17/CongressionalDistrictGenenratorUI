@@ -35,6 +35,9 @@
     <button mat-raised-button color="primary"
             (click)="runAlgo(pcoefficient.value, ccoefficient.value, fcoefficient.value)">Run Redistrict Algorithm
     </button>
+    <button mat-raised-button color="primary"
+            (click)="resetMap()">Reset
+    </button>
   </div>
 </div>
 <div id="wrapper" *ngIf="isLoadingResults">

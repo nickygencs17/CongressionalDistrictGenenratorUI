@@ -217,6 +217,11 @@ export class StateComponent implements OnInit {
       });
 
   }
+
+  resetMap() {
+    this.map.clear();
+    this.displayBoundaries('precinct');
+  }
 }
 
 /*
