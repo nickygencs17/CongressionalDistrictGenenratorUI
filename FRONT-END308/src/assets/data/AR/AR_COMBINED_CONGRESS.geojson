@@ -12,7 +12,9 @@
       "properties": {
         "Code": "AR-02",
         "District": "Arkansas 2nd",
-        "COLOR": "blue"
+        "COLOR": "blue",
+        "COMPACTNESS":0.250873,
+        "POPULATION":728455
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -4185,7 +4187,9 @@
       "properties": {
         "Code": "AR-04",
         "District": "Arkansas 4th",
-        "COLOR": "green"
+        "COLOR": "green",
+        "COMPACTNESS":1.18284,
+        "POPULATION":748848
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -9198,7 +9202,9 @@
       "properties": {
         "Code": "AR-03",
         "District": "Arkansas 3rd",
-        "COLOR": "fuchsia"
+        "COLOR": "fuchsia",
+        "COMPACTNESS":0.416932,
+        "POPULATION":708237
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -12987,7 +12993,9 @@
       "properties": {
         "Code": "AR-01",
         "District": "Arkansas 1st",
-        "COLOR": "purple"
+        "COLOR": "purple",
+        "COMPACTNESS":0.666617,
+        "POPULATION":729094
       },
       "geometry": {
         "type": "MultiPolygon",

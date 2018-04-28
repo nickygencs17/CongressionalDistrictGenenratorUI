@@ -12,7 +12,9 @@
       "properties": {
         "Code": "WV-02",
         "District": "West Virginia 2nd",
-        "COLOR": "blue"
+        "COLOR": "blue",
+        "COMPACTNESS":0.334993,
+        "POPULATION":621454
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -11665,7 +11667,9 @@
       "properties": {
         "Code": "WV-03",
         "District": "West Virginia 3rd",
-        "COLOR": "fuchsia"
+        "COLOR": "fuchsia",
+        "COMPACTNESS":0.33711,
+        "POPULATION":614912
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -21170,7 +21174,9 @@
       "properties": {
         "Code": "WV-01",
         "District": "West Virginia 1st",
-        "COLOR": "purple"
+        "COLOR": "purple",
+        "COMPACTNESS":0.334993,
+        "POPULATION":615647
       },
       "geometry": {
         "type": "MultiPolygon",
