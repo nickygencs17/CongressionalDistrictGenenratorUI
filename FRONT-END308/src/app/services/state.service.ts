@@ -19,11 +19,11 @@ export class StateService {
     return this.http.jsonp(url, 'callback')
   }
 
-  runAlgo(id: string, pcoefficient: number, ccoefficient: number, fcoefficient: number) {
+  runAlgo(id: string, populationDeviation: number, ccoefficient: number, fcoefficient: number) {
     console.log(id);
     //http://localhost:8080/algorithm?state=WV&pcoefficient=1&ccoefficient=1&fcoefficient=1
 
-    let url = 'http://localhost:8080/algorithm?state=' + id + '&pcoefficient=' + pcoefficient + '&ccoefficient=' + ccoefficient + '&fcoefficient=' + fcoefficient;
+    let url = 'http://localhost:8080/algorithm?state=' + id + '&populationDeviation=' + populationDeviation + '&ccoefficient=' + ccoefficient + '&fcoefficient=' + fcoefficient;
     console.log(url);
 
     this.currentUser = localStorage.getItem('currentUser');

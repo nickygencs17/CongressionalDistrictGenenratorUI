@@ -214,9 +214,9 @@ export class StateComponent implements OnInit {
       });
   }
 
-  runAlgo(pcoefficient, ccoefficient, fcoefficient) {
+  runAlgo(populationDeviation, ccoefficient, fcoefficient) {
     this.isLoadingResults = true;
-    this.state_service.runAlgo(this.id, pcoefficient, ccoefficient, fcoefficient).subscribe((data) => {
+    this.state_service.runAlgo(this.id, populationDeviation, ccoefficient, fcoefficient).subscribe((data) => {
         this.res_json = data;
         for (var i = 0; i < this.res_json.entity.moves.length; i++) {
           this.map.set(this.res_json.entity.moves[i].geoId, this.res_json.entity.moves[i].colorChange);
