@@ -13,9 +13,8 @@
         "Code": "IN-03",
         "District": "Indiana 3rd",
         "COLOR": "fuchsia",
-        "COMPACTNESS":0.545801,
-        "POPULATION":719077
-
+        "COMPACTNESS": 0.545801,
+        "POPULATION": 719077
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -453,9 +452,8 @@
         "Code": "IN-06",
         "District": "Indiana 6th",
         "COLOR": "navy",
-        "COMPACTNESS":0.486154,
-        "POPULATION":721277
-
+        "COMPACTNESS": 0.486154,
+        "POPULATION": 721277
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -2729,8 +2727,8 @@
         "Code": "IN-04",
         "District": "Indiana 4th",
         "COLOR": "green",
-        "COMPACTNESS":0.491569,
-        "POPULATION":721307
+        "COMPACTNESS": 0.491569,
+        "POPULATION": 721307
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -3856,9 +3854,8 @@
         "Code": "IN-09",
         "District": "Indiana 9th",
         "COLOR": "red",
-        "COMPACTNESS":0.288183,
-        "POPULATION":714229
-
+        "COMPACTNESS": 0.288183,
+        "POPULATION": 714229
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -6848,8 +6845,8 @@
         "Code": "IN-07",
         "District": "Indiana 7th",
         "COLOR": "lime",
-        "COMPACTNESS":0.661813,
-        "POPULATION":693543
+        "COMPACTNESS": 0.661813,
+        "POPULATION": 693543
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -7511,8 +7508,8 @@
         "Code": "IN-08",
         "District": "Indiana 8th",
         "COLOR": "teal",
-        "COMPACTNESS":0.37327,
-        "POPULATION":721600
+        "COMPACTNESS": 0.37327,
+        "POPULATION": 721600
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -14778,8 +14775,8 @@
         "Code": "IN-01",
         "District": "Indiana 1st",
         "COLOR": "purple",
-        "COMPACTNESS":0.716097,
-        "POPULATION":716309
+        "COMPACTNESS": 0.716097,
+        "POPULATION": 716309
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -15193,8 +15190,8 @@
         "Code": "IN-05",
         "District": "Indiana 5th",
         "COLOR": "yellow",
-        "COMPACTNESS":0.668334,
-        "POPULATION":749730
+        "COMPACTNESS": 0.668334,
+        "POPULATION": 749730
       },
       "geometry": {
         "type": "MultiPolygon",
@@ -16304,8 +16301,8 @@
         "Code": "IN-02",
         "District": "Indiana 2nd",
         "COLOR": "blue",
-        "COMPACTNESS":0.512585,
-        "POPULATION":724227
+        "COMPACTNESS": 0.512585,
+        "POPULATION": 724227
       },
       "geometry": {
         "type": "MultiPolygon",

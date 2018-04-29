@@ -36,7 +36,7 @@ export class StateComponent implements OnInit {
   eagleState = false;
   congressional_request = false;
   isLoadingResults = false;
-  precientCall = false;
+  precinctCall = false;
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
@@ -92,7 +92,7 @@ export class StateComponent implements OnInit {
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_LOWER.geojson'
     }
     if (type === 'precinct') {
-      this.precientCall = true;
+      this.precinctCall = true;
       this.congressional_request = true;
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_VDS.geojson'
     }
@@ -119,9 +119,9 @@ export class StateComponent implements OnInit {
                 this.layerData.options.color = 'red';
                 popupContent =
                   '<p>name: ' + this.layerData.feature.properties.name + '</p>' +
-                  '<p>gov: Eric Holcomb </p>'+
-                  '<p>number of congress districts: 9 </p>'+
-                  '<p>population: 6481299 </p>'+
+                  '<p>gov: Eric Holcomb </p>' +
+                  '<p>number of congress districts: 9 </p>' +
+                  '<p>population: 6481299 </p>' +
                   '<p>compactness: 4.74381 </p>';
 
               }
@@ -129,18 +129,18 @@ export class StateComponent implements OnInit {
                 this.layerData.options.color = 'red';
                 popupContent =
                   '<p>name: ' + this.layerData.feature.properties.name + '</p>' +
-                  '<p>gov: Asa Hutchinson</p>'+
-                  '<p>number of congress districts: 4 </p>'+
-                  '<p>population: 2914634 </p>'+
+                  '<p>gov: Asa Hutchinson</p>' +
+                  '<p>number of congress districts: 4 </p>' +
+                  '<p>population: 2914634 </p>' +
                   '<p>compactness: 2.51727 </p>';
               }
               else if (this.layerData.feature.properties.name == 'West Virginia') {
                 this.layerData.options.color = 'red';
                 popupContent =
                   '<p>name: ' + this.layerData.feature.properties.name + '</p>' +
-                  '<p>gov: Jim Justice</p>'+
-                  '<p>number of congress districts: 3 </p>'+
-                  '<p>population: 1852013 </p>'+
+                  '<p>gov: Jim Justice</p>' +
+                  '<p>number of congress districts: 3 </p>' +
+                  '<p>population: 1852013 </p>' +
                   '<p>compactness: 0.906066 </p>';
 
               }
@@ -171,7 +171,7 @@ export class StateComponent implements OnInit {
             else if (type === 'precinct') {
               popupContent =
                 '<p>name: ' + this.layerData.feature.properties.NAME10 + '</p>' +
-                '<p>compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>'+
+                '<p>compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>' +
                 '<p>geo_id: ' + this.layerData.feature.properties.GEOID10 + '</p>';
 
               if (this.map.size > 0) {
