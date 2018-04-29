@@ -1,10 +1,10 @@
 ///<reference path="../utilities/navbar/navbar.component.ts"/>
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import {Router} from '@angular/router';
-import {User} from '../entities/user';
+import { Router } from '@angular/router';
+import { User } from '../entities/user';
 import 'rxjs/add/observable/throw';
 
 @Injectable()
@@ -50,7 +50,7 @@ export class UserService {
           if (this.resJson.status === 201) {
             alert('CREATED');
             if (localStorage.getItem('currentUser')) {
-              this.router.navigate(['']);
+              this.router.navigate(['users']);
               return;
             }
             this.loggedin = true;

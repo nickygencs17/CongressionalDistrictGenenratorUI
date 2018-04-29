@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 // Import HttpClient class
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {StateIdService} from "./state-id.service";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { StateIdService } from "./state-id.service";
 
 
 @Injectable()
@@ -16,7 +16,7 @@ export class StateService {
 
   getData() {
     const url = 'http://www.datasciencetoolkit.org/maps/api/geocode/json?sensor=false&address=' + this.state_id_service.state_id + ',US';
-    return this.http.jsonp(url, 'callback')
+    return this.http.jsonp(url, 'callback');
   }
 
   runAlgo(id: string, populationDeviation: number, ccoefficient: number, fcoefficient: number) {
@@ -30,6 +30,6 @@ export class StateService {
     let userJson = JSON.parse(this.currentUser);
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', 'Basic ' + btoa(userJson.username + ':' + userJson.password));
-    return this.http.get(url, {headers: headers})
+    return this.http.get(url, {headers: headers});
   }
 }

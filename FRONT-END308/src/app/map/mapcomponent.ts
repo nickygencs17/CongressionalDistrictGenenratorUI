@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {UsMapService} from '../services/us-map.service';
+import { Component, OnInit } from '@angular/core';
+import { UsMapService } from '../services/us-map.service';
 
 
 @Component({

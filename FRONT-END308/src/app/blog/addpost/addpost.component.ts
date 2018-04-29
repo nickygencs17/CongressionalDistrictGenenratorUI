@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {DatePipe, Location} from '@angular/common';
-import {Post} from '../../entities/post';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { DatePipe, Location } from '@angular/common';
+import { Post } from '../../entities/post';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { UserService } from "../../services/user.service";
 
 @Component({
   selector: 'app-addpost',
@@ -19,11 +20,19 @@ export class AddpostComponent implements OnInit {
   constructor(private http: HttpClient,
               public location: Location,
               public router: Router,
-              private datePipe: DatePipe) {
+              private datePipe: DatePipe,
+              private userService: UserService) {
   }
 
+
   ngOnInit() {
+
+    if (!this.userService.isLoggedIn()) {
+      alert("Please login");
+      this.router.navigate(['']);
+    }
   }
+
 
   goBack(): void {
     this.location.back();
@@ -50,7 +59,7 @@ export class AddpostComponent implements OnInit {
       post_text: new_post.description,
       time_date: this.datePipe.transform(date, "medium").toString(),
       title: new_post.title
-    }
+    };
 
 
     this.http.post<any>('http://' + this.hostname + '/post', new_post_res, {headers: headers})

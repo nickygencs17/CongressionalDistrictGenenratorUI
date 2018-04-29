@@ -1,8 +1,8 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {PostService} from '../../services/post.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {DatePipe, Location} from '@angular/common';
-import {HttpClient, HttpHeaders} from "@angular/common/http"
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { PostService } from '../../services/post.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DatePipe, Location } from '@angular/common';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Component({
   selector: 'app-postdetail',
@@ -81,7 +81,7 @@ export class PostdetailComponent implements OnInit {
       comment_text: comment_text,
       comment_time_date: this.datePipe.transform(date, "medium").toString(),
       post_id: this.post_id
-    }
+    };
 
 
     this.http.post<any>('http://' + this.hostname + '/post/comment', new_comment_res, {headers: headers})

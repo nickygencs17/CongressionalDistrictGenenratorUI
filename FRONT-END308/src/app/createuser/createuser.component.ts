@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
-import {Router} from '@angular/router';
-import {UserService} from '../services/user.service';
-import {User} from '../entities/user';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { User } from '../entities/user';
 
 @Component({
   selector: 'app-createuser',
@@ -78,16 +78,16 @@ export class CreateuserComponent implements OnInit {
   }
 
   getPasswordOneMessage() {
-    return this.user_name.hasError('required') ? 'You must enter a value' :
-      this.user_name.hasError('max') ? 'Greater than 10 chars' :
-        this.user_name.hasError('min') ? 'Not a least 2 chars' :
+    return this.password.hasError('required') ? 'You must enter a value' :
+      this.password.hasError('max') ? 'Greater than 10 chars' :
+        this.password.hasError('min') ? 'Not a least 2 chars' :
           '';
   }
 
   getPasswordTwoMessage() {
-    return this.user_name.hasError('required') ? 'You must enter a value' :
-      this.user_name.hasError('max') ? 'Greater than 10 chars' :
-        this.user_name.hasError('min') ? 'Not a least 2 chars' :
+    return this.password_two.hasError('required') ? 'You must enter a value' :
+      this.password_two.hasError('max') ? 'Greater than 10 chars' :
+        this.password_two.hasError('min') ? 'Not a least 2 chars' :
           '';
   }
 

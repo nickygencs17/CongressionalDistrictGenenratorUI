@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {UserService} from '../services/user.service';
-import {Router} from '@angular/router';
-import {User} from "../entities/user";
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
+import { User } from "../entities/user";
 
 @Component({
   selector: 'app-admin',
@@ -17,6 +17,11 @@ export class AdminComponent implements OnInit {
 
 
   ngOnInit() {
+
+    if (!this.userService.isLoggedIn()) {
+      alert("Please login");
+      this.router.navigate(['']);
+    }
     this.userService.getUsers()
       .subscribe((res_data) => {
           if (res_data.status === 200) {
@@ -65,7 +70,7 @@ export class AdminComponent implements OnInit {
       compactness_coefficient: com_coef
     };
     if (state_id.length > 2) {
-      alert("State ID Greater than 2")
+      alert("State ID Greater than 2");
     }
     else {
       this.userService.editUser(new_user)

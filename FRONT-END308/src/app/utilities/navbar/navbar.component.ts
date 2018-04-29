@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialog} from '@angular/material';
-import {LogindialogComponent} from '../logindialog/logindialog.component';
-import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {UserService} from '../../services/user.service';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { LogindialogComponent } from '../logindialog/logindialog.component';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-navbar',

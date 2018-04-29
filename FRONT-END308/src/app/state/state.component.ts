@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'leaflet-providers';
-import {geoJSON, Layer, tileLayer} from 'leaflet';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Location} from '@angular/common';
-import {StateService} from "../services/state.service";
-import {StateIdService} from "../services/state-id.service";
-import {UserService} from '../services/user.service';
+import { geoJSON, Layer, tileLayer } from 'leaflet';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { StateService } from "../services/state.service";
+import { StateIdService } from "../services/state-id.service";
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-state',
@@ -83,20 +83,20 @@ export class StateComponent implements OnInit {
       this.congressional_request = false;
       url = '/assets/data/USA/' + this.id.toUpperCase() + '.geojson';
     }
-    if (type === 'senate') {
+    else if (type === 'senate') {
       this.congressional_request = false;
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_UPPER.geojson';
     }
-    if (type === 'assembly') {
+    else if (type === 'assembly') {
       this.congressional_request = false;
-      url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_LOWER.geojson'
+      url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_LOWER.geojson';
     }
-    if (type === 'precinct') {
+    else if (type === 'precinct') {
       this.precinctCall = true;
       this.congressional_request = true;
-      url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_VDS.geojson'
+      url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_VDS.geojson';
     }
-    if (type === 'congress') {
+    else if (type === 'congress') {
       if (this.eagleState) {
         this.congressional_request = false;
       }

@@ -1,16 +1,16 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {UserService} from "../services/user.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
-import {map} from "rxjs/operators/map";
-import {startWith} from "rxjs/operators/startWith";
-import {merge} from "rxjs/observable/merge";
-import {of as observableOf} from "rxjs/observable/of";
-import {Observable} from "rxjs/Observable";
-import {catchError} from "rxjs/operators/catchError";
-import {switchMap} from "rxjs/operators/switchMap";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Location} from "@angular/common";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { UserService } from "../services/user.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
+import { map } from "rxjs/operators/map";
+import { startWith } from "rxjs/operators/startWith";
+import { merge } from "rxjs/observable/merge";
+import { of as observableOf } from "rxjs/observable/of";
+import { Observable } from "rxjs/Observable";
+import { catchError } from "rxjs/operators/catchError";
+import { switchMap } from "rxjs/operators/switchMap";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Location } from "@angular/common";
 
 @Component({
   selector: 'app-log',

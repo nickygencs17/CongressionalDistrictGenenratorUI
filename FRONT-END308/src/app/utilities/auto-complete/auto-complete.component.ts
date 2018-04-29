@@ -1,12 +1,12 @@
-import {Component} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
-import {Observable} from 'rxjs/Observable';
-import {startWith} from 'rxjs/operators/startWith';
-import {map} from 'rxjs/operators/map';
-import {Router} from "@angular/router"
-import {StateService} from "../../services/state.service";
-import {HttpClient} from "@angular/common/http";
+import { Observable } from 'rxjs/Observable';
+import { startWith } from 'rxjs/operators/startWith';
+import { map } from 'rxjs/operators/map';
+import { Router } from "@angular/router";
+import { StateService } from "../../services/state.service";
+import { HttpClient } from "@angular/common/http";
 
 
 export class State {

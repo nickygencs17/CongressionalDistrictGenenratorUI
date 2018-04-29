@@ -1,7 +1,7 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {Router} from "@angular/router";
-import {FormControl, Validators} from "@angular/forms";
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { Router } from "@angular/router";
+import { FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-logindialog',
@@ -10,8 +10,8 @@ import {FormControl, Validators} from "@angular/forms";
 })
 export class LogindialogComponent {
 
-  user_name = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)])
-  password = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)])
+  user_name = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)]);
+  password = new FormControl('', [Validators.required, Validators.max(10), Validators.min(1)]);
 
   constructor(public dialogRef: MatDialogRef<LogindialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,

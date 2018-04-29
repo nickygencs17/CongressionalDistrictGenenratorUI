@@ -1,14 +1,14 @@
-import {Routes} from '@angular/router';
-import {MapComponent} from './map/mapcomponent';
-import {StateComponent} from './state/state.component';
-import {CreateuserComponent} from './createuser/createuser.component';
-import {AddpostComponent} from './blog/addpost/addpost.component';
-import {PostdetailComponent} from './blog/postdetail/postdetail.component';
-import {PostComponent} from './blog/post/post.component';
-import {AdminComponent} from './admin/admin.component';
-import {LogComponent} from "./log/log.component";
-import {AboutComponent} from "./about/about.component";
-import {VotingComponent} from "./utilities/voting/voting.component";
+import { Routes } from '@angular/router';
+import { MapComponent } from './map/mapcomponent';
+import { StateComponent } from './state/state.component';
+import { CreateuserComponent } from './createuser/createuser.component';
+import { AddpostComponent } from './blog/addpost/addpost.component';
+import { PostdetailComponent } from './blog/postdetail/postdetail.component';
+import { PostComponent } from './blog/post/post.component';
+import { AdminComponent } from './admin/admin.component';
+import { LogComponent } from "./log/log.component";
+import { AboutComponent } from "./about/about.component";
+import { VotingComponent } from "./utilities/voting/voting.component";
 
 
 export const routes: Routes = [
