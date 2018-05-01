@@ -25,12 +25,13 @@
 
 
 <div *ngIf="congressional_request && !isLoadingResults" class="alogrithmChoices">
-  <p>Population Deviation</p>
-  <mat-slider min="1" max="5" step="1" value="3" #pcoefficient></mat-slider>
+  <p>Population Deviation %</p>
+  <mat-slider thumbLabel min="1" max="10" step="1" value="1" #pcoefficient></mat-slider>
+
   <p>Fairness Coefficient</p>
-  <mat-slider min="1" max="5" step="1" value="3" #ccoefficient></mat-slider>
+  <mat-slider thumbLabel min="1" max="10" step="1" value="1" #ccoefficient></mat-slider>
   <p>Compactness Coefficient</p>
-  <mat-slider min="1" max="5" step="1" value="3" #fcoefficient></mat-slider>
+  <mat-slider thumbLabel min="1" max="10" step="1" value="1" #fcoefficient></mat-slider>
   <div>
     <button mat-raised-button color="primary"
             (click)="runAlgo(pcoefficient.value, ccoefficient.value, fcoefficient.value)">Run Redistrict Algorithm

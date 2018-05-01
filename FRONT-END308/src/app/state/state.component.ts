@@ -37,6 +37,9 @@ export class StateComponent implements OnInit {
   congressional_request = false;
   isLoadingResults = false;
   precinctCall = false;
+  popValue = 1.0;
+  fairValue = 1;
+  comValue = 1;
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
@@ -176,7 +179,10 @@ export class StateComponent implements OnInit {
 
               if (this.map.size > 0) {
                 if (this.map.has(this.layerData.feature.properties.GEOID10)) {
-                  this.layerData.options.color = this.map.get(this.layerData.feature.properties.GEOID10);
+                  this.layerData.options.fillColor = this.map.get(this.layerData.feature.properties.GEOID10);
+                  this.layerData.options.color = "black";
+                  this.layerData.options.weight = 2;
+                  this.layerData.options.opacity = 3;
                 }
                 else {
                   this.layerData.options.color = this.layerData.feature.properties.COLOR;
@@ -189,13 +195,14 @@ export class StateComponent implements OnInit {
             }
 
             layer.bindPopup(popupContent);
-            layer.on('mouseover', function (e) {
+            layer.on('click', function (e) {
               this.openPopup();
             });
 
           }
 
         });
+        // noinspection TypeScriptValidateTypes
         this.layers = [
           defaultBaseLayer,
           defaultOverlay
@@ -233,16 +240,5 @@ export class StateComponent implements OnInit {
     this.map.clear();
     this.displayBoundaries('precinct');
   }
-}
 
-/*
-    "moves": [
-      {
-        "stateId": "WV",
-        "originCongressionalDistrictId": "wv_cd_1",
-        "targetCongressionalDistrictId": "wv_cd_2",
-        "movingPrecinctId": "wv_vd_47",
-        "geoId": "540174",
-        "colorChange": "blue"
-      }
- */
+}

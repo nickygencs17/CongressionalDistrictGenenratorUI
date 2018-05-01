@@ -11,6 +11,7 @@ import { User } from "../entities/user";
 export class AdminComponent implements OnInit {
 
   users: User[];
+  currentUser: any;
 
   constructor(private userService: UserService, private router: Router) {
   }
@@ -22,20 +23,30 @@ export class AdminComponent implements OnInit {
       alert("Please login");
       this.router.navigate(['']);
     }
-    this.userService.getUsers()
-      .subscribe((res_data) => {
-          if (res_data.status === 200) {
-            this.users = res_data.entity;
-          }
-          else if (res_data.status === 409) {
-            alert('Error getting users');
+
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (this.currentUser.role === 'ROLE_USER') {
+      this.router.navigate(['']);
+    }
+    else {
+      this.userService.getUsers()
+        .subscribe((res_data) => {
+            if (res_data.status === 200) {
+              this.users = res_data.entity;
+            }
+            else if (res_data.status === 409) {
+              alert('Error getting users');
+              this.router.navigate(['']);
+            }
+          },
+          error => {
+            alert('Error getting users using GET request');
             this.router.navigate(['']);
-          }
-        },
-        error => {
-          alert('Error getting users using GET request');
-          this.router.navigate(['']);
-        });
+          });
+    }
+
+
   }
 
 

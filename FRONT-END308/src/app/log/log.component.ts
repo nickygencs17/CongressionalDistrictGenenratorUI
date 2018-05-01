@@ -26,7 +26,7 @@ export class LogComponent implements OnInit {
   isLoadingResults = true;
   isRateLimitReached = false;
   res: any;
-
+  currentUser: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -43,10 +43,16 @@ export class LogComponent implements OnInit {
     if (!this.userService.isLoggedIn()) {
       alert("Please login");
       this.router.navigate(['']);
-
     }
 
-    this.exampleDatabase = new ExampleHttpDao(this.http, this.userService);
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (this.currentUser.role === 'ROLE_USER') {
+      this.router.navigate(['']);
+    }
+    else {
+      this.exampleDatabase = new ExampleHttpDao(this.http, this.userService);
+    }
 
 
     // If the user changes the sort order, reset back to the first page.

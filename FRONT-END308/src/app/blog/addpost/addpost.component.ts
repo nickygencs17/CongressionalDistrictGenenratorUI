@@ -31,6 +31,13 @@ export class AddpostComponent implements OnInit {
       alert("Please login");
       this.router.navigate(['']);
     }
+
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (this.currentUser.role === 'ROLE_USER') {
+      this.router.navigate(['']);
+    }
+
   }
 
 
