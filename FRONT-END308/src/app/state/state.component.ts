@@ -110,11 +110,11 @@ export class StateComponent implements OnInit {
               if (this.eagleState === true) {
                 this.layerData.options.color = this.layerData.feature.properties.COLOR;
                 popupContent =
-                  '<p>name: ' + this.layerData.feature.properties.name + '</p>' +
-                  '<p>gov: ' + this.layerData.feature.properties.REP + '</p>' +
-                  '<p>number of congress districts: ' + this.layerData.feature.properties.NUMDISTRICTS + '</p>' +
-                  '<p>population: ' + this.layerData.feature.properties.POP + '</p>' +
-                  '<p>compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>';
+                  '<h1>Name: ' + this.layerData.feature.properties.name + '</h1>' +
+                  '<p>Gov: ' + this.layerData.feature.properties.REP + '</p>' +
+                  '<p>Number of congress districts: ' + this.layerData.feature.properties.NUMDISTRICTS + '</p>' +
+                  '<p>Population: ' + this.layerData.feature.properties.POP + '</p>' +
+                  '<p>Compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>';
               }
               else {
                 popupContent = '<h1>name: ' + this.layerData.feature.properties.name + '</h1>';
@@ -123,28 +123,27 @@ export class StateComponent implements OnInit {
             }
             else if (type === 'senate') {
               popupContent =
-                '<p>name: Senate District ' + this.layerData.feature.properties.NAME + '</p>' +
-                '<p>rep: ' + this.layerData.feature.properties.REP + '</p>';
+                '<h1>Name: Senate District ' + this.layerData.feature.properties.NAME + '</h1>' +
+                '<p>Rep: ' + this.layerData.feature.properties.REP + '</p>';
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
             else if (type === 'assembly') {
               popupContent =
-                '<p>name: Assembly District ' + this.layerData.feature.properties.NAME + '</p>' +
-                '<p>rep: ' + this.layerData.feature.properties.REP + '</p>';
+                '<h1>Name: Assembly District ' + this.layerData.feature.properties.NAME + '</h1>' +
+                '<p>Rep: ' + this.layerData.feature.properties.REP + '</p>';
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
             else if (type === 'congress') {
-              popupContent = '<h1>name: ' + this.layerData.feature.properties.District + '</h1>'
-                + '<p>compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>'
-                + '<p>population: ' + this.layerData.feature.properties.POPULATION + '</p>';
+              popupContent = '<h1>Name: ' + this.layerData.feature.properties.District + '</h1>'
+                + '<p>Compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>'
+                + '<p>Population: ' + this.layerData.feature.properties.POPULATION + '</p>';
 
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
             else if (type === 'precinct') {
               popupContent =
-                '<p>name: ' + this.layerData.feature.properties.NAME10 + '</p>' +
-                '<p>compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>' +
-                '<p>geo_id: ' + this.layerData.feature.properties.GEOID10 + '</p>';
+                '<h1>Name: ' + this.layerData.feature.properties.NAME10 + '</h1>' +
+                '<p>Geo_id: ' + this.layerData.feature.properties.GEOID10 + '</p>';
 
               if (this.map.size > 0) {
                 if (this.map.has(this.layerData.feature.properties.GEOID10)) {
