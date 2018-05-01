@@ -192,6 +192,7 @@ export class StateComponent implements OnInit {
     this.message = "Running Algorithm...";
     this.state_service.runAlgo(this.id, populationDeviation, ccoefficient, fcoefficient).subscribe((data) => {
         this.res_json = data;
+        this.message = "Reading Moves...";
         for (var i = 0; i < this.res_json.entity.moves.length; i++) {
           this.map.set(this.res_json.entity.moves[i].geoId, this.res_json.entity.moves[i].colorChange);
         }
