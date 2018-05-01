@@ -12,8 +12,6 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
-
-
   <mat-table #table [dataSource]="dataSource" matSort class="example-table">
 
     <ng-container matColumnDef="election_year">
@@ -35,7 +33,6 @@
       <mat-header-cell *matHeaderCellDef>Party</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.party}}</mat-cell>
     </ng-container>
-
 
     <ng-container matColumnDef="votes_for">
       <mat-header-cell *matHeaderCellDef>Votes</mat-header-cell>

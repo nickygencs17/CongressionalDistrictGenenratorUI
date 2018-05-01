@@ -6,7 +6,6 @@
       Please connect Backend.
     </div>
   </div>
-
   <div class="example-header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
@@ -41,7 +40,6 @@
       <mat-header-cell *matHeaderCellDef>District</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.congress_id}}</mat-cell>
     </ng-container>
-
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

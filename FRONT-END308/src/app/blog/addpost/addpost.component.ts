@@ -24,22 +24,18 @@ export class AddpostComponent implements OnInit {
               private userService: UserService) {
   }
 
-
   ngOnInit() {
 
     if (!this.userService.isLoggedIn()) {
       alert("Please login");
       this.router.navigate(['']);
     }
-
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
     if (this.currentUser.role === 'ROLE_USER') {
       this.router.navigate(['']);
     }
 
   }
-
 
   goBack(): void {
     this.location.back();
@@ -51,15 +47,10 @@ export class AddpostComponent implements OnInit {
 
   addpost(new_post) {
     var date = new Date();
-
-
     this.currentUser = localStorage.getItem('currentUser');
-
     let userJson = JSON.parse(this.currentUser);
-
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', 'Basic ' + btoa(userJson.username + ':' + userJson.password));
-
     let new_post_res = {
       author: userJson.username,
       image_url: new_post.image,
@@ -67,15 +58,12 @@ export class AddpostComponent implements OnInit {
       time_date: this.datePipe.transform(date, "medium").toString(),
       title: new_post.title
     };
-
-
     this.http.post<any>('http://' + this.hostname + '/post', new_post_res, {headers: headers})
       .subscribe((data) => {
           this.resJson = data;
           if (this.resJson.status === 201) {
             alert('CREATED');
             this.location.back();
-
           }
         },
         error => {

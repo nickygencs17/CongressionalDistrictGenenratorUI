@@ -19,14 +19,10 @@ export class StateComponent implements OnInit {
 
   allDataFetched = false;
   id: string;
-
   lat = 0;
   lng = 0;
-
   map = new Map();
   res_json: any;
-
-
   layers: Layer[];
   layersControl: any;
   center: any;
@@ -48,20 +44,16 @@ export class StateComponent implements OnInit {
               private userService: UserService) {
   }
 
-
   ngOnInit() {
-
     if (!this.userService.isLoggedIn()) {
       alert("Please login");
       this.router.navigate(['']);
     }
-
     this.id = this.route.snapshot.params['id'];
     this.state_id_service.state_id = this.id;
     if (this.id === 'IN' || this.id === 'AR' || this.id === 'WV') {
       this.eagleState = true;
     }
-
     this.state_service.getData()
       .subscribe(response => {
         this.data = response;
@@ -75,7 +67,6 @@ export class StateComponent implements OnInit {
       });
     this.displayBoundaries('state');
   }
-
 
   displayBoundaries(type): void {
     this.isLoadingResults = true;
@@ -103,7 +94,6 @@ export class StateComponent implements OnInit {
       }
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_COMBINED_CONGRESS.geojson';
     }
-
 
     this.http.get<any>(url)
       .subscribe(geo1 => {
@@ -191,16 +181,13 @@ export class StateComponent implements OnInit {
               }
 
             }
-
             layer.bindPopup(popupContent);
             layer.on('click', function (e) {
               this.openPopup();
             });
 
           }
-
         });
-        // noinspection TypeScriptValidateTypes
         this.layers = [
           defaultBaseLayer,
           defaultOverlay
@@ -215,7 +202,6 @@ export class StateComponent implements OnInit {
           }
         };
         this.isLoadingResults = false;
-
       });
   }
 

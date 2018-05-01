@@ -12,20 +12,15 @@ export class AdminComponent implements OnInit {
 
   users: User[];
   currentUser: any;
-
   constructor(private userService: UserService, private router: Router) {
   }
 
-
   ngOnInit() {
-
     if (!this.userService.isLoggedIn()) {
       alert("Please login");
       this.router.navigate(['']);
     }
-
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
     if (this.currentUser.role === 'ROLE_USER') {
       this.router.navigate(['']);
     }
@@ -45,10 +40,7 @@ export class AdminComponent implements OnInit {
             this.router.navigate(['']);
           });
     }
-
-
   }
-
 
   deleteUser(username: string) {
     this.userService.deleteUser(username)
@@ -95,12 +87,9 @@ export class AdminComponent implements OnInit {
             this.router.navigate(['']);
           });
     }
-
-
   }
 
   reload_fun(): any {
     location.reload();
   }
-
 }

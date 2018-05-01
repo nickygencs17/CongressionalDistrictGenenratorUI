@@ -23,9 +23,7 @@ export class AutoCompleteComponent {
 
   stateCtrl: FormControl;
   filteredStates: Observable<any[]>;
-
   states: State[] = [
-
     {
       name: 'Alaska',
       population: '741K',
@@ -316,7 +314,6 @@ export class AutoCompleteComponent {
     }
   ];
 
-
   constructor(public router: Router, public state_service: StateService, private http: HttpClient) {
     this.stateCtrl = new FormControl();
     this.filteredStates = this.stateCtrl.valueChanges
@@ -325,7 +322,6 @@ export class AutoCompleteComponent {
         map(state => state ? this.filterStates(state) : this.states.slice())
       );
   }
-
 
   filterStates(name: string) {
     for (let i = 0; i < this.states.length; i++) {

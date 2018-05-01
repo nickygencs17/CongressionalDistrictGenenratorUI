@@ -11,8 +11,6 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-
   currentUser: any;
   username: string;
   password: string;
@@ -28,7 +26,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.currentUser = localStorage.getItem('currentUser');
     if (this.currentUser) {
       let userJson = JSON.parse(this.currentUser);
@@ -42,7 +39,6 @@ export class NavbarComponent implements OnInit {
       this.logged_in = false;
       this.isAdmin = false;
     }
-
   }
 
   openDialog(): void {
@@ -53,7 +49,6 @@ export class NavbarComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(data => {
-
       if (data) {
         this.userService.login(data.username, data.password)
           .subscribe((res_data) => {
@@ -66,7 +61,6 @@ export class NavbarComponent implements OnInit {
               localStorage.setItem('currentUser', JSON.stringify(this.userService.currentUser));
 
               this.reload_fun();
-
             },
             error => {
               return;
@@ -75,13 +69,11 @@ export class NavbarComponent implements OnInit {
       else {
         return;
       }
-
     });
 
   }
 
   reload_fun(): any {
-
     this.displayName = this.userService.currentUser.username;
     location.reload();
   }
@@ -89,7 +81,6 @@ export class NavbarComponent implements OnInit {
   goHome() {
     this.router.navigate(['']);
   }
-
 
   logout() {
     this.userService.logout();

@@ -7,11 +7,7 @@
   <span class="nav-bar" md-button routerLink="/voting" routerLinkActive="active"> Voting District</span>
   <span *ngIf="isAdmin" class="nav-bar" md-button routerLink="/users" routerLinkActive="active"> Users</span>
   <span *ngIf="isAdmin" class="nav-bar" md-button routerLink="/log" routerLinkActive="active"> Log</span>
-
-
-  <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>
-
   <div *ngIf="!logged_in">
     <a md-button (click)="openDialog()"><span class="fa fa-sign-in fa-lg"></span> Login</a>
   </div>

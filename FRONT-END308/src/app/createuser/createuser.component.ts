@@ -13,7 +13,6 @@ import { User } from '../entities/user';
 export class CreateuserComponent implements OnInit {
 
   user = new User();
-
   public state_id;
   string;
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -35,13 +34,10 @@ export class CreateuserComponent implements OnInit {
   }
 
   createNewAccount() {
-
     if (this.password == this.password_two) {
       alert("Passwords do not match");
       return;
     }
-
-
     this.user.username = this.user_name.value;
     this.user.user_password = this.password.value;
     this.user.city = this.city.value;
@@ -52,8 +48,6 @@ export class CreateuserComponent implements OnInit {
     this.user.state_id = this.state_id;
     this.user.role = "ROLE_USER";
     this.user_service.createUser(this.user);
-
-
   }
 
   getLastNameMessage() {
@@ -111,7 +105,6 @@ export class CreateuserComponent implements OnInit {
         this.city.hasError('min') ? 'Not a least 5 chars' :
           '';
   }
-
 
   getStateMessage() {
     return this.city.hasError('required') ? 'You must ente a value' :

@@ -17,16 +17,13 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class CongresselectiontableComponent implements OnInit {
 
-
   displayedColumns = ['election_year', 'candidate_name', 'party', 'percent_of_votes', 'congress_id'];
   exampleDatabase: ExampleHttpDao | null;
   dataSource = new MatTableDataSource();
-
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
   res: any;
-
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -35,9 +32,7 @@ export class CongresselectiontableComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.exampleDatabase = new ExampleHttpDao(this.http, this.route);
-
     merge(this.sort.sortChange)
       .pipe(
         startWith({}),
@@ -87,22 +82,15 @@ export interface CongressElection {
   congress_id: string,
   state_id: string
   election_year: number
-
-
 }
 
-
 export class ExampleHttpDao {
-
   id: string;
-
   constructor(private http: HttpClient, private route: ActivatedRoute) {
   }
-
   getRepoIssues(sort: string, full_name: string): Observable<GerymanderingApi> {
     this.id = this.route.snapshot.params['id'];
     const requestUrl = 'http://localhost:8080/state/electionInfo/' + this.id;
-
     return this.http.get<GerymanderingApi>(requestUrl);
   }
 }

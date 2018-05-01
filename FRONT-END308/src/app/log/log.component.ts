@@ -119,10 +119,7 @@ export class ExampleHttpDao {
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', 'Basic ' + btoa(this.userService.currentUser.username + ':' + this.userService.currentUser.password));
     headers = headers.append('Content-Type', 'application/x-www-form-urlencoded');
-
-
     const requestUrl = 'http://localhost:8080/log/all';
-
     return this.http.get<GerymanderingApi>(requestUrl, {headers: headers});
   }
 }

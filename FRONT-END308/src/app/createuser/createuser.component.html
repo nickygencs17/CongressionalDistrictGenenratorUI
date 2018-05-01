@@ -2,10 +2,8 @@
 <br>
 
 <div class="center">
-
   <h1>Register</h1>
   <hr>
-
   <br>
   <br>
   <ul>
@@ -41,12 +39,6 @@
         <mat-error *ngIf="password_two.invalid">{{ getPasswordTwoMessage() }}</mat-error>
       </mat-form-field>
     </li>
-    <!--<li>-->
-    <!--<mat-form-field class="example-full-width">-->
-    <!--<input matInput placeholder="Enter your email" [formControl]="email" required>-->
-    <!--&lt;!&ndash;<mat-error *ngIf="email.invalid">{{ getEmailMessage() }}</mat-error>&ndash;&gt;-->
-    <!--</mat-form-field>-->
-    <!--</li>-->
     <li>
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Enter your address" [formControl]="address" type="text" required>
@@ -65,16 +57,13 @@
         <mat-select placeholder="State" #stateValue (change)="changeState($event.value)" required>
           <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
         </mat-select>
-        <!--<mat-error *ngIf="state.invalid">{{getStateMessage()}}</mat-error>-->
       </mat-form-field>
     </li>
     <li>
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Enter your zip" [formControl]="zip" type="number" required>
-        <!--<mat-error *ngIf="zip.invalid">{{getZipMessage()}}</mat-error>-->
       </mat-form-field>
     </li>
-
   </ul>
   <br>
   <br>
