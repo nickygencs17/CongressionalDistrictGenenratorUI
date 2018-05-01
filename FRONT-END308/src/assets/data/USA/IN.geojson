@@ -6,7 +6,12 @@
       "id": "USA-IN",
       "properties": {
         "fips": "18",
-        "name": "Indiana"
+        "name": "Indiana",
+        "REP": "Eric Holcomb",
+        "NUMDISTRICTS": 9,
+        "POP": 6481299,
+        "COMPACTNESS": 4.74381,
+        "COLOR": "red"
       },
       "geometry": {
         "type": "Polygon",

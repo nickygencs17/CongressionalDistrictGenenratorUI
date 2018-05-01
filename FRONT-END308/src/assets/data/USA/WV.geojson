@@ -6,7 +6,12 @@
       "id": "USA-WV",
       "properties": {
         "fips": "54",
-        "name": "West Virginia"
+        "name": "West Virginia",
+        "REP": "Jim Justice",
+        "NUMDISTRICTS": 3,
+        "POP": 1852013,
+        "COMPACTNESS": 0.906066,
+        "COLOR": "red"
       },
       "geometry": {
         "type": "Polygon",

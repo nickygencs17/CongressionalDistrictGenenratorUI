@@ -6,7 +6,12 @@
       "id": "USA-AR",
       "properties": {
         "fips": "05",
-        "name": "Arkansas"
+        "name": "Arkansas",
+        "REP": "Asa Hutchinson",
+        "NUMDISTRICTS": 4,
+        "POP": 2914634,
+        "COMPACTNESS": 2.51727,
+        "COLOR": "red"
       },
       "geometry": {
         "type": "Polygon",

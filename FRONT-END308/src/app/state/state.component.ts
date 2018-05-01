@@ -105,35 +105,16 @@ export class StateComponent implements OnInit {
             this.layerData.options.weight = 0.7;
 
             let popupContent = '';
+
             if (type === 'state') {
-              if (this.layerData.feature.properties.name == 'Indiana') {
-                this.layerData.options.color = 'red';
+              if (this.eagleState === true) {
+                this.layerData.options.color = this.layerData.feature.properties.COLOR;
                 popupContent =
                   '<p>name: ' + this.layerData.feature.properties.name + '</p>' +
-                  '<p>gov: Eric Holcomb </p>' +
-                  '<p>number of congress districts: 9 </p>' +
-                  '<p>population: 6481299 </p>' +
-                  '<p>compactness: 4.74381 </p>';
-
-              }
-              else if (this.layerData.feature.properties.name == 'Arkansas') {
-                this.layerData.options.color = 'red';
-                popupContent =
-                  '<p>name: ' + this.layerData.feature.properties.name + '</p>' +
-                  '<p>gov: Asa Hutchinson</p>' +
-                  '<p>number of congress districts: 4 </p>' +
-                  '<p>population: 2914634 </p>' +
-                  '<p>compactness: 2.51727 </p>';
-              }
-              else if (this.layerData.feature.properties.name == 'West Virginia') {
-                this.layerData.options.color = 'red';
-                popupContent =
-                  '<p>name: ' + this.layerData.feature.properties.name + '</p>' +
-                  '<p>gov: Jim Justice</p>' +
-                  '<p>number of congress districts: 3 </p>' +
-                  '<p>population: 1852013 </p>' +
-                  '<p>compactness: 0.906066 </p>';
-
+                  '<p>gov: ' + this.layerData.feature.properties.REP + '</p>' +
+                  '<p>number of congress districts: ' + this.layerData.feature.properties.NUMDISTRICTS + '</p>' +
+                  '<p>population: ' + this.layerData.feature.properties.POP + '</p>' +
+                  '<p>compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>';
               }
               else {
                 popupContent = '<h1>name: ' + this.layerData.feature.properties.name + '</h1>';
@@ -188,13 +169,14 @@ export class StateComponent implements OnInit {
 
           }
         });
+        // noinspection TypeScriptValidateTypes
         this.layers = [
           defaultBaseLayer,
           defaultOverlay
         ];
         this.layersControl = {
           baseLayers: {
-            'OpenStreetMap Mapnik': defaultBaseLayer,
+            'OpenStreetMap Color': defaultBaseLayer,
             'OpenStreetMap BlackAndWhite': tileLayer.provider('OpenStreetMap.BlackAndWhite')
           },
           overlays: {
