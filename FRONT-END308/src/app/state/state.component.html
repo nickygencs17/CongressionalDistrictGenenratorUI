@@ -14,8 +14,8 @@
 
 <mat-radio-group *ngIf="eagleState">
   <mat-radio-button value="1" [checked]=true (click)="displayBoundaries('state')">State</mat-radio-button>
-  <mat-radio-button value="2" (click)="displayBoundaries('senate')">Senate District</mat-radio-button>
-  <mat-radio-button value="3" (click)="displayBoundaries('assembly')">State Legislation District</mat-radio-button>
+  <mat-radio-button value="2" (click)="displayBoundaries('senate')">State Senate District</mat-radio-button>
+  <mat-radio-button value="3" (click)="displayBoundaries('assembly')">State House District</mat-radio-button>
   <mat-radio-button value="4" (click)="displayBoundaries('congress')">Congressional District</mat-radio-button>
   <mat-radio-button value="5" (click)="displayBoundaries('precinct')">Precincts</mat-radio-button>
 </mat-radio-group>
@@ -57,7 +57,7 @@
          [leafletCenter]="center"
          [leafletFitBounds]="fitBounds"></div>
     <div *ngIf="eagleState && precinctCall">
-      <h3>State Information</h3>
+      <h3>Algorithim Information</h3>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           <mat-panel-title>

@@ -72,14 +72,17 @@ export class StateComponent implements OnInit {
     this.isLoadingResults = true;
     let url = '';
     if (type === 'state') {
+      this.precinctCall = false;
       this.congressional_request = false;
       url = '/assets/data/USA/' + this.id.toUpperCase() + '.geojson';
     }
     else if (type === 'senate') {
+      this.precinctCall = false;
       this.congressional_request = false;
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_UPPER.geojson';
     }
     else if (type === 'assembly') {
+      this.precinctCall = false;
       this.congressional_request = false;
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_LOWER.geojson';
     }
@@ -89,6 +92,7 @@ export class StateComponent implements OnInit {
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_VDS.geojson';
     }
     else if (type === 'congress') {
+      this.precinctCall = false;
       if (this.eagleState) {
         this.congressional_request = false;
       }
