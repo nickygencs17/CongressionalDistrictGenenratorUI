@@ -37,9 +37,7 @@ export class StateComponent implements OnInit {
   congressional_request = false;
   isLoadingResults = false;
   precinctCall = false;
-  popValue = 1.0;
-  fairValue = 1;
-  comValue = 1;
+  message = "Building GeoJson...";
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
@@ -223,11 +221,13 @@ export class StateComponent implements OnInit {
 
   runAlgo(populationDeviation, ccoefficient, fcoefficient) {
     this.isLoadingResults = true;
+    this.message = "Running Algorithm...";
     this.state_service.runAlgo(this.id, populationDeviation, ccoefficient, fcoefficient).subscribe((data) => {
         this.res_json = data;
         for (var i = 0; i < this.res_json.entity.moves.length; i++) {
           this.map.set(this.res_json.entity.moves[i].geoId, this.res_json.entity.moves[i].colorChange);
         }
+        this.message = "Building GeoJson...";
         this.displayBoundaries('precinct');
       },
       error => {
