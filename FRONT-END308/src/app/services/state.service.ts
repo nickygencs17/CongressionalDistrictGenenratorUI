@@ -5,6 +5,7 @@ import { StateIdService } from "./state-id.service";
 @Injectable()
 export class StateService {
   currentUser: any;
+
   constructor(private http: HttpClient,
               private state_id_service: StateIdService) {
   }

@@ -86,8 +86,10 @@ export interface CongressElection {
 
 export class ExampleHttpDao {
   id: string;
+
   constructor(private http: HttpClient, private route: ActivatedRoute) {
   }
+
   getRepoIssues(sort: string, full_name: string): Observable<GerymanderingApi> {
     this.id = this.route.snapshot.params['id'];
     const requestUrl = 'http://localhost:8080/state/electionInfo/' + this.id;

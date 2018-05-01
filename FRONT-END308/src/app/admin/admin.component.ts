@@ -12,6 +12,7 @@ export class AdminComponent implements OnInit {
 
   users: User[];
   currentUser: any;
+
   constructor(private userService: UserService, private router: Router) {
   }
 

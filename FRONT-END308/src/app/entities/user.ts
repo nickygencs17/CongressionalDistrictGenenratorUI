@@ -13,7 +13,7 @@ export class User {
   role: string;
 
   constructor() {
-    this.population_coefficient = 1.0;
+    this.population_coefficient = 8.0;
     this.compactness_coefficient = 1.0;
     this.fairness_coefficient = 1.0;
   }
