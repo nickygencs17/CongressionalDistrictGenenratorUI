@@ -114,6 +114,19 @@ export class UserService {
     return this.http.post('http://' + this.hostname + '/user/edit', new_user, {headers: headers})
       .catch((error: any) => Observable.throw(error));
   }
+
+  getUser(username: string) {
+    let headers = new HttpHeaders();
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (this.currentUser.role != 'ROLE_ADMIN') {
+      alert("Not Authorized");
+      this.router.navigate(['']);
+    }
+    headers = headers.append('Authorization', 'Basic ' + btoa(this.currentUser.username + ':' + this.currentUser.password));
+    return this.http.get('http://' + this.hostname + '/user/'+ username, {headers: headers})
+      .catch((error: any) => Observable.throw(error));
+
+  }
 }
 
 

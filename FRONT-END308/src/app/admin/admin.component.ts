@@ -12,6 +12,8 @@ export class AdminComponent implements OnInit {
 
   users: User[];
   currentUser: any;
+  showUser = false;
+  new_user: any;
 
   constructor(private userService: UserService, private router: Router) {
   }
@@ -92,5 +94,29 @@ export class AdminComponent implements OnInit {
 
   reload_fun(): any {
     location.reload();
+  }
+
+  searchForUser(username: string) {
+    if(username.length==0){
+      alert('username cannot be empty');
+    }
+    else{
+      this.userService.getUser(username)
+        .subscribe((res_data) => {
+            if (res_data.status === 200) {
+              console.log(res_data);
+              this.showUser = true;
+              this.new_user = res_data.entity
+            }
+            if (res_data.status === 404) {
+              alert('user not found');
+            }
+          },
+          error => {
+            alert('Error saving user');
+            this.router.navigate(['']);
+          });
+    }
+
   }
 }

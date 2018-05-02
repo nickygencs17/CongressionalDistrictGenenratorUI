@@ -8,8 +8,91 @@
 
   <div id="wrapper">
     <div id="yourdiv">
+      <button mat-raised-button color="primary" [routerLink]="['/register']">Add New User</button>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Username" #username>
+      </mat-form-field>
+      <div *ngIf="showUser">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ new_user.username }}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{ new_user.first_name}} {{ new_user.last_name }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="First name" value="{{ new_user.first_name }}" type="text" #newfirstName>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Last name" value="{{ new_user.last_name }}" type="text" #newlastName>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Password" value="{{ new_user.user_password }}" type="text" #newpassword>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="City" value="{{ new_user.city }}" type="text" #newcity>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Address" value="{{ new_user.address }}" type="text" #newaddress>
+            </mat-form-field>
+            <div>
+              <mat-form-field>
+                <input matInput placeholder="State" value="{{ new_user.state_id }}" type="text" #newstate_id>
+              </mat-form-field>
+            </div>
+
+            <mat-form-field>
+              <input matInput placeholder="Zip" value="{{ new_user.zip }}" type="number" #newzip>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Population coefficient" value="{{ new_user.population_coefficient }}"
+                     type="number"
+                     #newpop_coef>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Fairness coefficient" value="{{ new_user.fairness_coefficient }}" type="number"
+                     #newfair_coef>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Compactness coefficient" value="{{ new_user.compactness_coefficient }}"
+                     type="number"
+                     #newcom_coef>
+            </mat-form-field>
+
+
+
+            <button mat-button color="basic"
+                    (click)="saveUser(new_user.username, newfirstName.value, newlastName.value, newpassword.value, newcity.value, newaddress.value, newstate_id.value, newzip.value, newpop_coef.value, newfair_coef.value, newcom_coef.value)">
+              Save
+            </button>
+            <button mat-button color="primary" (click)="deleteUser(new_user.username)">Delete</button>
+
+          </div>
+        </mat-expansion-panel>
+      </div>
+
+
+
+
+
+
+      <button mat-raised-button color="primary" (click)="searchForUser(username.value)">Search By Username</button>
+      <hr>
       <div fxFlex>
-        <button mat-raised-button color="primary" [routerLink]="['/register']">Add New User</button>
         <br>
 
         <mat-expansion-panel *ngFor="let user of users">
@@ -82,5 +165,4 @@
     </div>
   </div>
 </div>
-
 
