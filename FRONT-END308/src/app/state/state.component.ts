@@ -140,15 +140,25 @@ export class StateComponent implements OnInit {
             else if (type === 'congress') {
               popupContent = '<h1>Name: ' + this.layerData.feature.properties.District + '</h1>'
                 + '<p>Compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>'
-                + '<p>Population: ' + this.layerData.feature.properties.POPULATION + '</p>';
+                + '<p>Population: ' + this.layerData.feature.properties.POPULATION + '</p>'
+                + '<p>White: ' + this.layerData.feature.properties.RACE_WHITE + '</p>'
+                + '<p>Black: ' + this.layerData.feature.properties.RACE_BLACK + '</p>'
+                + '<p>Hispanic: ' + this.layerData.feature.properties.RACE_HISPANIC + '</p>'
+                + '<p>Asian: ' + this.layerData.feature.properties.RACE_ASIAN + '</p>'
+                + '<p>Native: ' + this.layerData.feature.properties.RACE_NATIVE + '</p>'
+                + '<p>Other: ' + this.layerData.feature.properties.RACE_OTHER+ '</p>';
 
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
             else if (type === 'precinct') {
-              popupContent =
-                '<h1>Name: ' + this.layerData.feature.properties.NAME10 + '</h1>' +
-                '<p>Geo_id: ' + this.layerData.feature.properties.GEOID10 + '</p>';
-
+                popupContent =
+                  '<h1>Name: ' + this.layerData.feature.properties.NAME10 + '</h1>' +
+                  '<p>Geo_ID: ' + this.layerData.feature.properties.GEOID10 + '</p>' +
+                  '<p>Compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>' +
+                  '<p>Population: ' + this.layerData.feature.properties.POPULATION + '</p>' +
+                  '<p>Democratic Leaning: ' + this.layerData.feature.properties.D_LEANING + '</p>' +
+                  '<p>Republican Leaning: ' + this.layerData.feature.properties.R_LEANING + '</h1>' +
+                  '<p>Congressional District: ' + this.layerData.feature.properties.CONGRESS_ID+ '</p>';
               if (this.map.size > 0) {
                 if (this.map.has(this.layerData.feature.properties.GEOID10)) {
                   this.layerData.options.fillColor = this.map.get(this.layerData.feature.properties.GEOID10);
