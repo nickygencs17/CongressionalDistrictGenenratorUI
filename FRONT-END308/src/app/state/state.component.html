@@ -58,10 +58,15 @@
          [leafletLayersControl]="layersControl"
          [leafletCenter]="center"
          [leafletFitBounds]="fitBounds"></div>
+    <div *ngIf="showRedistrict" class="map_eagle" leaflet style="height: 600px"
+         [leafletLayers]="new_layers"
+         [leafletLayersControl]="new_layersControl"
+         [leafletCenter]="center"
+         [leafletFitBounds]="fitBounds"></div>
 
     <div *ngIf="eagleState && precinctCall">
-    <h2>To exclude a district click on it</h2>
-      <div *ngIf="showExcludedList">
+    <h2 *ngIf="!showRedistrict">To exclude a district click on it</h2>
+      <div *ngIf="showExcludedList && !showRedistrict">
 
         <ol style="padding: 0;">
           <li *ngFor="let item of list">

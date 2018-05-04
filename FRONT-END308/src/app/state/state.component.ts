@@ -25,6 +25,8 @@ export class StateComponent implements OnInit {
   res_json: any;
   layers: Layer[];
   layersControl: any;
+  new_layers: Layer[];
+  new_layersControl: any;
   center: any;
   fitBounds: any;
   data: any;
@@ -36,6 +38,7 @@ export class StateComponent implements OnInit {
   message = "Building GeoJson...";
   list: string[] = [];
   showExcludedList = false;
+  showRedistrict = false;
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
@@ -75,27 +78,37 @@ export class StateComponent implements OnInit {
     this.isLoadingResults = true;
     let url = '';
     if (type === 'state') {
+      this.clear();
       this.precinctCall = false;
       this.congressional_request = false;
+      this.showRedistrict = false;
       url = '/assets/data/USA/' + this.id.toUpperCase() + '.geojson';
     }
     else if (type === 'senate') {
+      this.clear();
       this.precinctCall = false;
       this.congressional_request = false;
+      this.showRedistrict = false;
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_UPPER.geojson';
     }
     else if (type === 'assembly') {
+      this.clear();
       this.precinctCall = false;
       this.congressional_request = false;
+      this.showRedistrict = false;
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_LOWER.geojson';
     }
     else if (type === 'precinct') {
+      this.clear();
       this.precinctCall = true;
       this.congressional_request = true;
+      this.showRedistrict = false;
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_VDS.geojson';
     }
     else if (type === 'congress') {
+      this.clear();
       this.precinctCall = false;
+      this.showRedistrict = false;
       if (this.eagleState) {
         this.congressional_request = false;
       }
@@ -163,28 +176,7 @@ export class StateComponent implements OnInit {
                   '<p>Republican Leaning: ' + this.layerData.feature.properties.R_LEANING + '</h1>' +
                   '<p>Congressional District: ' + this.layerData.feature.properties.CONGRESS_ID+ '</p>';
 
-              if (this.map.size > 0) {
-                if (this.map.has(this.layerData.feature.properties.GEOID10)) {
-                  this.layerData.options.fillColor = this.map.get(this.layerData.feature.properties.GEOID10);
-                  this.layerData.options.color = "black";
-                  this.layerData.options.weight = 2;
-                  this.layerData.options.opacity = 3;
-                }
-                else {
-                  this.layerData.options.color = this.layerData.feature.properties.COLOR;
-                }
-              }
-              else if(this.list.includes(this.layerData.feature.properties.GEOID10)) {
-                  console.log('k');
-                  this.layerData.options.color = 'black';
-                  this.layerData.options.fillColor = 'black';
-                  this.layerData.options.weight = 2;
-                  this.layerData.options.opacity = 3;
-              }
-              else {
                 this.layerData.options.color = this.layerData.feature.properties.COLOR;
-              }
-
 
               layer.on('click', () => {
                 this.addToList(feature.properties.GEOID10);
@@ -208,6 +200,7 @@ export class StateComponent implements OnInit {
           defaultBaseLayer,
           defaultOverlay
         ];
+
         this.layersControl = {
           baseLayers: {
             'OpenStreetMap Color': defaultBaseLayer,
@@ -240,6 +233,7 @@ export class StateComponent implements OnInit {
 
   runAlgo(populationDeviation, ccoefficient, fcoefficient) {
     this.isLoadingResults = true;
+    console.log(this.list);
     this.message = "Running Algorithm...";
     this.state_service.runAlgo(this.id, populationDeviation, ccoefficient, fcoefficient).subscribe((data) => {
         this.res_json = data;
@@ -248,7 +242,7 @@ export class StateComponent implements OnInit {
           this.map.set(this.res_json.entity.moves[i].geoId, this.res_json.entity.moves[i].colorChange);
         }
         this.message = "Building GeoJson...";
-        this.displayBoundaries('precinct');
+        this.displayRedistrict();
       },
       error => {
         alert('Username/Password Bad');
@@ -256,9 +250,91 @@ export class StateComponent implements OnInit {
 
   }
 
+  displayRedistrict(){
+    console.log(this.list);
+    this.showRedistrict = true;
+    let url  = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_VDS.geojson';
+
+    this.http.get<any>(url)
+      .subscribe(geo1 => {
+        let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
+        let defaultOverlay = geoJSON(geo1, {
+          onEachFeature: (feature, layer) => {
+            this.layerData = layer;
+            this.layerData.options.weight = 0.7;
+
+            if (this.map.size > 0) {
+              if (this.map.has(this.layerData.feature.properties.GEOID10)) {
+                this.layerData.options.fillColor = this.map.get(this.layerData.feature.properties.GEOID10);
+                this.layerData.options.color = "black";
+                this.layerData.options.weight = 2;
+                this.layerData.options.opacity = 3;
+              }
+              else if(this.list.includes(this.layerData.feature.properties.GEOID10)) {
+                console.log(this.list.includes(this.layerData.feature.properties.GEOID10));
+                this.layerData.options.color = 'black';
+                this.layerData.options.fillColor = 'black';
+                this.layerData.options.weight = 2;
+                this.layerData.options.opacity = 3;
+              }
+              else {
+                this.layerData.options.color = this.layerData.feature.properties.COLOR;
+              }
+            }
+
+
+            let popupContent =
+              '<h1>Name: ' + this.layerData.feature.properties.NAME10 + '</h1>' +
+              '<p>Geo_ID: ' + this.layerData.feature.properties.GEOID10 + '</p>' +
+              '<p>Compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>' +
+              '<p>Population: ' + this.layerData.feature.properties.POPULATION + '</p>' +
+              '<p>Democratic Leaning: ' + this.layerData.feature.properties.D_LEANING + '</p>' +
+              '<p>Republican Leaning: ' + this.layerData.feature.properties.R_LEANING + '</h1>' +
+              '<p>Congressional District: ' + this.layerData.feature.properties.CONGRESS_ID+ '</p>';
+
+            layer.bindPopup(popupContent);
+            layer.on('mouseover', function (e) {
+              this.openPopup();
+            });
+            layer.on('mouseout', function (e) {
+              this.closePopup();
+            });
+
+
+          }
+        });
+        // noinspection TypeScriptValidateTypes
+        this.new_layers = [
+          defaultBaseLayer,
+          defaultOverlay
+        ];
+        this.new_layersControl = {
+          baseLayers: {
+            'OpenStreetMap Color': defaultBaseLayer,
+            'OpenStreetMap BlackAndWhite': tileLayer.provider('OpenStreetMap.BlackAndWhite')
+          },
+          overlays: {
+            'Overlay One': defaultOverlay
+          }
+        };
+        this.isLoadingResults = false;
+
+      });
+
+  }
+
   resetMap() {
-    this.map.clear();
+    this.clear();
     this.displayBoundaries('precinct');
   }
 
+  clear(){
+    this.map.clear();
+    this.showRedistrict = false;
+    while (this.list.length !== 0) {
+      this.list.pop();
+    }
+  }
+
 }
+
