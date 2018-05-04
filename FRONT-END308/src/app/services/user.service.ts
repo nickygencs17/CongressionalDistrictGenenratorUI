@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Router } from '@angular/router';
-import { User } from '../entities/user';
+import {Router} from '@angular/router';
+import {User} from '../entities/user';
 import 'rxjs/add/observable/throw';
 
 @Injectable()
@@ -123,7 +123,7 @@ export class UserService {
       this.router.navigate(['']);
     }
     headers = headers.append('Authorization', 'Basic ' + btoa(this.currentUser.username + ':' + this.currentUser.password));
-    return this.http.get('http://' + this.hostname + '/user/'+ username, {headers: headers})
+    return this.http.get('http://' + this.hostname + '/user/' + username, {headers: headers})
       .catch((error: any) => Observable.throw(error));
 
   }

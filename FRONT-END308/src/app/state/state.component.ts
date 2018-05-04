@@ -1,16 +1,14 @@
-import {ChangeDetectorRef, Component, NgZone, OnInit} from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import {Component, NgZone, OnInit} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'leaflet-providers';
-import { geoJSON, Layer, tileLayer } from 'leaflet';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { StateService } from "../services/state.service";
-import { StateIdService } from "../services/state-id.service";
-import { UserService } from '../services/user.service';
-import {forEach} from "@angular/router/src/utils/collection";
-import {concat} from "rxjs/operator/concat";
+import {geoJSON, Layer, tileLayer} from 'leaflet';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Location} from '@angular/common';
+import {StateService} from "../services/state.service";
+import {StateIdService} from "../services/state-id.service";
+import {UserService} from '../services/user.service';
 import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
@@ -78,18 +76,18 @@ export class StateComponent implements OnInit {
         this.inState = true;
 
       }
-      else if(this.id === 'AR'){
+      else if (this.id === 'AR') {
         this.congress = 4;
         this.arState = true;
       }
-      else if(this.id === 'WV') {
+      else if (this.id === 'WV') {
         this.congress = 3;
         this.wvState = true;
       }
     }
-    for( var i = 1; i <(this.congress+1); i++){
+    for (var i = 1; i < (this.congress + 1); i++) {
       let cd = 'District ' + i.toString();
-       this.cd_list.push(cd);
+      this.cd_list.push(cd);
     }
 
     this.state_service.getData()
@@ -194,12 +192,12 @@ export class StateComponent implements OnInit {
                 + '<p>Hispanic: ' + this.layerData.feature.properties.RACE_HISPANIC + '</p>'
                 + '<p>Asian: ' + this.layerData.feature.properties.RACE_ASIAN + '</p>'
                 + '<p>Native: ' + this.layerData.feature.properties.RACE_NATIVE + '</p>'
-                + '<p>Other: ' + this.layerData.feature.properties.RACE_OTHER+ '</p>';
-                // + '<p>GDP: ' + this.layerData.feature.properties.GDP + '</p>'
-                // + '<p>Poor Population: ' + this.layerData.feature.properties.POPULATION_POOR + '</p>'
-                // + '<p>Labor Force: ' + this.layerData.feature.properties.LABOR_FORCE + '</p>'
-                // + '<p>Revenue: ' + this.layerData.feature.properties.REVENUES+ '</p>'
-                // + '<p>Expenditure: ' + this.layerData.feature.properties.EXPENDITURE+ '</p>';
+                + '<p>Other: ' + this.layerData.feature.properties.RACE_OTHER + '</p>';
+              // + '<p>GDP: ' + this.layerData.feature.properties.GDP + '</p>'
+              // + '<p>Poor Population: ' + this.layerData.feature.properties.POPULATION_POOR + '</p>'
+              // + '<p>Labor Force: ' + this.layerData.feature.properties.LABOR_FORCE + '</p>'
+              // + '<p>Revenue: ' + this.layerData.feature.properties.REVENUES+ '</p>'
+              // + '<p>Expenditure: ' + this.layerData.feature.properties.EXPENDITURE+ '</p>';
 
               // let demoObject = {
               //   name : this.layerData.feature.properties.District,
@@ -212,14 +210,14 @@ export class StateComponent implements OnInit {
               // };
               //this.congressDemo.push(demoObject);
               let econObject = {
-                  name : this.layerData.feature.properties.District,
-                  gdp : this.layerData.feature.properties.GDP,
-                  poor: this.layerData.feature.properties.POPULATION_POOR,
-                  labor: this.layerData.feature.properties.LABOR_FORCE,
-                  rev: this.layerData.feature.properties.REVENUES,
-                  expenditure: this.layerData.feature.properties.EXPENDITURE
+                name: this.layerData.feature.properties.District,
+                gdp: this.layerData.feature.properties.GDP,
+                poor: this.layerData.feature.properties.POPULATION_POOR,
+                labor: this.layerData.feature.properties.LABOR_FORCE,
+                rev: this.layerData.feature.properties.REVENUES,
+                expenditure: this.layerData.feature.properties.EXPENDITURE
               };
-              if(this.congressEcon.length < this.congress){
+              if (this.congressEcon.length < this.congress) {
                 this.congressEcon.push(econObject);
               }
 
@@ -236,26 +234,25 @@ export class StateComponent implements OnInit {
               // });
 
 
-
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
             else if (type === 'precinct') {
-                popupContent =
-                  '<h1>Name: ' + this.layerData.feature.properties.NAME10 + '</h1>' +
-                  '<p>Geo_ID: ' + this.layerData.feature.properties.GEOID10 + '</p>' +
-                  '<p>Compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>' +
-                  '<p>Population: ' + this.layerData.feature.properties.POPULATION + '</p>' +
-                  '<p>Democratic Leaning: ' + this.layerData.feature.properties.D_LEANING + '</p>' +
-                  '<p>Republican Leaning: ' + this.layerData.feature.properties.R_LEANING + '</h1>' +
-                  '<p>Congressional District: ' + this.layerData.feature.properties.CONGRESS_ID+ '</p>';
+              popupContent =
+                '<h1>Name: ' + this.layerData.feature.properties.NAME10 + '</h1>' +
+                '<p>Geo_ID: ' + this.layerData.feature.properties.GEOID10 + '</p>' +
+                '<p>Compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>' +
+                '<p>Population: ' + this.layerData.feature.properties.POPULATION + '</p>' +
+                '<p>Democratic Leaning: ' + this.layerData.feature.properties.D_LEANING + '</p>' +
+                '<p>Republican Leaning: ' + this.layerData.feature.properties.R_LEANING + '</h1>' +
+                '<p>Congressional District: ' + this.layerData.feature.properties.CONGRESS_ID + '</p>';
 
-                this.layerData.options.color = this.layerData.feature.properties.COLOR;
+              this.layerData.options.color = this.layerData.feature.properties.COLOR;
 
               layer.on('click', () => {
                 this.addToList(feature.properties.GEOID10);
 
               });
-              }
+            }
 
             layer.bindPopup(popupContent);
             layer.on('mouseover', function (e) {
@@ -294,13 +291,14 @@ export class StateComponent implements OnInit {
 
     this.zone.run(() => {
       this.showExcludedList = true;
-      if(!this.list.includes(geo_id)){
+      if (!this.list.includes(geo_id)) {
         this.list.push(geo_id);
       }
       //this.displayBoundaries('precinct');
     });
   }
-  removeItem(geo_id){
+
+  removeItem(geo_id) {
     console.log(geo_id);
     this.list = this.list.filter(item => item !== geo_id);
     //this.displayBoundaries('precinct');
@@ -320,7 +318,7 @@ export class StateComponent implements OnInit {
     }
     this.isLoadingResults = true;
     this.message = "Running Algorithm...";
-    this.state_service.runAlgo(this.id,body).subscribe((data) => {
+    this.state_service.runAlgo(this.id, body).subscribe((data) => {
         this.res_json = data;
         console.log(this.res_json);
         this.message = "Reading Moves...";
@@ -336,9 +334,9 @@ export class StateComponent implements OnInit {
 
   }
 
-  displayRedistrict(){
+  displayRedistrict() {
     console.log(this.map);
-    let url  = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_VDS.geojson';
+    let url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_VDS.geojson';
 
     this.http.get<any>(url)
       .subscribe(geo1 => {
@@ -355,7 +353,7 @@ export class StateComponent implements OnInit {
                 this.layerData.options.weight = 2;
                 this.layerData.options.opacity = 3;
               }
-              else if(this.list.includes(this.layerData.feature.properties.GEOID10)) {
+              else if (this.list.includes(this.layerData.feature.properties.GEOID10)) {
                 console.log(this.list.includes(this.layerData.feature.properties.GEOID10));
                 this.layerData.options.color = 'black';
                 this.layerData.options.fillColor = 'black';
@@ -375,7 +373,7 @@ export class StateComponent implements OnInit {
               '<p>Population: ' + this.layerData.feature.properties.POPULATION + '</p>' +
               '<p>Democratic Leaning: ' + this.layerData.feature.properties.D_LEANING + '</p>' +
               '<p>Republican Leaning: ' + this.layerData.feature.properties.R_LEANING + '</h1>' +
-              '<p>Congressional District: ' + this.layerData.feature.properties.CONGRESS_ID+ '</p>';
+              '<p>Congressional District: ' + this.layerData.feature.properties.CONGRESS_ID + '</p>';
 
             layer.bindPopup(popupContent);
             layer.on('mouseover', function (e) {
@@ -415,7 +413,7 @@ export class StateComponent implements OnInit {
     this.displayBoundaries('precinct');
   }
 
-  clear(){
+  clear() {
     this.map.clear();
     this.showRedistrict = false;
     while (this.list.length !== 0) {
@@ -423,7 +421,7 @@ export class StateComponent implements OnInit {
     }
   }
 
-  removeCdItem(cd_id){
+  removeCdItem(cd_id) {
     this.cd_list = this.cd_list.filter(item => item !== cd_id);
     //this.displayBoundaries('precinct');
   }
@@ -435,13 +433,11 @@ export class StateComponent implements OnInit {
       }
       //this.displayBoundaries('precinct');
     });
-    for( var i = 1; i <(this.congress+1); i++){
+    for (var i = 1; i < (this.congress + 1); i++) {
       let cd = 'District ' + i.toString();
       this.cd_list.push(cd);
     }
   }
-
-
 
 
 }

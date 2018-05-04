@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
-import { User } from "../entities/user";
+import {Component, OnInit} from '@angular/core';
+import {UserService} from '../services/user.service';
+import {Router} from '@angular/router';
+import {User} from "../entities/user";
 
 @Component({
   selector: 'app-admin',
@@ -97,10 +97,10 @@ export class AdminComponent implements OnInit {
   }
 
   searchForUser(username: string) {
-    if(username.length==0){
+    if (username.length == 0) {
       alert('username cannot be empty');
     }
-    else{
+    else {
       this.userService.getUser(username)
         .subscribe((res_data) => {
             if (res_data.status === 200) {

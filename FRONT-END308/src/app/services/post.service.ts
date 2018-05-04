@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Post } from '../entities/post';
-import { POSTS } from '../entities/posts';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Post} from '../entities/post';
+import {POSTS} from '../entities/posts';
+import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class PostService {

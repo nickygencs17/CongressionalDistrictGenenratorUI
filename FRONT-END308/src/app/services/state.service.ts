@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { StateIdService } from "./state-id.service";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {StateIdService} from "./state-id.service";
 
 @Injectable()
 export class StateService {
@@ -15,12 +15,12 @@ export class StateService {
     return this.http.jsonp(url, 'callback');
   }
 
-  runAlgo(id: string, body:any) {
+  runAlgo(id: string, body: any) {
     let url = 'http://localhost:8080/algorithm';
     this.currentUser = localStorage.getItem('currentUser');
     let userJson = JSON.parse(this.currentUser);
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', 'Basic ' + btoa(userJson.username + ':' + userJson.password));
-    return this.http.post(url, body,{headers: headers});
+    return this.http.post(url, body, {headers: headers});
   }
 }

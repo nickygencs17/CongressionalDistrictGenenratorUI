@@ -1,7 +1,7 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { Router } from "@angular/router";
-import { FormControl, Validators } from "@angular/forms";
+import {Component, Inject} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {Router} from "@angular/router";
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-logindialog',

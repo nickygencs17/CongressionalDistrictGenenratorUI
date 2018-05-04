@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
-import { DatePipe, Location } from '@angular/common';
-import { Post } from '../../entities/post';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { UserService } from "../../services/user.service";
+import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
+import {DatePipe, Location} from '@angular/common';
+import {Post} from '../../entities/post';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-addpost',

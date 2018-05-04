@@ -64,7 +64,8 @@
             </mat-form-field>
 
             <mat-form-field>
-              <input matInput placeholder="Fairness coefficient" value="{{ new_user.fairness_coefficient }}" type="number"
+              <input matInput placeholder="Fairness coefficient" value="{{ new_user.fairness_coefficient }}"
+                     type="number"
                      #newfair_coef>
             </mat-form-field>
             <mat-form-field>
@@ -72,7 +73,6 @@
                      type="number"
                      #newcom_coef>
             </mat-form-field>
-
 
 
             <button mat-button color="basic"
@@ -84,10 +84,6 @@
           </div>
         </mat-expansion-panel>
       </div>
-
-
-
-
 
 
       <button mat-raised-button color="primary" (click)="searchForUser(username.value)">Search By Username</button>

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { UserService } from '../services/user.service';
-import { User } from '../entities/user';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, Validators} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
+import {UserService} from '../services/user.service';
+import {User} from '../entities/user';
 
 @Component({
   selector: 'app-createuser',
