@@ -12,7 +12,6 @@
   <h3>We are currently only supporting the following states IN, AR, and WV</h3>
 </div>
 
-
 <mat-radio-group *ngIf="eagleState">
   <mat-radio-button value="1" [checked]=true (click)="displayBoundaries('state')">State</mat-radio-button>
   <mat-radio-button value="2" (click)="displayBoundaries('senate')">State Senate District</mat-radio-button>
@@ -41,6 +40,9 @@
     </button>
   </div>
 </div>
+<a *ngIf="showRedistrict && arState" href="/assets/download/download_ar.geojson" download>Export GEOJSON</a>
+<a *ngIf="showRedistrict && wvState" href="/assets/download/download_wv.geojson" download>Export GEOJSON</a>
+<a *ngIf="showRedistrict && inState" href="/assets/download/download_in.geojson" download>Export GEOJSON</a>
 <div id="wrapper" *ngIf="isLoadingResults">
   <h1>{{message}}</h1>
   <div id="yourdiv">
@@ -63,6 +65,7 @@
          [leafletLayersControl]="new_layersControl"
          [leafletCenter]="center"
          [leafletFitBounds]="fitBounds"></div>
+
 
 
     <div *ngIf="eagleState && precinctCall">

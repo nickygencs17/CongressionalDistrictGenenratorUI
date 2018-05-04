@@ -11,6 +11,7 @@ import { StateIdService } from "../services/state-id.service";
 import { UserService } from '../services/user.service';
 import {forEach} from "@angular/router/src/utils/collection";
 import {concat} from "rxjs/operator/concat";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-state',
@@ -46,6 +47,7 @@ export class StateComponent implements OnInit {
   inState = false;
   wvState = false;
   arState = false;
+  downloadJsonHref: any;
 
 
   constructor(private http: HttpClient,
@@ -55,7 +57,8 @@ export class StateComponent implements OnInit {
               private state_id_service: StateIdService,
               private router: Router,
               private userService: UserService,
-              public zone: NgZone) {
+              public zone: NgZone,
+              private sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
@@ -69,12 +72,12 @@ export class StateComponent implements OnInit {
       this.eagleState = true;
       if (this.id === 'IN') {
         this.congress = 9;
-        this.inState = false;
+        this.inState = true;
 
       }
       else if(this.id === 'AR'){
         this.congress = 4;
-        this.arState = false;
+        this.arState = true;
       }
       else if(this.id === 'WV') {
         this.congress = 3;
@@ -259,6 +262,7 @@ export class StateComponent implements OnInit {
     this.message = "Running Algorithm...";
     this.state_service.runAlgo(this.id, populationDeviation, ccoefficient, fcoefficient).subscribe((data) => {
         this.res_json = data;
+        console.log(this.res_json);
         this.message = "Reading Moves...";
         for (var i = 0; i < this.res_json.entity.moves.length; i++) {
           this.map.set(this.res_json.entity.moves[i].geoId, this.res_json.entity.moves[i].colorChange);
@@ -273,8 +277,7 @@ export class StateComponent implements OnInit {
   }
 
   displayRedistrict(){
-    console.log(this.list);
-    this.showRedistrict = true;
+    console.log(this.map);
     let url  = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_VDS.geojson';
 
     this.http.get<any>(url)
@@ -302,9 +305,9 @@ export class StateComponent implements OnInit {
               else {
                 this.layerData.options.color = this.layerData.feature.properties.COLOR;
               }
+            } else {
+              this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
-
-
             let popupContent =
               '<h1>Name: ' + this.layerData.feature.properties.NAME10 + '</h1>' +
               '<p>Geo_ID: ' + this.layerData.feature.properties.GEOID10 + '</p>' +
@@ -340,6 +343,7 @@ export class StateComponent implements OnInit {
           }
         };
         this.isLoadingResults = false;
+        this.showRedistrict = true;
 
       });
 
@@ -376,6 +380,8 @@ export class StateComponent implements OnInit {
       this.cd_list.push(cd);
     }
   }
+
+
 
 
 }
