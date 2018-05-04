@@ -48,6 +48,8 @@
   </div>
 </div>
 
+
+
 <div *ngIf="allDataFetched && !isLoadingResults">
 
   <div class="flex-container">
@@ -56,7 +58,23 @@
          [leafletLayersControl]="layersControl"
          [leafletCenter]="center"
          [leafletFitBounds]="fitBounds"></div>
+
     <div *ngIf="eagleState && precinctCall">
+    <h2>To exclude a district click on it</h2>
+      <div *ngIf="showExcludedList">
+
+        <ol style="padding: 0;">
+          <li *ngFor="let item of list">
+            {{item}}
+            <button mat-raised-button color="primary"
+                    (click)="removeItem(item)">Remove
+            </button>
+
+          </li>
+
+        </ol>
+      </div>
+
       <h3>Algorithim Information</h3>
       <mat-expansion-panel>
         <mat-expansion-panel-header>

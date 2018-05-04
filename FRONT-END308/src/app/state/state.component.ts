@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, NgZone, OnInit} from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -34,6 +34,8 @@ export class StateComponent implements OnInit {
   isLoadingResults = false;
   precinctCall = false;
   message = "Building GeoJson...";
+  list: string[] = [];
+  showExcludedList = false;
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
@@ -41,7 +43,8 @@ export class StateComponent implements OnInit {
               private state_service: StateService,
               private state_id_service: StateIdService,
               private router: Router,
-              private userService: UserService) {
+              private userService: UserService,
+              public zone: NgZone) {
   }
 
   ngOnInit() {
@@ -159,6 +162,7 @@ export class StateComponent implements OnInit {
                   '<p>Democratic Leaning: ' + this.layerData.feature.properties.D_LEANING + '</p>' +
                   '<p>Republican Leaning: ' + this.layerData.feature.properties.R_LEANING + '</h1>' +
                   '<p>Congressional District: ' + this.layerData.feature.properties.CONGRESS_ID+ '</p>';
+
               if (this.map.size > 0) {
                 if (this.map.has(this.layerData.feature.properties.GEOID10)) {
                   this.layerData.options.fillColor = this.map.get(this.layerData.feature.properties.GEOID10);
@@ -170,15 +174,32 @@ export class StateComponent implements OnInit {
                   this.layerData.options.color = this.layerData.feature.properties.COLOR;
                 }
               }
+              else if(this.list.includes(this.layerData.feature.properties.GEOID10)) {
+                  console.log('k');
+                  this.layerData.options.color = 'black';
+                  this.layerData.options.fillColor = 'black';
+                  this.layerData.options.weight = 2;
+                  this.layerData.options.opacity = 3;
+              }
               else {
                 this.layerData.options.color = this.layerData.feature.properties.COLOR;
               }
 
-            }
+
+              layer.on('click', () => {
+                this.addToList(feature.properties.GEOID10);
+
+              });
+              }
+
             layer.bindPopup(popupContent);
-            layer.on('click', function (e) {
+            layer.on('mouseover', function (e) {
               this.openPopup();
             });
+            layer.on('mouseout', function (e) {
+              this.closePopup();
+            });
+
 
           }
         });
@@ -198,6 +219,23 @@ export class StateComponent implements OnInit {
         };
         this.isLoadingResults = false;
       });
+  }
+
+  addToList(geo_id) {
+
+    this.zone.run(() => {
+      this.showExcludedList = true;
+      if(!this.list.includes(geo_id)){
+        this.list.push(geo_id);
+      }
+      //this.displayBoundaries('precinct');
+    });
+  }
+  removeItem(geo_id){
+    console.log(geo_id);
+    this.list = this.list.filter(item => item !== geo_id);
+    //this.displayBoundaries('precinct');
+
   }
 
   runAlgo(populationDeviation, ccoefficient, fcoefficient) {
