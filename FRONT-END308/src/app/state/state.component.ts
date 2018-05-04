@@ -257,10 +257,18 @@ export class StateComponent implements OnInit {
 
 
   runAlgo(populationDeviation, ccoefficient, fcoefficient) {
+
+    let body = {
+      state_id: this.id,
+      population_deviation: populationDeviation,
+      c_coefficient: ccoefficient,
+      f_coefficient: fcoefficient,
+      excluded_precinct_ids: this.list,
+      included_districts_ids: this.cd_list
+    }
     this.isLoadingResults = true;
-    console.log(this.list);
     this.message = "Running Algorithm...";
-    this.state_service.runAlgo(this.id, populationDeviation, ccoefficient, fcoefficient).subscribe((data) => {
+    this.state_service.runAlgo(this.id,body).subscribe((data) => {
         this.res_json = data;
         console.log(this.res_json);
         this.message = "Reading Moves...";
