@@ -50,3 +50,7 @@ mat-slider {
 #yourdiv {
   display: inline-block;
 }
+ul{
+  text-align: left !important;
+  list-style: none;
+}

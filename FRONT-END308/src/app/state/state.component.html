@@ -60,6 +60,57 @@
          [leafletLayersControl]="layersControl"
          [leafletCenter]="center"
          [leafletFitBounds]="fitBounds"></div>
+
+
+  <!--<div *ngIf="real_congress_request && !isLoadingResults">-->
+    <!--<h1>Demo</h1>-->
+    <!--<mat-expansion-panel *ngFor="let obj of congressDemo">-->
+      <!--<mat-expansion-panel-header>-->
+        <!--<mat-panel-title>-->
+          <!--{{ obj.name }}-->
+        <!--</mat-panel-title>-->
+      <!--</mat-expansion-panel-header>-->
+      <!--<div>-->
+        <!--{{ obj.name }}-->
+        <!--{{ obj.white}}-->
+        <!--{{ obj.black }}-->
+        <!--{{ obj.hispanic}}-->
+        <!--{{ obj.asian}}-->
+        <!--{{ obj.other}}-->
+        <!--&lt;!&ndash;name : this.layerData.feature.properties.District,&ndash;&gt;-->
+
+      <!--</div>-->
+    <!--</mat-expansion-panel>-->
+  <!--</div>-->
+    <div *ngIf="real_congress_request && !isLoadingResults">
+      <h1>Economy Information</h1>
+      <mat-expansion-panel *ngFor="let obj of congressEcon">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ obj.name }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div>
+
+          <ul>
+            <li>GDP: {{ obj.gdp}}</li>
+            <li>POPULATION_POOR: {{ obj.poor }}%</li>
+            <li>LABOR_FORCE: {{ obj.labor}}</li>
+            <li>REVENUE: {{ obj.rev}}</li>
+            <li>EXPENDITURES: {{ obj.expenditure}}</li>
+          </ul>
+        </div>
+      </mat-expansion-panel>
+    </div>
+
+
+
+
+
+
+
+
+
     <div *ngIf="showRedistrict" class="map_eagle" leaflet style="height: 600px"
          [leafletLayers]="new_layers"
          [leafletLayersControl]="new_layersControl"

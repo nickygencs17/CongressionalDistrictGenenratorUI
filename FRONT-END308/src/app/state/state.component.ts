@@ -48,6 +48,9 @@ export class StateComponent implements OnInit {
   wvState = false;
   arState = false;
   downloadJsonHref: any;
+  congressEcon: any[] = [];
+  congressDemo: any[] = [];
+  real_congress_request = false;
 
 
   constructor(private http: HttpClient,
@@ -108,24 +111,28 @@ export class StateComponent implements OnInit {
     let url = '';
     if (type === 'state') {
       this.precinctCall = false;
+      this.real_congress_request = false;
       this.congressional_request = false;
       this.showRedistrict = false;
       url = '/assets/data/USA/' + this.id.toUpperCase() + '.geojson';
     }
     else if (type === 'senate') {
       this.precinctCall = false;
+      this.real_congress_request = false;
       this.congressional_request = false;
       this.showRedistrict = false;
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_UPPER.geojson';
     }
     else if (type === 'assembly') {
       this.precinctCall = false;
+      this.real_congress_request = false;
       this.congressional_request = false;
       this.showRedistrict = false;
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_LOWER.geojson';
     }
     else if (type === 'precinct') {
       this.precinctCall = true;
+      this.real_congress_request = false;
       this.congressional_request = true;
       this.showRedistrict = false;
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_VDS.geojson';
@@ -136,6 +143,7 @@ export class StateComponent implements OnInit {
       if (this.eagleState) {
         this.congressional_request = false;
       }
+      this.real_congress_request = true;
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_COMBINED_CONGRESS.geojson';
     }
 
@@ -187,6 +195,47 @@ export class StateComponent implements OnInit {
                 + '<p>Asian: ' + this.layerData.feature.properties.RACE_ASIAN + '</p>'
                 + '<p>Native: ' + this.layerData.feature.properties.RACE_NATIVE + '</p>'
                 + '<p>Other: ' + this.layerData.feature.properties.RACE_OTHER+ '</p>';
+                // + '<p>GDP: ' + this.layerData.feature.properties.GDP + '</p>'
+                // + '<p>Poor Population: ' + this.layerData.feature.properties.POPULATION_POOR + '</p>'
+                // + '<p>Labor Force: ' + this.layerData.feature.properties.LABOR_FORCE + '</p>'
+                // + '<p>Revenue: ' + this.layerData.feature.properties.REVENUES+ '</p>'
+                // + '<p>Expenditure: ' + this.layerData.feature.properties.EXPENDITURE+ '</p>';
+
+              // let demoObject = {
+              //   name : this.layerData.feature.properties.District,
+              //   white: this.layerData.feature.properties.RACE_WHITE,
+              //   black: this.layerData.feature.properties.RACE_BLACK,
+              //   hispanic: this.layerData.feature.properties.RACE_HISPANIC,
+              //   asian: this.layerData.feature.properties.RACE_ASIAN,
+              //   native: this.layerData.feature.properties.RACE_NATIVE,
+              //   other: this.layerData.feature.properties.RACE_OTHER
+              // };
+              //this.congressDemo.push(demoObject);
+              let econObject = {
+                  name : this.layerData.feature.properties.District,
+                  gdp : this.layerData.feature.properties.GDP,
+                  poor: this.layerData.feature.properties.POPULATION_POOR,
+                  labor: this.layerData.feature.properties.LABOR_FORCE,
+                  rev: this.layerData.feature.properties.REVENUES,
+                  expenditure: this.layerData.feature.properties.EXPENDITURE
+              };
+              if(this.congressEcon.length < this.congress){
+                this.congressEcon.push(econObject);
+              }
+
+
+              this.congressEcon.sort((a, b) => {
+                if (a.name < b.name) return -1;
+                else if (a.name > b.name) return 1;
+                else return 0;
+              });
+              // this.congressDemo.sort((a, b) => {
+              //   if (a.name < b.name) return -1;
+              //   else if (a.name > b.name) return 1;
+              //   else return 0;
+              // });
+
+
 
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
@@ -234,6 +283,9 @@ export class StateComponent implements OnInit {
             'Overlay One': defaultOverlay
           }
         };
+        console.log(this.congressEcon);
+        console.log(this.congressDemo);
+        console.log(this.real_congress_request);
         this.isLoadingResults = false;
       });
   }
