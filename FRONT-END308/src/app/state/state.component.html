@@ -1,4 +1,4 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+
 <div id="autocomplete">
   <app-auto-complete></app-auto-complete>
 </div>
@@ -63,9 +63,7 @@
          [leafletLayersControl]="new_layersControl"
          [leafletCenter]="center"
          [leafletFitBounds]="fitBounds"></div>
-    <!--<a *ngIf="showRedistrict && inState" href="/assets/download/download_in.geojson" download>-->
-      <!--<a *ngIf="showRedistrict && wvState" href="/assets/download/download_in.geojson" download>-->
-        <!--<a *ngIf="showRedistrict && arState "href="/assets/download/download_in.geojson" download>-->
+
 
     <div *ngIf="eagleState && precinctCall">
       <h2 *ngIf="!showRedistrict">To exclude a district remove it</h2>

@@ -104,35 +104,30 @@ export class StateComponent implements OnInit {
     this.isLoadingResults = true;
     let url = '';
     if (type === 'state') {
-      this.clear();
       this.precinctCall = false;
       this.congressional_request = false;
       this.showRedistrict = false;
       url = '/assets/data/USA/' + this.id.toUpperCase() + '.geojson';
     }
     else if (type === 'senate') {
-      this.clear();
       this.precinctCall = false;
       this.congressional_request = false;
       this.showRedistrict = false;
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_UPPER.geojson';
     }
     else if (type === 'assembly') {
-      this.clear();
       this.precinctCall = false;
       this.congressional_request = false;
       this.showRedistrict = false;
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_LOWER.geojson';
     }
     else if (type === 'precinct') {
-      this.clear();
       this.precinctCall = true;
       this.congressional_request = true;
       this.showRedistrict = false;
       url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_VDS.geojson';
     }
     else if (type === 'congress') {
-      this.clear();
       this.precinctCall = false;
       this.showRedistrict = false;
       if (this.eagleState) {
@@ -351,6 +346,7 @@ export class StateComponent implements OnInit {
   }
 
   resetMap() {
+    this.refreshCdList();
     this.clear();
     this.displayBoundaries('precinct');
   }
@@ -358,40 +354,27 @@ export class StateComponent implements OnInit {
   clear(){
     this.map.clear();
     this.showRedistrict = false;
-    this.refreshCdList();
     while (this.list.length !== 0) {
       this.list.pop();
     }
   }
 
   removeCdItem(cd_id){
-    console.log(cd_id);
     this.cd_list = this.cd_list.filter(item => item !== cd_id);
     //this.displayBoundaries('precinct');
-
   }
 
-  refreshCdList(){
-    console.log('here');
-    if (this.id === 'IN') {
-      this.congress = 9;
-
-    }
-    else if(this.id === 'AR'){
-      this.congress = 4;
-    }
-    else if(this.id === 'WV') {
-      this.congress = 3;
-    }
-    while (this.cd_list.length !== 0) {
-      this.list.pop();
-    }
+  refreshCdList() {
+    this.zone.run(() => {
+      while (this.cd_list.length !== 0) {
+        this.cd_list.pop();
+      }
+      //this.displayBoundaries('precinct');
+    });
     for( var i = 1; i <(this.congress+1); i++){
       let cd = 'District ' + i.toString();
       this.cd_list.push(cd);
     }
-    console.log(this.cd_list);
-
   }
 
 
