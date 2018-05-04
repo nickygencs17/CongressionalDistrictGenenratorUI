@@ -1,3 +1,4 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
 <div id="autocomplete">
   <app-auto-complete></app-auto-complete>
 </div>
@@ -22,7 +23,6 @@
 <br>
 <br>
 <br>
-
 
 <div *ngIf="congressional_request && !isLoadingResults" class="alogrithmChoices">
   <p>Population Deviation %</p>
@@ -63,9 +63,25 @@
          [leafletLayersControl]="new_layersControl"
          [leafletCenter]="center"
          [leafletFitBounds]="fitBounds"></div>
+    <!--<a *ngIf="showRedistrict && inState" href="/assets/download/download_in.geojson" download>-->
+      <!--<a *ngIf="showRedistrict && wvState" href="/assets/download/download_in.geojson" download>-->
+        <!--<a *ngIf="showRedistrict && arState "href="/assets/download/download_in.geojson" download>-->
 
     <div *ngIf="eagleState && precinctCall">
-    <h2 *ngIf="!showRedistrict">To exclude a district click on it</h2>
+      <h2 *ngIf="!showRedistrict">To exclude a district remove it</h2>
+      <div *ngIf="!showRedistrict">
+
+        <ol style="padding: 0;">
+          <li *ngFor="let item of cd_list">
+            {{item}}
+            <button mat-raised-button color="primary"
+                    (click)="removeCdItem(item)">Remove
+            </button>
+          </li>
+        </ol>
+
+
+    <h2 *ngIf="!showRedistrict">To exclude a precinct click on it</h2>
       <div *ngIf="showExcludedList && !showRedistrict">
 
         <ol style="padding: 0;">

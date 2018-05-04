@@ -9,6 +9,8 @@ import { Location } from '@angular/common';
 import { StateService } from "../services/state.service";
 import { StateIdService } from "../services/state-id.service";
 import { UserService } from '../services/user.service';
+import {forEach} from "@angular/router/src/utils/collection";
+import {concat} from "rxjs/operator/concat";
 
 @Component({
   selector: 'app-state',
@@ -39,6 +41,12 @@ export class StateComponent implements OnInit {
   list: string[] = [];
   showExcludedList = false;
   showRedistrict = false;
+  congress = 0;
+  cd_list: string[] = [];
+  inState = false;
+  wvState = false;
+  arState = false;
+
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
@@ -59,7 +67,25 @@ export class StateComponent implements OnInit {
     this.state_id_service.state_id = this.id;
     if (this.id === 'IN' || this.id === 'AR' || this.id === 'WV') {
       this.eagleState = true;
+      if (this.id === 'IN') {
+        this.congress = 9;
+        this.inState = false;
+
+      }
+      else if(this.id === 'AR'){
+        this.congress = 4;
+        this.arState = false;
+      }
+      else if(this.id === 'WV') {
+        this.congress = 3;
+        this.wvState = true;
+      }
     }
+    for( var i = 1; i <(this.congress+1); i++){
+      let cd = 'District ' + i.toString();
+       this.cd_list.push(cd);
+    }
+
     this.state_service.getData()
       .subscribe(response => {
         this.data = response;
@@ -231,6 +257,7 @@ export class StateComponent implements OnInit {
 
   }
 
+
   runAlgo(populationDeviation, ccoefficient, fcoefficient) {
     this.isLoadingResults = true;
     console.log(this.list);
@@ -331,10 +358,42 @@ export class StateComponent implements OnInit {
   clear(){
     this.map.clear();
     this.showRedistrict = false;
+    this.refreshCdList();
     while (this.list.length !== 0) {
       this.list.pop();
     }
   }
+
+  removeCdItem(cd_id){
+    console.log(cd_id);
+    this.cd_list = this.cd_list.filter(item => item !== cd_id);
+    //this.displayBoundaries('precinct');
+
+  }
+
+  refreshCdList(){
+    console.log('here');
+    if (this.id === 'IN') {
+      this.congress = 9;
+
+    }
+    else if(this.id === 'AR'){
+      this.congress = 4;
+    }
+    else if(this.id === 'WV') {
+      this.congress = 3;
+    }
+    while (this.cd_list.length !== 0) {
+      this.list.pop();
+    }
+    for( var i = 1; i <(this.congress+1); i++){
+      let cd = 'District ' + i.toString();
+      this.cd_list.push(cd);
+    }
+    console.log(this.cd_list);
+
+  }
+
 
 }
 
