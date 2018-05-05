@@ -39,9 +39,10 @@
     </button>
   </div>
 </div>
-<a *ngIf="showRedistrict && arState" href="/assets/download/download_ar.geojson" download>Export GEOJSON</a>
-<a *ngIf="showRedistrict && wvState" href="/assets/download/download_wv.geojson" download>Export GEOJSON</a>
-<a *ngIf="showRedistrict && inState" href="/assets/download/download_in.geojson" download>Export GEOJSON</a>
+<mat-progress-bar *ngIf="showRedistrict && algo_running" [color]="accent" mode="query"></mat-progress-bar>
+<a *ngIf="showRedistrict && arState && !algo_running" href="/assets/download/download_ar.geojson" download>Export GEOJSON</a>
+<a *ngIf="showRedistrict && wvState && !algo_running" href="/assets/download/download_wv.geojson" download>Export GEOJSON</a>
+<a *ngIf="showRedistrict && inState && !algo_running" href="/assets/download/download_in.geojson" download>Export GEOJSON</a>
 <div id="wrapper" *ngIf="isLoadingResults">
   <h1>{{message}}</h1>
   <div id="yourdiv">
@@ -91,8 +92,8 @@
         <div>
 
           <ul>
-            <li>GDP: {{ obj.gdp}}</li>
-            <li>POPULATION_POOR: {{ obj.poor }}%</li>
+            <li>GDp: {{ obj.gdp}}</li>
+            <li>Poor Population % : {{ obj.poor }}%</li>
             <li>LABOR_FORCE: {{ obj.labor}}</li>
             <li>REVENUE: {{ obj.rev}}</li>
             <li>EXPENDITURES: {{ obj.expenditure}}</li>

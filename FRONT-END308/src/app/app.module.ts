@@ -56,6 +56,7 @@ import {LogComponent} from "./log/log.component";
 import {DatePipe} from '@angular/common';
 import {AboutComponent} from './about/about.component';
 import {VotingComponent} from './utilities/voting/voting.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -80,6 +81,7 @@ import {VotingComponent} from './utilities/voting/voting.component';
   ],
   entryComponents: [LogindialogComponent],
   imports: [
+    MatProgressBarModule,
     MatProgressSpinnerModule,
     MatSortModule,
     MatPaginatorModule,

@@ -50,6 +50,7 @@ export class StateComponent implements OnInit {
   congressEcon: any[] = [];
   congressDemo: any[] = [];
   real_congress_request = false;
+  algo_running =  false;
 
 
   constructor(private http: HttpClient,
@@ -305,6 +306,7 @@ export class StateComponent implements OnInit {
 
 
   runAlgo(populationDeviation, ccoefficient, fcoefficient) {
+    this.algo_running  = true;
 
     this.cd_list.forEach((value) => {
       //this.post_cd_list.push()
@@ -355,6 +357,9 @@ export class StateComponent implements OnInit {
           if(!this.res_json.entity.finished){
             console.log("gettingg update");
             this.getUpdate(entity_id);
+          }
+          else{
+            this.algo_running  = false;
           }
       },
       error => {
