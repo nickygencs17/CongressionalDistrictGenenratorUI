@@ -49,9 +49,7 @@ export class PresidentelectiontableComponent implements OnInit {
           this.isRateLimitReached = false;
           this.resultsLength = this.res.entity.PRESIDENT_ELECTION_INFO.length;
 
-          console.log(this.res.entity.PRESIDENT_ELECTION_INFO);
-          console.log('here');
-          console.log(this.resultsLength);
+
           for (let i = 0; i < this.resultsLength; i++) {
             // console.log('here');
             // console.log(this.res.entity.PRESIDENT_ELECTION_INFO[i].party);
@@ -68,8 +66,6 @@ export class PresidentelectiontableComponent implements OnInit {
 
 
           }
-          console.log('here1');
-          console.log(this.res.entity.PRESIDENT_ELECTION_INFO);
 
           return this.res.entity.PRESIDENT_ELECTION_INFO;
         }),

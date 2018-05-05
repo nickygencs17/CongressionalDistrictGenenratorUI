@@ -23,4 +23,13 @@ export class StateService {
     headers = headers.append('Authorization', 'Basic ' + btoa(userJson.username + ':' + userJson.password));
     return this.http.post(url, body, {headers: headers});
   }
+
+  getUpdate(id) {
+    let url = 'http://localhost:8080/algorithm/update/' + id;
+    this.currentUser = localStorage.getItem('currentUser');
+    let userJson = JSON.parse(this.currentUser);
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Basic ' + btoa(userJson.username + ':' + userJson.password));
+    return this.http.get(url, {headers: headers});
+  }
 }

@@ -326,21 +326,42 @@ export class StateComponent implements OnInit {
     this.message = "Running Algorithm...";
     this.state_service.runAlgo(this.id, body).subscribe((data) => {
         this.res_json = data;
-        console.log(this.res_json);
-        this.message = "Reading Moves...";
-        for (var i = 0; i < this.res_json.entity.moves.length; i++) {
-          this.map.set(this.res_json.entity.moves[i].geoId, this.res_json.entity.moves[i].colorChange);
-        }
-        this.message = "Building GeoJson...";
-        while (this.post_cd_list.length !== 0) {
-          this.post_cd_list.pop();
-        }
-        this.displayRedistrict();
+        console.log(this.res_json.entity);
+        this.getUpdate(this.res_json.entity);
       },
       error => {
         console.log(error);
         alert('Username/Password Bad');
       });
+
+  }
+
+  getUpdate(entity_id){
+
+    this.state_service.getUpdate(entity_id)
+      .subscribe((data) => {
+        this.res_json = data;
+        console.log(this.res_json.entity);
+          this.message = "Reading Moves...";
+          for (var i = 0; i < this.res_json.entity.moves.length; i++) {
+            this.map.set(this.res_json.entity.moves[i].geoId, this.res_json.entity.moves[i].colorChange);
+          }
+          this.message = "Building GeoJson...";
+          while (this.post_cd_list.length !== 0) {
+            this.post_cd_list.pop();
+          }
+          this.displayRedistrict();
+          console.log(this.res_json.entity.finished);
+          if(!this.res_json.entity.finished){
+            console.log("gettingg update");
+            this.getUpdate(entity_id);
+          }
+      },
+      error => {
+        console.log(error);
+        alert('Username/Password Bad');
+      });
+
 
   }
 
@@ -364,7 +385,6 @@ export class StateComponent implements OnInit {
                 this.layerData.options.opacity = 3;
               }
               else if (this.list.includes(this.layerData.feature.properties.GEOID10)) {
-                console.log(this.list.includes(this.layerData.feature.properties.GEOID10));
                 this.layerData.options.color = 'black';
                 this.layerData.options.fillColor = 'black';
                 this.layerData.options.weight = 2;
