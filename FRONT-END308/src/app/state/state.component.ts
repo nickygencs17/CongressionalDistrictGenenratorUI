@@ -332,6 +332,9 @@ export class StateComponent implements OnInit {
           this.map.set(this.res_json.entity.moves[i].geoId, this.res_json.entity.moves[i].colorChange);
         }
         this.message = "Building GeoJson...";
+        while (this.post_cd_list.length !== 0) {
+          this.post_cd_list.pop();
+        }
         this.displayRedistrict();
       },
       error => {
