@@ -26,13 +26,13 @@ export class TableComponent implements OnInit {
   res: any;
 
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.dataSource.sort = this.sort;
 
     this.exampleDatabase = new ExampleHttpDao(this.http, this.route);
 
@@ -50,6 +50,23 @@ export class TableComponent implements OnInit {
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
           this.resultsLength = this.res.entity.CURRENT_OFFICIALS.length;
+
+          for (let i = 0; i < this.resultsLength; i++) {
+            // console.log('here');
+            // console.log(this.res.entity.PRESIDENT_ELECTION_INFO[i].party);
+
+            if (this.res.entity.CURRENT_OFFICIALS[i].party == 'Republican'){
+              this.res.entity.CURRENT_OFFICIALS[i].color = 'red';
+            }
+            else if (this.res.entity.CURRENT_OFFICIALS[i].party == 'Democratic'){
+              this.res.entity.CURRENT_OFFICIALS[i].color = 'blue';
+            }
+            else{
+              this.res.entity.CURRENT_OFFICIALS[i].color = 'black';
+            }
+
+
+          }
 
           return this.res.entity.CURRENT_OFFICIALS;
         }),

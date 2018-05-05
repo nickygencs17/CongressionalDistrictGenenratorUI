@@ -9,6 +9,7 @@ import {Observable} from "rxjs/Observable";
 import {catchError} from "rxjs/operators/catchError";
 import {switchMap} from "rxjs/operators/switchMap";
 import {HttpClient} from "@angular/common/http";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-presidentelectiontable',
@@ -48,6 +49,28 @@ export class PresidentelectiontableComponent implements OnInit {
           this.isRateLimitReached = false;
           this.resultsLength = this.res.entity.PRESIDENT_ELECTION_INFO.length;
 
+          console.log(this.res.entity.PRESIDENT_ELECTION_INFO);
+          console.log('here');
+          console.log(this.resultsLength);
+          for (let i = 0; i < this.resultsLength; i++) {
+            // console.log('here');
+            // console.log(this.res.entity.PRESIDENT_ELECTION_INFO[i].party);
+
+            if (this.res.entity.PRESIDENT_ELECTION_INFO[i].party == 'Republican'){
+              this.res.entity.PRESIDENT_ELECTION_INFO[i].color = 'red';
+            }
+            else if (this.res.entity.PRESIDENT_ELECTION_INFO[i].party == 'Democratic'){
+              this.res.entity.PRESIDENT_ELECTION_INFO[i].color = 'blue';
+            }
+            else{
+              this.res.entity.PRESIDENT_ELECTION_INFO[i].color = 'black';
+            }
+
+
+          }
+          console.log('here1');
+          console.log(this.res.entity.PRESIDENT_ELECTION_INFO);
+
           return this.res.entity.PRESIDENT_ELECTION_INFO;
         }),
         catchError(() => {
@@ -84,7 +107,8 @@ export interface PresidentElection {
   vote_percent: number,
   ec_vote: number,
   state_id: string,
-  is_winner: boolean
+  is_winner: boolean,
+  color: string
 
 }
 

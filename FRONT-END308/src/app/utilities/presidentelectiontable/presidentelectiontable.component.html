@@ -31,7 +31,7 @@
 
     <ng-container matColumnDef="party">
       <mat-header-cell *matHeaderCellDef>Party</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.party}}</mat-cell>
+      <mat-cell *matCellDef="let row" [style.color]="row.color">{{ row.party}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="votes_for">

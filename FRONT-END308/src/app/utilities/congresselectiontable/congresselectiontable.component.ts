@@ -47,6 +47,22 @@ export class CongresselectiontableComponent implements OnInit {
           this.isRateLimitReached = false;
           this.resultsLength = this.res.entity.CONGRESS_ELECTION_INFO.length;
 
+          for (let i = 0; i < this.resultsLength; i++) {
+            // console.log('here');
+            // console.log(this.res.entity.PRESIDENT_ELECTION_INFO[i].party);
+
+            if (this.res.entity.CONGRESS_ELECTION_INFO[i].party == 'Republican'){
+              this.res.entity.CONGRESS_ELECTION_INFO[i].color = 'red';
+            }
+            else if (this.res.entity.CONGRESS_ELECTION_INFO[i].party == 'Democratic'){
+              this.res.entity.CONGRESS_ELECTION_INFO[i].color = 'blue';
+            }
+            else{
+              this.res.entity.CONGRESS_ELECTION_INFO[i].color = 'black';
+            }
+
+
+          }
           return this.res.entity.CONGRESS_ELECTION_INFO;
         }),
         catchError(() => {
@@ -81,7 +97,8 @@ export interface CongressElection {
   candidate_name: string,
   congress_id: string,
   state_id: string
-  election_year: number
+  election_year: number,
+  color: string
 }
 
 export class ExampleHttpDao {
