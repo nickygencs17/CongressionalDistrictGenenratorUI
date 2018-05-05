@@ -45,7 +45,8 @@ export class StateComponent implements OnInit {
   inState = false;
   wvState = false;
   arState = false;
-  downloadJsonHref: any;
+
+  post_cd_list: string[] = [];
   congressEcon: any[] = [];
   congressDemo: any[] = [];
   real_congress_request = false;
@@ -86,7 +87,7 @@ export class StateComponent implements OnInit {
       }
     }
     for (var i = 1; i < (this.congress + 1); i++) {
-      let cd = 'District ' + i.toString();
+      let cd = i.toString();
       this.cd_list.push(cd);
     }
 
@@ -280,9 +281,7 @@ export class StateComponent implements OnInit {
             'Overlay One': defaultOverlay
           }
         };
-        console.log(this.congressEcon);
-        console.log(this.congressDemo);
-        console.log(this.real_congress_request);
+
         this.isLoadingResults = false;
       });
   }
@@ -299,7 +298,6 @@ export class StateComponent implements OnInit {
   }
 
   removeItem(geo_id) {
-    console.log(geo_id);
     this.list = this.list.filter(item => item !== geo_id);
     //this.displayBoundaries('precinct');
 
@@ -308,13 +306,21 @@ export class StateComponent implements OnInit {
 
   runAlgo(populationDeviation, ccoefficient, fcoefficient) {
 
+    this.cd_list.forEach((value) => {
+      //this.post_cd_list.push()
+      let valid_cd_id = this.id.toLocaleLowerCase()+'_cd_'+value;
+      this.post_cd_list.push(valid_cd_id);
+
+    });
+
+
     let body = {
       state_id: this.id,
       population_deviation: populationDeviation,
       c_coefficient: ccoefficient,
       f_coefficient: fcoefficient,
       excluded_precinct_ids: this.list,
-      included_districts_ids: this.cd_list
+      included_districts_ids: this.post_cd_list
     }
     this.isLoadingResults = true;
     this.message = "Running Algorithm...";
@@ -329,6 +335,7 @@ export class StateComponent implements OnInit {
         this.displayRedistrict();
       },
       error => {
+        console.log(error);
         alert('Username/Password Bad');
       });
 
@@ -434,7 +441,7 @@ export class StateComponent implements OnInit {
       //this.displayBoundaries('precinct');
     });
     for (var i = 1; i < (this.congress + 1); i++) {
-      let cd = 'District ' + i.toString();
+      let cd = i.toString();
       this.cd_list.push(cd);
     }
   }
