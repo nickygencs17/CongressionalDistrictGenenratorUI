@@ -45,7 +45,6 @@ export class StateComponent implements OnInit {
   inState = false;
   wvState = false;
   arState = false;
-  algo_running = false;
 
   algo_id: string;
 
