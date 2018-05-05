@@ -40,6 +40,18 @@
   </div>
 </div>
 <mat-progress-bar *ngIf="showRedistrict && algo_running" [color]="accent" mode="query"></mat-progress-bar>
+
+<div *ngIf="showRedistrict && algo_started">
+  <mat-button-toggle-group #group="matButtonToggleGroup" (click)="pauseAlgo(group.value)">
+    <mat-button-toggle value="play">
+      Play
+    </mat-button-toggle>
+    <mat-button-toggle value="pause">
+      Pause
+    </mat-button-toggle>
+
+  </mat-button-toggle-group>
+</div>
 <a *ngIf="showRedistrict && arState && !algo_running" href="/assets/download/download_ar.geojson" download>Export GEOJSON</a>
 <a *ngIf="showRedistrict && wvState && !algo_running" href="/assets/download/download_wv.geojson" download>Export GEOJSON</a>
 <a *ngIf="showRedistrict && inState && !algo_running" href="/assets/download/download_in.geojson" download>Export GEOJSON</a>

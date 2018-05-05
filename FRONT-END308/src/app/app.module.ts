@@ -21,7 +21,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatButtonModule,
   MatDialogModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatIconModule,
   MatInputModule,
   MatPaginatorModule,
   MatRadioModule,
@@ -57,6 +57,8 @@ import {DatePipe} from '@angular/common';
 import {AboutComponent} from './about/about.component';
 import {VotingComponent} from './utilities/voting/voting.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 
 
 @NgModule({
@@ -81,6 +83,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
   ],
   entryComponents: [LogindialogComponent],
   imports: [
+    MatIconModule,
+    MatButtonToggleModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatSortModule,

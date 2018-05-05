@@ -45,12 +45,18 @@ export class StateComponent implements OnInit {
   inState = false;
   wvState = false;
   arState = false;
+  algo_running = false;
+
+  algo_id: string;
 
   post_cd_list: string[] = [];
   congressEcon: any[] = [];
   congressDemo: any[] = [];
   real_congress_request = false;
   algo_running =  false;
+  algo_finished =  false;
+  algo_started = false;
+  paused = false;
 
 
   constructor(private http: HttpClient,
@@ -306,6 +312,7 @@ export class StateComponent implements OnInit {
 
 
   runAlgo(populationDeviation, ccoefficient, fcoefficient) {
+    this.algo_started = true;
     this.algo_running  = true;
 
     this.cd_list.forEach((value) => {
@@ -325,11 +332,12 @@ export class StateComponent implements OnInit {
       included_districts_ids: this.post_cd_list
     }
     this.isLoadingResults = true;
-    this.message = "Running Algorithm...";
+    this.message = "Starting Algorithm...";
     this.state_service.runAlgo(this.id, body).subscribe((data) => {
         this.res_json = data;
         console.log(this.res_json.entity);
         this.getUpdate(this.res_json.entity);
+        this.algo_id = this.res_json.entity
       },
       error => {
         console.log(error);
@@ -337,6 +345,22 @@ export class StateComponent implements OnInit {
       });
 
   }
+
+  pauseAlgo(value){
+
+    if(value === 'pause') {
+        this.algo_running = false;
+        this.paused = true;
+    }
+    else {
+      this.algo_running = true;
+      this.paused = false;
+    }
+
+  }
+
+
+
 
   getUpdate(entity_id){
 
@@ -354,12 +378,13 @@ export class StateComponent implements OnInit {
           }
           this.displayRedistrict();
           console.log(this.res_json.entity.finished);
-          if(!this.res_json.entity.finished){
+          if(!this.res_json.entity.finished && (this.paused == false)){
             console.log("gettingg update");
             this.getUpdate(entity_id);
           }
           else{
             this.algo_running  = false;
+            this.algo_started = false;
           }
       },
       error => {
