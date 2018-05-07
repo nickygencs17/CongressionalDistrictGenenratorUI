@@ -11,7 +11,7 @@
   <h3>We are currently only supporting the following states IN, AR, and WV</h3>
 </div>
 
-<mat-radio-group *ngIf="eagleState">
+<mat-radio-group *ngIf="eagleState && !algo_running && !showRedistrict">
   <mat-radio-button value="1" [checked]=true (click)="displayBoundaries('state')">State</mat-radio-button>
   <mat-radio-button value="2" (click)="displayBoundaries('senate')">State Senate District</mat-radio-button>
   <mat-radio-button value="3" (click)="displayBoundaries('assembly')">State House District</mat-radio-button>
@@ -22,7 +22,7 @@
 <br>
 <br>
 
-<div *ngIf="congressional_request && !isLoadingResults && !algo_running" class="alogrithmChoices">
+<div *ngIf="congressional_request && !isLoadingResults && !algo_running &&!showRedistrict" class="alogrithmChoices">
   <p>Population Deviation %</p>
   <mat-slider thumbLabel min="1" max="10" step="1" value="1" #pcoefficient></mat-slider>
 
@@ -39,6 +39,9 @@
     </button>
   </div>
 </div>
+<button mat-raised-button color="primary" *ngIf="showRedistrict && !algo_running"
+        (click)="resetMap()">Reset
+</button>
 <mat-progress-bar *ngIf="showRedistrict && algo_running" [color]="accent" mode="query"></mat-progress-bar>
 
 <div *ngIf="showRedistrict && algo_started">
@@ -153,7 +156,7 @@
 
           </ol>
         </div>
-
+      </div>
         <h3>Algorithim Information</h3>
         <mat-expansion-panel>
           <mat-expansion-panel-header>

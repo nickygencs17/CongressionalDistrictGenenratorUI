@@ -421,6 +421,8 @@ export class StateComponent implements OnInit {
           }
           this.displayRedistrict();
           console.log(this.res_json.entity.finished);
+          this.new_compactness =  this.res_json.entity.compactness;
+          this.newpopulationDeviation = this.res_json.entity.populationDeviation;
           if(!this.res_json.entity.finished && (this.paused == false)){
             console.log("gettingg update");
             this.getUpdate(entity_id);
@@ -428,8 +430,6 @@ export class StateComponent implements OnInit {
           else{
             this.algo_running  = false;
             this.algo_started = false;
-            this.new_compactness =  this.res_json.entity.compactness;
-            this.newpopulationDeviation = this.res_json.entity.populationDeviation;
           }
       },
       error => {
@@ -513,8 +513,11 @@ export class StateComponent implements OnInit {
   }
 
   resetMap() {
+    this.showRedistrict= false;
     this.refreshCdList();
     this.clear();
+    this.showRedistrict= false;
+    this.algo_running = false;
     this.displayBoundaries('precinct');
   }
 
