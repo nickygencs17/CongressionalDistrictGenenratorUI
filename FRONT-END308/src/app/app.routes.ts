@@ -9,6 +9,7 @@ import {AdminComponent} from './admin/admin.component';
 import {LogComponent} from "./log/log.component";
 import {AboutComponent} from "./about/about.component";
 import {VotingComponent} from "./utilities/voting/voting.component";
+import {CompareComponent} from "./compare/compare.component";
 
 
 export const routes: Routes = [
@@ -21,6 +22,7 @@ export const routes: Routes = [
   {path: 'voting', component: VotingComponent},
   {path: 'blog/posts/:id', component: PostdetailComponent},
   {path: 'blog/addpost', component: AddpostComponent},
+  {path: 'compare', component: CompareComponent},
   {path: 'users', component: AdminComponent},
   {path: 'log', component: LogComponent},
   {path: '**', component: MapComponent}

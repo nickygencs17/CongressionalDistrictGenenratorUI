@@ -1,0 +1,68 @@
+
+<div>
+  <mat-form-field>
+    <mat-select placeholder="Select State One" #stateValueOne (change)="changeStateOne($event.value)" required>
+      <mat-option *ngFor="let state of states" [value]="state">{{state.value}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Select State Two" #stateValueTwo (change)="changeStateTwo($event.value)" required>
+      <mat-option *ngFor="let state of states" [value]="state">{{state.value}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary"
+          (click)="compare()">Compare
+  </button>
+</div>
+<div class="flex-container" *ngIf="display_maps">
+  <div class="map_eagle" leaflet style="height: 600px; width: 50%"
+       [leafletLayers]="layers_one"
+       [leafletLayersControl]="layers_control_one"
+       [leafletCenter]="state_one_center"
+       [leafletFitBounds]="state_one_fit_bounds"></div>
+  <div class="map_eagle" leaflet style="height: 600px; width: 50%"
+       [leafletLayers]="layers_two"
+       [leafletLayersControl]="layers_control_two"
+       [leafletCenter]="state_two_center"
+       [leafletFitBounds]="state_two_fit_bounds"></div>
+</div>
+<!--Compactness-->
+<!--Population deviation-->
+<!--Total population-->
+<!--&lt;!&ndash;Number of districts&ndash;&gt;-->
+<!--value: 'WV',-->
+<!--viewValue: 'West Virgina',-->
+
+<!--polfairness: 0.605587-->
+<div class="flex-container" *ngIf="display_maps">
+  <div>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{state_one.viewValue}}</mat-card-title>
+      <mat-card-subtitle>{{state_one.value}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Compactness: {{state_one.compactness}}</p>
+      <p>Population Deviation: {{state_one.populationdeviation}}</p>
+      <p>Total Population: {{state_one.totalpopulation}}</p>
+      <p>Number of Districts: {{state_one.numberofdistricts}}</p>
+      <p>Political Fairness: {{state_one.polfairness}}</p>
+    </mat-card-content>
+  </mat-card>
+  </div>
+<div>
+  <mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{state_two.viewValue}}</mat-card-title>
+    <mat-card-subtitle>{{state_two.value}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Compactness: {{state_two.compactness}}</p>
+    <p>Population Deviation: {{state_two.populationdeviation}}</p>
+    <p>Total Population: {{state_two.totalpopulation}}</p>
+    <p>Number of Districts: {{state_two.numberofdistricts}}</p>
+    <p>Political Fairness: {{state_two.polfairness}}</p>
+  </mat-card-content>
+  </mat-card>
+</div>
+</div>

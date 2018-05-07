@@ -15,6 +15,12 @@ export class StateService {
     return this.http.jsonp(url, 'callback');
   }
 
+  getCompareData(state_id) {
+    const url = 'http://www.datasciencetoolkit.org/maps/api/geocode/json?sensor=false&address=' + state_id + ',US';
+    return this.http.jsonp(url, 'callback');
+  }
+
+
   runAlgo(id: string, body: any) {
     let url = 'http://localhost:8080/algorithm';
     this.currentUser = localStorage.getItem('currentUser');

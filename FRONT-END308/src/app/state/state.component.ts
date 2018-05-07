@@ -50,12 +50,52 @@ export class StateComponent implements OnInit {
 
   post_cd_list: string[] = [];
   congressEcon: any[] = [];
-  congressDemo: any[] = [];
   real_congress_request = false;
   algo_running =  false;
   algo_finished =  false;
   algo_started = false;
   paused = false;
+
+  value: string;
+  viewValue: string;
+  compactness: number;
+  populationdeviation: number;
+  totalpopulation: number;
+  numberofdistricts: number;
+  polfairness: number;
+
+
+  states = [
+    {
+      value: 'WV',
+      viewValue: 'West Virgina',
+      compactness:0.36649,
+      populationdeviation:0.3506,
+      totalpopulation:1852013,
+      numberofdistricts:3,
+      polfairness: 0.605587
+    },
+    {
+      value: 'AR',
+      viewValue: 'Arkansas',
+      compactness:0.440808,
+      populationdeviation:3.00724,
+      totalpopulation:2914634,
+      numberofdistricts:4,
+      polfairness: 0.60127
+    },
+    {
+      value: 'IN',
+      viewValue: 'Indiana',
+      compactness: 0.662365,
+      populationdeviation: 0.866725,
+      totalpopulation: 6481299,
+      numberofdistricts: 9,
+      polfairness: 0.68396
+    }
+  ];
+  private new_compactness: number;
+  private newpopulationDeviation: number;
 
 
   constructor(private http: HttpClient,
@@ -70,6 +110,8 @@ export class StateComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     if (!this.userService.isLoggedIn()) {
       alert("Please login");
       this.router.navigate(['']);
@@ -81,15 +123,37 @@ export class StateComponent implements OnInit {
       if (this.id === 'IN') {
         this.congress = 9;
         this.inState = true;
+        this.value =  'IN';
+        this.viewValue = 'Indiana';
+        this.compactness = 0.662365;
+        this.populationdeviation = 0.866725;
+        this.totalpopulation = 6481299;
+        this.numberofdistricts = 9;
+        this.polfairness = 0.68396;
 
       }
       else if (this.id === 'AR') {
         this.congress = 4;
         this.arState = true;
+        this.value = 'AR';
+        this.viewValue = 'Arkansas';
+        this.compactness = 0.440808;
+        this.populationdeviation =3.00724;
+        this.totalpopulation = 2914634;
+        this.numberofdistricts = 4;
+        this.polfairness = 0.60127;
+
       }
       else if (this.id === 'WV') {
         this.congress = 3;
         this.wvState = true;
+        this.value ='WV';
+        this.viewValue = 'West Virgina';
+        this.compactness = 0.36649;
+        this.populationdeviation = 0.3506;
+        this.totalpopulation = 1852013;
+        this.numberofdistricts = 3;
+        this.polfairness = 0.605587;
       }
     }
     for (var i = 1; i < (this.congress + 1); i++) {
@@ -200,22 +264,7 @@ export class StateComponent implements OnInit {
                 + '<p>Asian: ' + this.layerData.feature.properties.RACE_ASIAN + '</p>'
                 + '<p>Native: ' + this.layerData.feature.properties.RACE_NATIVE + '</p>'
                 + '<p>Other: ' + this.layerData.feature.properties.RACE_OTHER + '</p>';
-              // + '<p>GDP: ' + this.layerData.feature.properties.GDP + '</p>'
-              // + '<p>Poor Population: ' + this.layerData.feature.properties.POPULATION_POOR + '</p>'
-              // + '<p>Labor Force: ' + this.layerData.feature.properties.LABOR_FORCE + '</p>'
-              // + '<p>Revenue: ' + this.layerData.feature.properties.REVENUES+ '</p>'
-              // + '<p>Expenditure: ' + this.layerData.feature.properties.EXPENDITURE+ '</p>';
 
-              // let demoObject = {
-              //   name : this.layerData.feature.properties.District,
-              //   white: this.layerData.feature.properties.RACE_WHITE,
-              //   black: this.layerData.feature.properties.RACE_BLACK,
-              //   hispanic: this.layerData.feature.properties.RACE_HISPANIC,
-              //   asian: this.layerData.feature.properties.RACE_ASIAN,
-              //   native: this.layerData.feature.properties.RACE_NATIVE,
-              //   other: this.layerData.feature.properties.RACE_OTHER
-              // };
-              //this.congressDemo.push(demoObject);
               let econObject = {
                 name: this.layerData.feature.properties.District,
                 gdp: this.layerData.feature.properties.GDP,
@@ -234,11 +283,6 @@ export class StateComponent implements OnInit {
                 else if (a.name > b.name) return 1;
                 else return 0;
               });
-              // this.congressDemo.sort((a, b) => {
-              //   if (a.name < b.name) return -1;
-              //   else if (a.name > b.name) return 1;
-              //   else return 0;
-              // });
 
 
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
@@ -384,6 +428,8 @@ export class StateComponent implements OnInit {
           else{
             this.algo_running  = false;
             this.algo_started = false;
+            this.new_compactness =  this.res_json.entity.compactness;
+            this.newpopulationDeviation = this.res_json.entity.populationDeviation;
           }
       },
       error => {

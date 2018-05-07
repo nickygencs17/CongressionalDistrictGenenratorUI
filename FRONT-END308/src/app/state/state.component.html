@@ -22,7 +22,7 @@
 <br>
 <br>
 
-<div *ngIf="congressional_request && !isLoadingResults" class="alogrithmChoices">
+<div *ngIf="congressional_request && !isLoadingResults && !algo_running" class="alogrithmChoices">
   <p>Population Deviation %</p>
   <mat-slider thumbLabel min="1" max="10" step="1" value="1" #pcoefficient></mat-slider>
 
@@ -42,15 +42,18 @@
 <mat-progress-bar *ngIf="showRedistrict && algo_running" [color]="accent" mode="query"></mat-progress-bar>
 
 <div *ngIf="showRedistrict && algo_started">
-  <mat-button-toggle-group #group="matButtonToggleGroup" (click)="pauseAlgo(group.value)">
-    <mat-button-toggle value="play">
+  <mat-button-toggle-group #group="matButtonToggleGroup">
+    <mat-button-toggle value="play" (change)="pauseAlgo(group.value)" >
       Play
     </mat-button-toggle>
-    <mat-button-toggle value="pause">
+    <mat-button-toggle value="pause" (change)="pauseAlgo(group.value)">
       Pause
     </mat-button-toggle>
 
   </mat-button-toggle-group>
+  <button mat-raised-button color="primary"
+          (click)="resetMap()">Reset
+  </button>
 </div>
 <a *ngIf="showRedistrict && arState && !algo_running" href="/assets/download/download_ar.geojson" download>Export GEOJSON</a>
 <a *ngIf="showRedistrict && wvState && !algo_running" href="/assets/download/download_wv.geojson" download>Export GEOJSON</a>
@@ -155,14 +158,19 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              This is the expansion title
+              {{id}}
             </mat-panel-title>
             <mat-panel-description>
-              This is a summary of the content
+              {{viewValue}}
             </mat-panel-description>
           </mat-expansion-panel-header>
-
-          <p>This is the primary content of the panel.</p>
+          <p>Compactness: {{compactness}}</p>
+          <p>Population Deviation: {{populationdeviation}}</p>
+          <p>Total Population: {{totalpopulation}}</p>
+          <p>Number of Districts: {{numberofdistricts}}</p>
+          <p>Political Fairness: {{polfairness}}</p>
+          <p>NewCompactness: {{new_compactness}}</p>
+          <p>NewPopulation Deviation: {{newpopulationDeviation}}</p>
 
         </mat-expansion-panel>
       </div>
