@@ -127,6 +127,28 @@ export class UserService {
       .catch((error: any) => Observable.throw(error));
 
   }
+
+  getSavedRedistrictsList(username: string): any {
+    let headers = new HttpHeaders();
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (!this.currentUser) {
+      alert("Not Authorized");
+      this.router.navigate(['']);
+    }
+    headers = headers.append('Authorization', 'Basic ' + btoa(this.currentUser.username + ':' + this.currentUser.password));
+    return this.http.get('http://' + this.hostname + '/algorithm/all/' + username, {headers: headers});
+  }
+
+  deleteRedistrict(id: string): any {
+    let headers = new HttpHeaders();
+    this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (!this.currentUser) {
+      alert("Not Authorized");
+      this.router.navigate(['']);
+    }
+    headers = headers.append('Authorization', 'Basic ' + btoa(this.currentUser.username + ':' + this.currentUser.password));
+    return this.http.delete('http://' + this.hostname + '/algorithm/delete/' + id, {headers: headers});
+  }
 }
 
 

@@ -1,0 +1,27 @@
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+  <div fxFlex>
+    <div>
+      <h3>Saved Redistrictings</h3>
+      <hr>
+    </div>
+  </div>
+  <hr>
+  <div class = "halfscreen">
+    <div fxFlex>
+      <br>
+      <mat-expansion-panel *ngFor="let savedRedistrict of savedRedistrictsList">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            State : {{ savedRedistrict.state_id | uppercase }}
+          </mat-panel-title>
+          <mat-panel-description>
+            Date : {{ savedRedistrict.time | date }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <button mat-button color="basic">Load</button>
+        <button mat-button color="primary" (click)="deleteRedistrict(savedRedistrict.id)">Delete</button>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>
+
