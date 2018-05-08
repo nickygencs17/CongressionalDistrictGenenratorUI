@@ -54,6 +54,8 @@ export class RedistrictComponent implements OnInit {
   res_json: any;
   algo_is_paused = false;
 
+  red_algo_id: string;
+
   new_compactness: number;
   newpopulationDeviation: number;
   want_to_show = false;
@@ -80,63 +82,61 @@ export class RedistrictComponent implements OnInit {
       alert("Please login");
       this.router.navigate(['']);
     }
-
-    this.state_id = this.state_service.algo_state.toUpperCase();
+    if(this.state_service.algo_id.length>2){
+      this.state_id = this.state_service.algo_state.toUpperCase();
+      this.red_algo_id = this.state_service.algo_id;
 
       for (var i = 0; i < this.state_service.redistrictAlgoObj.moves.length; i++) {
         this.map.set(this.state_service.redistrictAlgoObj.moves[i].geoId, this.state_service.redistrictAlgoObj.moves[i].colorChange);
       }
 
-    for(var i = 0; i<this.state_service.redistrictAlgoObj.excluded_precinct_ids.length; i++){
-      this.list.push(this.state_service.redistrictAlgoObj.excluded_precinct_ids[i]);
-    }
-
-
-
-    if(this.state_service.algo_id === null){
-      alert("Please select params");
-      this.router.navigate(['']);
-    }
-
-    console.log(this.state_id);
-
-    if (this.state_id === 'IN' || this.state_id  === 'AR' || this.state_id === 'WV') {
-      if (this.state_id === 'IN') {
-        this.congress = 9;
-        this.inState = true;
-        this.value = 'IN';
-        this.viewValue = 'Indiana';
-        this.compactness = 0.662365;
-        this.populationdeviation = 0.866725;
-        this.totalpopulation = 6481299;
-        this.numberofdistricts = 9;
-        this.polfairness = 0.68396;
-
+      for(var i = 0; i<this.state_service.redistrictAlgoObj.excluded_precinct_ids.length; i++){
+        this.list.push(this.state_service.redistrictAlgoObj.excluded_precinct_ids[i]);
       }
-      else if (this.state_id === 'AR') {
-        this.congress = 4;
-        this.arState = true;
-        this.value = 'AR';
-        this.viewValue = 'Arkansas';
-        this.compactness = 0.440808;
-        this.populationdeviation = 3.00724;
-        this.totalpopulation = 2914634;
-        this.numberofdistricts = 4;
-        this.polfairness = 0.60127;
+      if(this.state_service.algo_id === null){
+        alert("Please select params");
+        this.router.navigate(['']);
+      }
 
+      console.log(this.state_id);
+
+      if (this.state_id === 'IN' || this.state_id  === 'AR' || this.state_id === 'WV') {
+        if (this.state_id === 'IN') {
+          this.congress = 9;
+          this.inState = true;
+          this.value = 'IN';
+          this.viewValue = 'Indiana';
+          this.compactness = 0.662365;
+          this.populationdeviation = 0.866725;
+          this.totalpopulation = 6481299;
+          this.numberofdistricts = 9;
+          this.polfairness = 0.68396;
+
+        }
+        else if (this.state_id === 'AR') {
+          this.congress = 4;
+          this.arState = true;
+          this.value = 'AR';
+          this.viewValue = 'Arkansas';
+          this.compactness = 0.440808;
+          this.populationdeviation = 3.00724;
+          this.totalpopulation = 2914634;
+          this.numberofdistricts = 4;
+          this.polfairness = 0.60127;
+
+        }
+        else if (this.state_id === 'WV') {
+          this.congress = 3;
+          this.wvState = true;
+          this.value = 'WV';
+          this.viewValue = 'West Virgina';
+          this.compactness = 0.36649;
+          this.populationdeviation = 0.3506;
+          this.totalpopulation = 1852013;
+          this.numberofdistricts = 3;
+          this.polfairness = 0.605587;
+        }
       }
-      else if (this.state_id === 'WV') {
-        this.congress = 3;
-        this.wvState = true;
-        this.value = 'WV';
-        this.viewValue = 'West Virgina';
-        this.compactness = 0.36649;
-        this.populationdeviation = 0.3506;
-        this.totalpopulation = 1852013;
-        this.numberofdistricts = 3;
-        this.polfairness = 0.605587;
-      }
-    }
       this.state_service.getAlgoStateData(this.state_id)
         .subscribe(response => {
 
@@ -151,6 +151,10 @@ export class RedistrictComponent implements OnInit {
           this.displayBoundaries();
 
         });
+    }
+    else {
+      this.router.navigate(['']);
+    }
       }
 
 
@@ -286,9 +290,11 @@ export class RedistrictComponent implements OnInit {
 
   getUpdate(entity_id){
 
-    this.state_service.getUpdate(entity_id)
+    this.state_service.getUpdate(this.red_algo_id)
       .subscribe((data) => {
           this.res_json = data;
+
+          if(this.res_json.entity !== 'OK') {
 
           for (var i = 0; i < this.res_json.entity.moves.length; i++) {
             this.map.set(this.res_json.entity.moves[i].geoId, this.res_json.entity.moves[i].colorChange);
@@ -302,14 +308,15 @@ export class RedistrictComponent implements OnInit {
           if(!this.res_json.entity.finished){
             if(this.algo_is_paused == false){
               console.log("gettingg update");
-              this.getUpdate(entity_id);
+              this.getUpdate(this.red_algo_id);
             }
             else{
               console.log('pause');
             }
-
+          }
           }
           else{
+            this.red_algo_id = 'DO-NOT-UPDATE';
             this.algo_running  = false;
             this.algo_finished = true;
           }
@@ -318,9 +325,9 @@ export class RedistrictComponent implements OnInit {
           console.log(error);
           alert('Username/Password Bad');
         });
+    }
 
 
-  }
 
   resetMap(){
     this.algo_is_paused = true;
@@ -329,13 +336,14 @@ export class RedistrictComponent implements OnInit {
   }
 
   play(){
+      this.red_algo_id = this.state_service.algo_id;
       this.algo_is_paused = false;
       this.algo_running = true;
       this.getUpdate(this.state_service.algo_id);
   }
 
   pause(){
-
+    this.red_algo_id = 'DO-NOT-UPDATE';
     this.algo_is_paused = true;
     this.algo_running = false;
 
@@ -356,9 +364,10 @@ export class RedistrictComponent implements OnInit {
   }
 
   stop(){
-	 this.algo_running = false;
-	 this.algo_is_paused = true;
-	 this.algo_finished = true;
+    this.red_algo_id = 'DO-NOT-UPDATE';
+	  this.algo_running = false;
+	  this.algo_is_paused = true;
+	  this.algo_finished = true;
      this.state_service.stopRedistrict(this.state_service.algo_id)
       .subscribe((data) => {
         this.res_json = data;

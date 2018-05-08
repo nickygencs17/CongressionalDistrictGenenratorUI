@@ -10,8 +10,8 @@ export class StateService {
               private state_id_service: StateIdService) {
   }
 
-   public algo_id:string;
-   public algo_state:string;
+   public algo_id = ' ';
+   public algo_state = ' ';
    public redistrictAlgoObj: any;
 
 
@@ -61,7 +61,7 @@ export class StateService {
     headers = headers.append('Authorization', 'Basic ' + btoa(userJson.username + ':' + userJson.password));
     return this.http.get<any>(url, {headers: headers});
   }
-  
+
    stopRedistrict(id) {
     let url = 'http://localhost:8080/algorithm/stop/' + id;
     this.currentUser = localStorage.getItem('currentUser');
@@ -76,5 +76,5 @@ export class StateService {
     const url = 'http://www.datasciencetoolkit.org/maps/api/geocode/json?sensor=false&address=' + state_id + ',US';
     return this.http.jsonp(url, 'callback');
   }
-  
+
 }
