@@ -6,7 +6,11 @@ mat-expansion-panel {
   text-align: center;
 }
 
-.halfscreen {
+
+#wrapper {
   text-align: center;
-  width: 50%;
+}
+
+#yourdiv {
+  display: inline-block;
 }

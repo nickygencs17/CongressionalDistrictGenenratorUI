@@ -1,0 +1,20 @@
+#wrapper {
+  text-align: center;
+}
+
+#yourdiv {
+  display: inline-block;
+}
+.map_eagle {
+  width: 50%;
+  text-align: left;
+}
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-container > div {
+  width: 50%;
+  text-align: center;
+}

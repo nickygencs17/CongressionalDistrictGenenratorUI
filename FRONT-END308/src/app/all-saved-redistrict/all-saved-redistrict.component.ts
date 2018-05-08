@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";
 import {PostService} from "../services/post.service";
+import {StateService} from "../services/state.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-all-saved-redistrict',
@@ -12,8 +14,16 @@ export class AllSavedRedistrictComponent implements OnInit {
 
   savedRedistrictsList: any[];
   currentUser: string;
+  response: any;
+  loading = false;
+  message = "Loading Algo...";
 
-  constructor(private postService: PostService, private router: Router, private userService: UserService) {
+  constructor(
+    private http: HttpClient,
+    private postService: PostService,
+    private router: Router,
+    private userService: UserService,
+    private stateService:StateService) {
   }
   ngOnInit() {
 
@@ -52,6 +62,32 @@ export class AllSavedRedistrictComponent implements OnInit {
       ,
       error => {
         alert('Delete redistrict error');
+      });
+  }
+
+  loadRedistrict(id: string, state_id:string) {
+    console.log(id);
+    this.stateService.algo_state = state_id;
+    this.stateService.algo_id = id;
+    console.log(this.stateService.algo_id);
+
+    this.loading = true;
+    this.stateService.getRedistrict(this.stateService.algo_id).subscribe((response) => {
+        this.response = response;
+        if (this.response.status === 200) {
+          this.stateService.redistrictAlgoObj = this.response.entity;
+          console.log("where here");
+          console.log(this.stateService.redistrictAlgoObj);
+          //not yet but foward to redistrict;
+          this.router.navigate(['redistrict']);
+        }
+        else {
+          alert("what is this brah?" + this.response.status);
+        }
+      }
+      ,
+      error => {
+        alert('saved redistrict error');
       });
   }
 }

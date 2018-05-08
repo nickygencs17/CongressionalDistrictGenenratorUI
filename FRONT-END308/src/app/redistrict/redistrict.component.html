@@ -1,0 +1,67 @@
+
+<div *ngIf="algo_finished">
+<a *ngIf="arState" href="/assets/download/download_ar.geojson" download>Export GEOJSON</a>
+<a *ngIf="wvState" href="/assets/download/download_wv.geojson" download>Export GEOJSON</a>
+<a *ngIf="inState" href="/assets/download/download_in.geojson" download>Export GEOJSON</a>
+</div>
+<div id="wrapper" *ngIf="isLoadingResults">
+  <h1>{{message}}</h1>
+  <div id="yourdiv">
+    <mat-spinner style="text-align: center" *ngIf="isLoadingResults"></mat-spinner>
+</div>
+</div>
+
+<br>
+<br><br>
+<br>
+<div *ngIf="!isLoadingResults">
+  <button *ngIf="!algo_running" mat-raised-button color="primary"
+          (click)="play()">Play
+  </button>
+  <button *ngIf="algo_running" mat-raised-button color="primary"
+          (click)="pause()">Pause
+  </button>
+  <button  mat-raised-button color="primary"
+          (click)="resetMap()">Reset
+  </button>
+  <button *ngIf="!algo_running" mat-raised-button color="primary"
+          (click)="compareMap()">Compare
+  </button>
+  <button *ngIf="!algo_running" mat-raised-button color="primary"
+          (click)="save()">Save
+  </button>
+  <br>
+  <br>
+</div>
+
+<br>
+<mat-progress-bar *ngIf="algo_running" [color]="accent" mode="query"></mat-progress-bar>
+<br>
+<div *ngIf="!isLoadingResults">
+  <div class="flex-container">
+    <div class="map_eagle" leaflet style="height: 600px" *ngIf="compare"
+         [leafletLayers]="new_layers"
+         [leafletLayersControl]="new_layersControl"
+         [leafletCenter]="new_center"
+         [leafletFitBounds]="new_fitBounds"></div>
+
+      <div class="map_eagle" leaflet style="height: 600px"
+           [leafletLayers]="layers"
+           [leafletLayersControl]="layersControl"
+           [leafletCenter]="center"
+           [leafletFitBounds]="fitBounds"></div>
+    <div>
+
+        <p>Compactness: {{compactness}}</p>
+        <p>Population Deviation: {{populationdeviation}}</p>
+        <p>Total Population: {{totalpopulation}}</p>
+        <p>Number of Districts: {{numberofdistricts}}</p>
+        <p>Political Fairness: {{polfairness}}</p>
+        <p>NewCompactness: {{new_compactness}}</p>
+        <p>NewPopulation Deviation: {{newpopulationDeviation}}</p>
+    </div>
+
+  </div>
+</div>
+<br>
+<br>

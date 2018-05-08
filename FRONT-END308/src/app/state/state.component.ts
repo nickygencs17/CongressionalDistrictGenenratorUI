@@ -65,37 +65,6 @@ export class StateComponent implements OnInit {
   polfairness: number;
 
 
-  states = [
-    {
-      value: 'WV',
-      viewValue: 'West Virgina',
-      compactness:0.36649,
-      populationdeviation:0.3506,
-      totalpopulation:1852013,
-      numberofdistricts:3,
-      polfairness: 0.605587
-    },
-    {
-      value: 'AR',
-      viewValue: 'Arkansas',
-      compactness:0.440808,
-      populationdeviation:3.00724,
-      totalpopulation:2914634,
-      numberofdistricts:4,
-      polfairness: 0.60127
-    },
-    {
-      value: 'IN',
-      viewValue: 'Indiana',
-      compactness: 0.662365,
-      populationdeviation: 0.866725,
-      totalpopulation: 6481299,
-      numberofdistricts: 9,
-      polfairness: 0.68396
-    }
-  ];
-  private new_compactness: number;
-  private newpopulationDeviation: number;
 
 
   constructor(private http: HttpClient,
@@ -172,7 +141,7 @@ export class StateComponent implements OnInit {
         this.allDataFetched = true;
 
       });
-    this.displayBoundaries('state');
+    this.displayBoundaries('precinct');
   }
 
   displayBoundaries(type): void {
@@ -372,15 +341,25 @@ export class StateComponent implements OnInit {
       c_coefficient: ccoefficient,
       f_coefficient: fcoefficient,
       excluded_precinct_ids: this.list,
-      included_districts_ids: this.post_cd_list
+      included_districts_ids: this.post_cd_list,
+      moves: new Map()
     }
     this.isLoadingResults = true;
+    this.state_service.redistrictAlgoObj = body;
     this.message = "Starting Algorithm...";
     this.state_service.runAlgo(this.id, body).subscribe((data) => {
         this.res_json = data;
         console.log(this.res_json.entity);
-        this.getUpdate(this.res_json.entity);
-        this.algo_id = this.res_json.entity
+        this.algo_id = this.res_json.entity;
+        this.state_service.algo_id = this.res_json.entity;
+        this.state_service.algo_state = this.id;
+
+        console.log(this.state_service.redistrictAlgoObj);
+        console.log(this.state_service.algo_state);
+        console.log(this.state_service.algo_id);
+
+        this.router.navigate(['redistrict']);
+
       },
       error => {
         console.log(error);
@@ -389,128 +368,8 @@ export class StateComponent implements OnInit {
 
   }
 
-  pauseAlgo(value){
-
-    if(value === 'pause') {
-        this.algo_running = false;
-        this.paused = true;
-    }
-    else {
-      this.algo_running = true;
-      this.paused = false;
-    }
-
-  }
 
 
-
-
-  getUpdate(entity_id){
-
-    this.state_service.getUpdate(entity_id)
-      .subscribe((data) => {
-        this.res_json = data;
-        console.log(this.res_json.entity);
-          this.message = "Reading Moves...";
-          for (var i = 0; i < this.res_json.entity.moves.length; i++) {
-            this.map.set(this.res_json.entity.moves[i].geoId, this.res_json.entity.moves[i].colorChange);
-          }
-          this.message = "Building GeoJson...";
-          while (this.post_cd_list.length !== 0) {
-            this.post_cd_list.pop();
-          }
-          this.displayRedistrict();
-          console.log(this.res_json.entity.finished);
-          this.new_compactness =  this.res_json.entity.compactness;
-          this.newpopulationDeviation = this.res_json.entity.populationDeviation;
-          if(!this.res_json.entity.finished && (this.paused == false)){
-            console.log("gettingg update");
-            this.getUpdate(entity_id);
-          }
-          else{
-            this.algo_running  = false;
-            this.algo_started = false;
-          }
-      },
-      error => {
-        console.log(error);
-        alert('Username/Password Bad');
-      });
-
-
-  }
-
-  displayRedistrict() {
-    console.log(this.map);
-    let url = '/assets/data/' + this.id.toUpperCase() + '/' + this.id.toUpperCase() + '_VDS.geojson';
-
-    this.http.get<any>(url)
-      .subscribe(geo1 => {
-        let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
-        let defaultOverlay = geoJSON(geo1, {
-          onEachFeature: (feature, layer) => {
-            this.layerData = layer;
-            this.layerData.options.weight = 0.7;
-
-            if (this.map.size > 0) {
-              if (this.map.has(this.layerData.feature.properties.GEOID10)) {
-                this.layerData.options.fillColor = this.map.get(this.layerData.feature.properties.GEOID10);
-                this.layerData.options.color = "black";
-                this.layerData.options.weight = 2;
-                this.layerData.options.opacity = 3;
-              }
-              else if (this.list.includes(this.layerData.feature.properties.GEOID10)) {
-                this.layerData.options.color = 'black';
-                this.layerData.options.fillColor = 'black';
-                this.layerData.options.weight = 2;
-                this.layerData.options.opacity = 3;
-              }
-              else {
-                this.layerData.options.color = this.layerData.feature.properties.COLOR;
-              }
-            } else {
-              this.layerData.options.color = this.layerData.feature.properties.COLOR;
-            }
-            let popupContent =
-              '<h1>Name: ' + this.layerData.feature.properties.NAME10 + '</h1>' +
-              '<p>Geo_ID: ' + this.layerData.feature.properties.GEOID10 + '</p>' +
-              '<p>Compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>' +
-              '<p>Population: ' + this.layerData.feature.properties.POPULATION + '</p>' +
-              '<p>Democratic Leaning: ' + this.layerData.feature.properties.D_LEANING + '</p>' +
-              '<p>Republican Leaning: ' + this.layerData.feature.properties.R_LEANING + '</h1>' +
-              '<p>Congressional District: ' + this.layerData.feature.properties.CONGRESS_ID + '</p>';
-
-            layer.bindPopup(popupContent);
-            layer.on('mouseover', function (e) {
-              this.openPopup();
-            });
-            layer.on('mouseout', function (e) {
-              this.closePopup();
-            });
-
-
-          }
-        });
-        // noinspection TypeScriptValidateTypes
-        this.new_layers = [
-          defaultBaseLayer,
-          defaultOverlay
-        ];
-        this.new_layersControl = {
-          baseLayers: {
-            'OpenStreetMap Color': defaultBaseLayer,
-            'OpenStreetMap BlackAndWhite': tileLayer.provider('OpenStreetMap.BlackAndWhite')
-          },
-          overlays: {
-            'Overlay One': defaultOverlay
-          }
-        };
-        this.isLoadingResults = false;
-        this.showRedistrict = true;
-
-      });
-
-  }
 
   resetMap() {
     this.showRedistrict= false;
@@ -531,7 +390,6 @@ export class StateComponent implements OnInit {
 
   removeCdItem(cd_id) {
     this.cd_list = this.cd_list.filter(item => item !== cd_id);
-    //this.displayBoundaries('precinct');
   }
 
   refreshCdList() {
@@ -539,7 +397,6 @@ export class StateComponent implements OnInit {
       while (this.cd_list.length !== 0) {
         this.cd_list.pop();
       }
-      //this.displayBoundaries('precinct');
     });
     for (var i = 1; i < (this.congress + 1); i++) {
       let cd = i.toString();

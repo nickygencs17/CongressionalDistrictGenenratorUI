@@ -60,6 +60,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { CompareComponent } from './compare/compare.component';
 import { AllSavedRedistrictComponent } from './all-saved-redistrict/all-saved-redistrict.component';
+import { RedistrictComponent } from './redistrict/redistrict.component';
 
 
 
@@ -83,7 +84,8 @@ import { AllSavedRedistrictComponent } from './all-saved-redistrict/all-saved-re
     AboutComponent,
     VotingComponent,
     CompareComponent,
-    AllSavedRedistrictComponent
+    AllSavedRedistrictComponent,
+    RedistrictComponent
   ],
   entryComponents: [LogindialogComponent],
   imports: [
