@@ -29,6 +29,9 @@
   <button *ngIf="!algo_running" mat-raised-button color="primary"
           (click)="compareMap()">Compare
   </button>
+   <button *ngIf="algo_running" mat-raised-button color="primary"
+          (click)="stop()">Stop
+  </button>
   <button *ngIf="!algo_running && !algo_finished" mat-raised-button color="primary"
           (click)="save()">Save
   </button>
