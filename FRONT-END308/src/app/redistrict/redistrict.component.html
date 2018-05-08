@@ -15,7 +15,7 @@
 <br><br>
 <br>
 <div *ngIf="!isLoadingResults">
-  <button *ngIf="!algo_running" mat-raised-button color="primary"
+  <button *ngIf="!algo_running && !algo_finished" mat-raised-button color="primary"
           (click)="play()">Play
   </button>
   <button *ngIf="algo_running" mat-raised-button color="primary"
@@ -27,7 +27,7 @@
   <button *ngIf="!algo_running" mat-raised-button color="primary"
           (click)="compareMap()">Compare
   </button>
-  <button *ngIf="!algo_running" mat-raised-button color="primary"
+  <button *ngIf="!algo_running && !algo_finished" mat-raised-button color="primary"
           (click)="save()">Save
   </button>
   <br>
