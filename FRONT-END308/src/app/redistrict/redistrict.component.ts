@@ -355,6 +355,24 @@ export class RedistrictComponent implements OnInit {
       });
   }
 
+  stop(){
+	 this.algo_running = false;
+	 this.algo_is_paused = true;
+	 this.algo_finished = true;
+     this.state_service.stopRedistrict(this.state_service.algo_id)
+      .subscribe((data) => {
+        this.res_json = data;
+
+        if(this.res_json.status==200){
+          alert('stopped');
+        }
+      },
+      error => {
+        console.log(error);
+        alert('Username/Password Bad');
+      });
+  }
+
   compareMap(){
     this.compare = !this.compare;
     if(this.compare == true){
