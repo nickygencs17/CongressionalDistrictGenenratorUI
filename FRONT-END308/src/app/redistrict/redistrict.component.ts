@@ -296,29 +296,29 @@ export class RedistrictComponent implements OnInit {
 
           if(this.res_json.entity !== 'OK') {
 
-          for (var i = 0; i < this.res_json.entity.moves.length; i++) {
-            this.map.set(this.res_json.entity.moves[i].geoId, this.res_json.entity.moves[i].colorChange);
-          }
-          this.message = "Building GeoJson...";
+            for (var i = 0; i < this.res_json.entity.moves.length; i++) {
+              this.map.set(this.res_json.entity.moves[i].geoId, this.res_json.entity.moves[i].colorChange);
+            }
+            this.message = "Building GeoJson...";
 
-          this.displayBoundaries();
-          console.log(this.res_json.entity.finished);
-          this.new_compactness =  this.res_json.entity.compactness;
-          this.newpopulationDeviation = this.res_json.entity.populationDeviation;
-          if(!this.res_json.entity.finished){
-            if(this.algo_is_paused == false){
-              console.log("gettingg update");
-              this.getUpdate(this.red_algo_id);
+            this.displayBoundaries();
+            console.log(this.res_json.entity.finished);
+            this.new_compactness = this.res_json.entity.compactness;
+            this.newpopulationDeviation = this.res_json.entity.populationDeviation;
+            if (!this.res_json.entity.finished) {
+              if (this.algo_is_paused == false) {
+                console.log("gettingg update");
+                this.getUpdate(this.red_algo_id);
+              }
+              else {
+                console.log('pause');
+              }
             }
-            else{
-              console.log('pause');
+            else {
+              this.red_algo_id = 'DO-NOT-UPDATE';
+              this.algo_running = false;
+              this.algo_finished = true;
             }
-          }
-          }
-          else{
-            this.red_algo_id = 'DO-NOT-UPDATE';
-            this.algo_running  = false;
-            this.algo_finished = true;
           }
         },
         error => {
