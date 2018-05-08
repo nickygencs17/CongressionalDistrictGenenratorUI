@@ -9,6 +9,7 @@
   <div class = "halfscreen">
     <div fxFlex>
       <br>
+      <h1 *ngIf="!atleastOne"> No saved Redistrictings </h1>
       <mat-expansion-panel *ngFor="let savedRedistrict of savedRedistrictsList">
         <mat-expansion-panel-header>
           <mat-panel-title>

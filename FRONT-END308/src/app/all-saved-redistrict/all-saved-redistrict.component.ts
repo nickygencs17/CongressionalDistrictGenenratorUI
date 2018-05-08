@@ -17,6 +17,7 @@ export class AllSavedRedistrictComponent implements OnInit {
   response: any;
   loading = false;
   message = "Loading Algo...";
+  atleastOne :boolean;
 
   constructor(
     private http: HttpClient,
@@ -26,7 +27,7 @@ export class AllSavedRedistrictComponent implements OnInit {
     private stateService:StateService) {
   }
   ngOnInit() {
-
+    this.atleastOne = true;
     this.currentUser = localStorage.getItem('currentUser');
     if (this.currentUser) {
       let userJson = JSON.parse(this.currentUser);
@@ -39,6 +40,9 @@ export class AllSavedRedistrictComponent implements OnInit {
     this.userService.getSavedRedistrictsList(this.currentUser).subscribe((response) => {
         if (response.status === 200) {
           this.savedRedistrictsList = response.entity.Redistricts;
+          if(this.savedRedistrictsList.length == 0) {
+            this.atleastOne = false;
+          }
         }
         else if (response.status === 409) {
           this.router.navigate(['']);
