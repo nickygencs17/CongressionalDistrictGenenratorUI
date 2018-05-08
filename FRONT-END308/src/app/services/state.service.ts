@@ -61,10 +61,20 @@ export class StateService {
     headers = headers.append('Authorization', 'Basic ' + btoa(userJson.username + ':' + userJson.password));
     return this.http.get<any>(url, {headers: headers});
   }
+  
+   stopRedistrict(id) {
+    let url = 'http://localhost:8080/algorithm/stop/' + id;
+    this.currentUser = localStorage.getItem('currentUser');
+    let userJson = JSON.parse(this.currentUser);
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', 'Basic ' + btoa(userJson.username + ':' + userJson.password));
+    return this.http.get<any>(url, {headers: headers});
+  }
 
 
   getAlgoStateData(state_id: string) {
     const url = 'http://www.datasciencetoolkit.org/maps/api/geocode/json?sensor=false&address=' + state_id + ',US';
     return this.http.jsonp(url, 'callback');
   }
+  
 }
