@@ -24,7 +24,7 @@
 
 <div *ngIf="congressional_request && !isLoadingResults && !algo_running &&!showRedistrict" class="alogrithmChoices">
   <p>Population Deviation %</p>
-  <mat-slider thumbLabel min="1" max="10" step="1" value="1" #pcoefficient></mat-slider>
+  <mat-slider thumbLabel min="1" max="10" step="1" value="5" #pcoefficient></mat-slider>
 
   <p>Fairness Coefficient</p>
   <mat-slider thumbLabel min="1" max="10" step="1" value="1" #ccoefficient></mat-slider>

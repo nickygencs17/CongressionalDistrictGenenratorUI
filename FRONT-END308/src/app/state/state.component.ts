@@ -224,15 +224,15 @@ export class StateComponent implements OnInit {
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
             else if (type === 'congress') {
-              popupContent = '<h1>Name: ' + this.layerData.feature.properties.District + '</h1>'
-                + '<p>Compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>'
-                + '<p>Population: ' + this.layerData.feature.properties.POPULATION + '</p>'
-                + '<p>White: ' + this.layerData.feature.properties.RACE_WHITE + '</p>'
-                + '<p>Black: ' + this.layerData.feature.properties.RACE_BLACK + '</p>'
-                + '<p>Hispanic: ' + this.layerData.feature.properties.RACE_HISPANIC + '</p>'
-                + '<p>Asian: ' + this.layerData.feature.properties.RACE_ASIAN + '</p>'
-                + '<p>Native: ' + this.layerData.feature.properties.RACE_NATIVE + '</p>'
-                + '<p>Other: ' + this.layerData.feature.properties.RACE_OTHER + '</p>';
+              popupContent = '<h1>Name : ' + this.layerData.feature.properties.District + '</h1>'
+                + '<p>Compactness : ' + this.layerData.feature.properties.COMPACTNESS + '</p>'
+                + '<p>Population : ' + this.layerData.feature.properties.POPULATION + '</p>'
+                + '<p>White ratio : ' + this.layerData.feature.properties.RACE_WHITE + '</p>'
+                + '<p>Black ratio : ' + this.layerData.feature.properties.RACE_BLACK + '</p>'
+                + '<p>Hispanic ratio : ' + this.layerData.feature.properties.RACE_HISPANIC + '</p>'
+                + '<p>Asian ratio : ' + this.layerData.feature.properties.RACE_ASIAN + '</p>'
+                + '<p>Native ratio : ' + this.layerData.feature.properties.RACE_NATIVE + '</p>'
+                + '<p>Other ratio : ' + this.layerData.feature.properties.RACE_OTHER + '</p>';
 
               let econObject = {
                 name: this.layerData.feature.properties.District,
