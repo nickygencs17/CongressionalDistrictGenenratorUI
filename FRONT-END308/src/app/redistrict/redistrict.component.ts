@@ -176,7 +176,7 @@ export class RedistrictComponent implements OnInit {
                   this.layerData.options.color = 'red';
                   this.layerData.options.fillColor = 'black';
                   this.layerData.options.weight = 2;
-                  this.layerData.options.fillOpacity = 3;
+                  this.layerData.options.fillOpacity = 0;
                 }
                 else {
                   this.layerData.options.color = this.layerData.feature.properties.COLOR;
