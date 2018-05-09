@@ -63,6 +63,8 @@ export class StateComponent implements OnInit {
   totalpopulation: number;
   numberofdistricts: number;
   polfairness: number;
+  
+  start_string: string;
 
 
 
@@ -87,8 +89,10 @@ export class StateComponent implements OnInit {
     }
     this.id = this.route.snapshot.params['id'];
     this.state_id_service.state_id = this.id;
+    
     if (this.id === 'IN' || this.id === 'AR' || this.id === 'WV') {
       this.eagleState = true;
+      this.start_string = 'precinct';
       if (this.id === 'IN') {
         this.congress = 9;
         this.inState = true;
@@ -125,6 +129,9 @@ export class StateComponent implements OnInit {
         this.polfairness = 0.605587;
       }
     }
+    else {
+      this.start_string = 'state';
+    }
     for (var i = 1; i < (this.congress + 1); i++) {
       let cd = i.toString();
       this.cd_list.push(cd);
@@ -141,7 +148,7 @@ export class StateComponent implements OnInit {
         this.allDataFetched = true;
 
       });
-    this.displayBoundaries('precinct');
+    this.displayBoundaries(this.start_string);
   }
 
   displayBoundaries(type): void {
