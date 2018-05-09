@@ -1,0 +1,34 @@
+<div class="container" fxLayout="column" fxLayoutGap="10px" *ngIf="!loading">
+  <div fxFlex>
+    <div>
+      <h3>Saved Redistricts</h3>
+      <hr>
+    </div>
+  </div>
+  <hr>
+  <div class = "halfscreen">
+    <div fxFlex>
+      <br>
+      <h1 *ngIf="!atleastOne"> No saved Redistrictings </h1>
+      <mat-expansion-panel *ngFor="let savedRedistrict of savedRedistrictsList">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            State : {{ savedRedistrict.state_id | uppercase }}
+          </mat-panel-title>
+          <mat-panel-description>
+            Date : {{ savedRedistrict.time | date : "medium"}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <button mat-button color="basic" (click)="loadRedistrict(savedRedistrict.id, savedRedistrict.state_id)">Load</button>
+        <button mat-button color="primary" (click)="deleteRedistrict(savedRedistrict.id)">Delete</button>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>
+<div id="wrapper" *ngIf="loading">
+  <h1>{{message}}</h1>
+  <div id="yourdiv">
+    <mat-spinner style="text-align: center" *ngIf="loading"></mat-spinner>
+  </div>
+</div>
+

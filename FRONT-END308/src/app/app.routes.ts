@@ -10,6 +10,8 @@ import {LogComponent} from "./log/log.component";
 import {AboutComponent} from "./about/about.component";
 import {VotingComponent} from "./utilities/voting/voting.component";
 import {CompareComponent} from "./compare/compare.component";
+import {AllSavedRedistrictComponent} from "./all-saved-redistrict/all-saved-redistrict.component";
+import {RedistrictComponent} from "./redistrict/redistrict.component";
 
 
 export const routes: Routes = [
@@ -25,5 +27,7 @@ export const routes: Routes = [
   {path: 'compare', component: CompareComponent},
   {path: 'users', component: AdminComponent},
   {path: 'log', component: LogComponent},
+  {path: 'allsavedredistricts', component: AllSavedRedistrictComponent},
+  {path: 'redistrict', component:RedistrictComponent},
   {path: '**', component: MapComponent}
 ];

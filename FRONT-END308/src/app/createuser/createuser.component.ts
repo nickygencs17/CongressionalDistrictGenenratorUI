@@ -33,21 +33,23 @@ export class CreateuserComponent implements OnInit {
   ngOnInit() {
   }
 
-  createNewAccount() {
-    if (this.password == this.password_two) {
+  createNewAccount(_password,_password_two) {
+
+    if (_password !== _password_two) {
       alert("Passwords do not match");
-      return;
     }
-    this.user.username = this.user_name.value;
-    this.user.user_password = this.password.value;
-    this.user.city = this.city.value;
-    this.user.address = this.address.value;
-    this.user.zip = this.zip.value;
-    this.user.first_name = this.first_name.value;
-    this.user.last_name = this.last_name.value;
-    this.user.state_id = this.state_id;
-    this.user.role = "ROLE_USER";
-    this.user_service.createUser(this.user);
+    else {
+      this.user.username = this.user_name.value;
+      this.user.user_password = this.password.value;
+      this.user.city = this.city.value;
+      this.user.address = this.address.value;
+      this.user.zip = this.zip.value;
+      this.user.first_name = this.first_name.value;
+      this.user.last_name = this.last_name.value;
+      this.user.state_id = this.state_id;
+      this.user.role = "ROLE_USER";
+      this.user_service.createUser(this.user);
+    }
   }
 
   getLastNameMessage() {

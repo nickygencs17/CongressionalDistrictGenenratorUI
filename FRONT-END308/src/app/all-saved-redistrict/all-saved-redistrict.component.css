@@ -1,0 +1,16 @@
+mat-form-field {
+  width: 100% !important;
+}
+
+mat-expansion-panel {
+  text-align: center;
+}
+
+
+#wrapper {
+  text-align: center;
+}
+
+#yourdiv {
+  display: inline-block;
+}
