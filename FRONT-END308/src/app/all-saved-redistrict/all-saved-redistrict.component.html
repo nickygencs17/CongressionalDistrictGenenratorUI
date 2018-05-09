@@ -16,7 +16,7 @@
             State : {{ savedRedistrict.state_id | uppercase }}
           </mat-panel-title>
           <mat-panel-description>
-            Date : {{ savedRedistrict.time | date }}
+            Date : {{ savedRedistrict.time | date : "medium"}}
           </mat-panel-description>
         </mat-expansion-panel-header>
         <button mat-button color="basic" (click)="loadRedistrict(savedRedistrict.id, savedRedistrict.state_id)">Load</button>
