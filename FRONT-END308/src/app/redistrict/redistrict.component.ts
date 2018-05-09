@@ -43,6 +43,7 @@ export class RedistrictComponent implements OnInit {
   showRedistrict = false;
   message = "Building GeoJson...";
   list: string[] = [];
+  cd_list: string[] = [];
   algo_id: string;
   new_center: any;
   new_fitBounds: any;
@@ -89,9 +90,12 @@ export class RedistrictComponent implements OnInit {
       for (var i = 0; i < this.state_service.redistrictAlgoObj.moves.length; i++) {
         this.map.set(this.state_service.redistrictAlgoObj.moves[i].geoId, this.state_service.redistrictAlgoObj.moves[i].colorChange);
       }
-
       for(var i = 0; i<this.state_service.redistrictAlgoObj.excluded_precinct_ids.length; i++){
         this.list.push(this.state_service.redistrictAlgoObj.excluded_precinct_ids[i]);
+      }
+
+      for(var i = 0; i<this.state_service.redistrictAlgoObj.included_districts_ids.length; i++){
+        this.cd_list.push(this.state_service.redistrictAlgoObj.included_districts_ids[i]);
       }
       if(this.state_service.algo_id === null){
         alert("Please select params");
