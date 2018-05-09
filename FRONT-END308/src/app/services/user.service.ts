@@ -65,7 +65,9 @@ export class UserService {
           }
         },
         error => {
-          alert('Username/Password Bad');
+
+
+          alert('Please Fill Out all required Fields ');
         });
   }
 
