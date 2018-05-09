@@ -53,25 +53,25 @@
            [leafletCenter]="center"
            [leafletFitBounds]="fitBounds"></div>
     <div>
-        <H2>Alorithim Information:</H2>
+        <H2>Algorithim Information:</H2>
         <p>Compactness: {{compactness}}</p>
         <p>Population Deviation: {{populationdeviation}}</p>
         <p>Total Population: {{totalpopulation}}</p>
         <p>Number of Districts: {{numberofdistricts}}</p>
         <p>Political Fairness: {{polfairness}}</p>
-        <p>NewCompactness: {{new_compactness}}</p>
-        <p>NewPopulation Deviation: {{newpopulationDeviation}}</p>
+        <p>New Compactness: {{new_compactness}}</p>
+        <p>New Population Deviation: {{newpopulationDeviation}}</p>
 
 
       <ul style="list-style: none">
-        <li><p>Excluded Precients:</p></li>
+        <li><p>Excluded Precients Geo Ids:</p></li>
         <li *ngFor="let precint of list">
           {{ precint }}
         </li>
       </ul>
 
       <ul style="list-style: none">
-        <li><p>Included District IDS</p></li>
+        <li><p>Included Districts Ids:</p></li>
         <li *ngFor="let dis of cd_list">
           {{ dis }}
         </li>

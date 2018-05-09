@@ -61,6 +61,12 @@ export class TableComponent implements OnInit {
             else if (this.res.entity.CURRENT_OFFICIALS[i].party == 'Democratic'){
               this.res.entity.CURRENT_OFFICIALS[i].color = 'blue';
             }
+            else if (this.res.entity.CURRENT_OFFICIALS[i].party == 'Libertarian'){
+              this.res.entity.CURRENT_OFFICIALS[i].color = 'yellow';
+            }
+            else if (this.res.entity.CURRENT_OFFICIALS[i].party == 'Green'){
+              this.res.entity.CURRENT_OFFICIALS[i].color = 'green';
+            }
             else{
               this.res.entity.CURRENT_OFFICIALS[i].color = 'black';
             }

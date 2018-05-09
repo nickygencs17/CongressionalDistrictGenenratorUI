@@ -57,6 +57,12 @@ export class CongresselectiontableComponent implements OnInit {
             else if (this.res.entity.CONGRESS_ELECTION_INFO[i].party == 'Democratic'){
               this.res.entity.CONGRESS_ELECTION_INFO[i].color = 'blue';
             }
+            else if (this.res.entity.CONGRESS_ELECTION_INFO[i].party == 'Libertarian'){
+              this.res.entity.CONGRESS_ELECTION_INFO[i].color = 'orange';
+            }
+            else if (this.res.entity.CONGRESS_ELECTION_INFO[i].party == 'Green'){
+              this.res.entity.CONGRESS_ELECTION_INFO[i].color = 'green';
+            }
             else{
               this.res.entity.CONGRESS_ELECTION_INFO[i].color = 'black';
             }

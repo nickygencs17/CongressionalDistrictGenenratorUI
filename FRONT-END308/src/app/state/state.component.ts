@@ -200,11 +200,11 @@ export class StateComponent implements OnInit {
               if (this.eagleState === true) {
                 this.layerData.options.color = this.layerData.feature.properties.COLOR;
                 popupContent =
-                  '<h1>Name: ' + this.layerData.feature.properties.name + '</h1>' +
-                  '<p>Gov: ' + this.layerData.feature.properties.REP + '</p>' +
-                  '<p>Number of congress districts: ' + this.layerData.feature.properties.NUMDISTRICTS + '</p>' +
-                  '<p>Population: ' + this.layerData.feature.properties.POP + '</p>' +
-                  '<p>Compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>';
+                  '<h1>Name : ' + this.layerData.feature.properties.name + '</h1>' +
+                  '<p>Governor : ' + this.layerData.feature.properties.REP + '</p>' +
+                  '<p>Number of congress districts : ' + this.layerData.feature.properties.NUMDISTRICTS + '</p>' +
+                  '<p>Population : ' + this.layerData.feature.properties.POP + '</p>' +
+                  '<p>Compactness : ' + this.layerData.feature.properties.COMPACTNESS + '</p>';
               }
               else {
                 popupContent = '<h1>name: ' + this.layerData.feature.properties.name + '</h1>';
@@ -213,14 +213,14 @@ export class StateComponent implements OnInit {
             }
             else if (type === 'senate') {
               popupContent =
-                '<h1>Name: Senate District ' + this.layerData.feature.properties.NAME + '</h1>' +
-                '<p>Rep: ' + this.layerData.feature.properties.REP + '</p>';
+                '<h1>Name : State Senate District ' + this.layerData.feature.properties.NAME + '</h1>' +
+                '<p>Representative : ' + this.layerData.feature.properties.REP + '</p>';
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
             else if (type === 'assembly') {
               popupContent =
-                '<h1>Name: Assembly District ' + this.layerData.feature.properties.NAME + '</h1>' +
-                '<p>Rep: ' + this.layerData.feature.properties.REP + '</p>';
+                '<h1>Name : State House District ' + this.layerData.feature.properties.NAME + '</h1>' +
+                '<p>Representative : ' + this.layerData.feature.properties.REP + '</p>';
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
             }
             else if (type === 'congress') {
@@ -258,13 +258,13 @@ export class StateComponent implements OnInit {
             }
             else if (type === 'precinct') {
               popupContent =
-                '<h1>Name: ' + this.layerData.feature.properties.NAME10 + '</h1>' +
-                '<p>Geo_ID: ' + this.layerData.feature.properties.GEOID10 + '</p>' +
-                '<p>Compactness: ' + this.layerData.feature.properties.COMPACTNESS + '</p>' +
-                '<p>Population: ' + this.layerData.feature.properties.POPULATION + '</p>' +
-                '<p>Democratic Leaning: ' + this.layerData.feature.properties.D_LEANING + '</p>' +
-                '<p>Republican Leaning: ' + this.layerData.feature.properties.R_LEANING + '</h1>' +
-                '<p>Congressional District: ' + this.layerData.feature.properties.CONGRESS_ID + '</p>';
+                '<h1>Name : ' + this.layerData.feature.properties.NAME10 + '</h1>' +
+                '<p>Geo_ID : ' + this.layerData.feature.properties.GEOID10 + '</p>' +
+                '<p>Compactness : ' + this.layerData.feature.properties.COMPACTNESS + '</p>' +
+                '<p>Population : ' + this.layerData.feature.properties.POPULATION + '</p>' +
+                '<p>Democratic Leaning : ' + this.layerData.feature.properties.D_LEANING + '</p>' +
+                '<p>Republican Leaning : ' + this.layerData.feature.properties.R_LEANING + '</h1>' +
+                '<p>Congressional District : ' + this.layerData.feature.properties.CONGRESS_ID + '</p>';
 
               this.layerData.options.color = this.layerData.feature.properties.COLOR;
 

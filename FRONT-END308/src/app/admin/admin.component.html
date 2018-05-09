@@ -155,7 +155,7 @@
                   (click)="saveUser(user.username, firstName.value, lastName.value, password.value, city.value, address.value, state_id.value, zip.value, pop_coef.value, fair_coef.value, com_coef.value)">
             Save
           </button>
-          <button mat-button color="primary" (click)="deleteUser(user.username)">Delete</button>
+          <button *ngIf = "currentUser.username != user.username" mat-button color="primary" (click)="deleteUser(user.username)">Delete</button>
         </mat-expansion-panel>
       </div>
     </div>
