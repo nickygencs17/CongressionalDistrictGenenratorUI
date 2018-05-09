@@ -35,7 +35,7 @@
     </li>
     <li>
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Enter your password" [formControl]="password_two" type="password" required>
+        <input matInput placeholder="Retype your password" [formControl]="password_two" type="password" required>
         <mat-error *ngIf="password_two.invalid">{{ getPasswordTwoMessage() }}</mat-error>
       </mat-form-field>
     </li>
