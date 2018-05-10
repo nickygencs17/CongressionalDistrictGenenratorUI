@@ -3,9 +3,9 @@
   <hr>
 </div>
 <div *ngIf="algo_finished">
-<a *ngIf="arState" href="/assets/download/download_ar.geojson" download>Export GEOJSON</a>
-<a *ngIf="wvState" href="/assets/download/download_wv.geojson" download>Export GEOJSON</a>
-<a *ngIf="inState" href="/assets/download/download_in.geojson" download>Export GEOJSON</a>
+<a *ngIf="arState" href="/assets/download/download_ar.geojson" download>Export Map</a>
+<a *ngIf="wvState" href="/assets/download/download_wv.geojson" download>Export Map</a>
+<a *ngIf="inState" href="/assets/download/download_in.geojson" download>Export Map</a>
 </div>
 <div id="wrapper" *ngIf="isLoadingResults">
   <h1>{{message}}</h1>
