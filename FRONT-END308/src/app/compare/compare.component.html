@@ -1,5 +1,9 @@
 
 <div>
+  <h3>Compare Two States</h3>
+  <hr>
+</div>
+<div>
   <mat-form-field>
     <mat-select placeholder="Select State One" #stateValueOne (change)="changeStateOne($event.value)" required>
       <mat-option *ngFor="let state of states" [value]="state">{{state.value}}</mat-option>
