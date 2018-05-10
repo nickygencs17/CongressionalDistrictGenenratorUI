@@ -52,11 +52,13 @@ export class UserService {
             }
             this.loggedin = true;
             this.user_name = user.username;
-            this.currentUser.username = user.username;
+            console.log(this.resJson);
+            this.currentUser.username = this.resJson.entity.un;
+            this.currentUser.password = this.resJson.entity.pass;
             this.currentUser.role = 'ROLE_USER';
             localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
-            location.reload();
-            this.router.navigate(['']);
+             location.reload();
+             this.router.navigate(['']);
 
           }
           else if (this.resJson.status === 409) {
@@ -133,6 +135,7 @@ export class UserService {
   getSavedRedistrictsList(username: string): any {
     let headers = new HttpHeaders();
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    console.log(this.currentUser);
     if (!this.currentUser) {
       alert("Not Authorized");
       this.router.navigate(['']);
