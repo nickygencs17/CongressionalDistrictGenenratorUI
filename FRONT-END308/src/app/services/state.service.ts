@@ -16,12 +16,12 @@ export class StateService {
 
 
   getData() {
-    const url = 'http://www.datasciencetoolkit.org/maps/api/geocode/json?sensor=false&address=' + this.state_id_service.state_id + ',US';
+    const url = 'http://54.172.46.34/maps/api/geocode/json?sensor=false&address=' + this.state_id_service.state_id + ',US';
     return this.http.jsonp(url, 'callback');
   }
 
   getCompareData(state_id) {
-    const url = 'http://www.datasciencetoolkit.org/maps/api/geocode/json?sensor=false&address=' + state_id + ',US';
+    const url = 'http://54.172.46.34/maps/api/geocode/json?sensor=false&address=' + state_id + ',US';
     return this.http.jsonp(url, 'callback');
   }
 
@@ -73,7 +73,7 @@ export class StateService {
 
 
   getAlgoStateData(state_id: string) {
-    const url = 'http://www.datasciencetoolkit.org/maps/api/geocode/json?sensor=false&address=' + state_id + ',US';
+    const url = 'http://54.172.46.34/maps/api/geocode/json?sensor=false&address=' + state_id + ',US';
     return this.http.jsonp(url, 'callback');
   }
 

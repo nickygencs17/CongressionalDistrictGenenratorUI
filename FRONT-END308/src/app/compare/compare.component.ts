@@ -133,7 +133,6 @@ export class CompareComponent implements OnInit {
         let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
         let defaultOverlay = geoJSON(geo1, {
           onEachFeature: (feature, layer) => {
-
             this.state_one_layer = layer;
             this.state_one_layer.options.weight = 0.7;
             this.state_one_layer.options.color = this.state_one_layer.feature.properties.COLOR;
