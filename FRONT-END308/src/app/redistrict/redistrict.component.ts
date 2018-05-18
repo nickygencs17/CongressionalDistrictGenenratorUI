@@ -80,8 +80,8 @@ export class RedistrictComponent implements OnInit {
       this.currentUser = userJson.username;
     }
     else {
-      alert("Please login");
-      this.router.navigate(['']);
+      // alert("Please login");
+      // this.router.navigate(['']);
     }
     if(this.state_service.algo_id.length>2){
       this.state_id = this.state_service.algo_state.toUpperCase();
@@ -141,20 +141,8 @@ export class RedistrictComponent implements OnInit {
           this.polfairness = 0.605587;
         }
       }
-      this.state_service.getAlgoStateData(this.state_id)
-        .subscribe(response => {
-
-          console.log(response);
-          this.data = response;
-          this.lat = this.data.results['0'].geometry.location.lat;
-          this.lng = this.data.results['0'].geometry.location.lng;
-          this.center = [this.lat, this.lng];
-          this.fitBounds = [[this.data.results['0'].geometry.viewport.northeast.lat, this.data.results['0'].geometry.viewport.northeast.lng],
-            [this.data.results['0'].geometry.viewport.southwest.lat, this.data.results['0'].geometry.viewport.southwest.lng]];
-          this.allDataFetched = true;
-          this.displayBoundaries();
-
-        });
+      this.allDataFetched = true;
+      this.displayBoundaries();
     }
     else {
       this.router.navigate(['']);
@@ -167,6 +155,7 @@ export class RedistrictComponent implements OnInit {
 
       this.http.get<any>(url)
         .subscribe(geo1 => {
+          this.fitBounds = geoJSON(geo1).getBounds();
           let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
           let defaultOverlay = geoJSON(geo1, {
             onEachFeature: (feature, layer) => {
@@ -240,6 +229,7 @@ export class RedistrictComponent implements OnInit {
 
     this.http.get<any>(url)
       .subscribe(geo1 => {
+        this.fitBounds = geoJSON(geo1).getBounds();
         let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
         let defaultOverlay = geoJSON(geo1, {
           onEachFeature: (feature, layer) => {

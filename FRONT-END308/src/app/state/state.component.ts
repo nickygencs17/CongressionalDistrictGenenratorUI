@@ -83,10 +83,10 @@ export class StateComponent implements OnInit {
   ngOnInit() {
 
 
-    if (!this.userService.isLoggedIn()) {
-      alert("Please login");
-      this.router.navigate(['']);
-    }
+    // if (!this.userService.isLoggedIn()) {
+    //   alert("Please login");
+    //   this.router.navigate(['']);
+    // }
     this.id = this.route.snapshot.params['id'];
     this.state_id_service.state_id = this.id;
     
@@ -137,17 +137,17 @@ export class StateComponent implements OnInit {
       this.cd_list.push(cd);
     }
 
-    this.state_service.getData()
-      .subscribe(response => {
-        this.data = response;
-        this.lat = this.data.results['0'].geometry.location.lat;
-        this.lng = this.data.results['0'].geometry.location.lng;
-        this.center = [this.lat, this.lng];
-        this.fitBounds = [[this.data.results['0'].geometry.viewport.northeast.lat, this.data.results['0'].geometry.viewport.northeast.lng],
-          [this.data.results['0'].geometry.viewport.southwest.lat, this.data.results['0'].geometry.viewport.southwest.lng]];
-        this.allDataFetched = true;
+    // this.state_service.getData()
+    //   .subscribe(response => {
+    //     this.data = response;
+    //     this.lat = this.data.results['0'].geometry.location.lat;
+    //     this.lng = this.data.results['0'].geometry.location.lng;
+    //     this.center = [this.lat, this.lng];
+    //     this.fitBounds = [[this.data.results['0'].geometry.viewport.northeast.lat, this.data.results['0'].geometry.viewport.northeast.lng],
+    //       [this.data.results['0'].geometry.viewport.southwest.lat, this.data.results['0'].geometry.viewport.southwest.lng]];
+        
 
-      });
+    //   });
     this.displayBoundaries(this.start_string);
   }
 
@@ -194,7 +194,10 @@ export class StateComponent implements OnInit {
 
     this.http.get<any>(url)
       .subscribe(geo1 => {
+        
         let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
+        this.fitBounds = geoJSON(geo1).getBounds();
+        console.log(this.fitBounds);
         let defaultOverlay = geoJSON(geo1, {
           onEachFeature: (feature, layer) => {
 
@@ -307,7 +310,7 @@ export class StateComponent implements OnInit {
             'Overlay One': defaultOverlay
           }
         };
-
+        this.allDataFetched = true;
         this.isLoadingResults = false;
       });
   }

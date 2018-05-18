@@ -97,39 +97,42 @@ export class CompareComponent implements OnInit {
     }
     else {
 
-      this.state_service.getCompareData(this.state_id_one)
-        .subscribe(response => {
-          console.log(response);
-          this.state_one_data = response;
-          this.state_one_lat = this.state_one_data.results['0'].geometry.location.lat;
-          this.state_one_lng = this.state_one_data.results['0'].geometry.location.lng;
-          this.state_one_center = [this.state_one_lat, this.state_one_lng];
-          this.state_one_fit_bounds = [[this.state_one_data.results['0'].geometry.viewport.northeast.lat, this.state_one_data.results['0'].geometry.viewport.northeast.lng],
-            [this.state_one_data.results['0'].geometry.viewport.southwest.lat, this.state_one_data.results['0'].geometry.viewport.southwest.lng]];
-          this.state_service.getCompareData(this.state_id_two)
-            .subscribe(response => {
-              console.log(response);
-              this.state_two_data = response;
-              this.state_two_lat = this.state_two_data.results['0'].geometry.location.lat;
-              this.state_two_lng = this.state_two_data.results['0'].geometry.location.lng;
-              this.state_two_center = [this.state_two_lat, this.state_two_lng];
-              this.state_two_fit_bounds = [[this.state_two_data.results['0'].geometry.viewport.northeast.lat, this.state_two_data.results['0'].geometry.viewport.northeast.lng],
-                [this.state_two_data.results['0'].geometry.viewport.southwest.lat, this.state_two_data.results['0'].geometry.viewport.southwest.lng]];
-              this.allDataFetched = true;
-              this.displayMaps();
-            });
-        });
-
+      // this.state_service.getCompareData(this.state_id_one)
+      //   .subscribe(response => {
+      //     console.log(response);
+      //     this.state_one_data = response;
+      //     this.state_one_lat = this.state_one_data.results['0'].geometry.location.lat;
+      //     this.state_one_lng = this.state_one_data.results['0'].geometry.location.lng;
+      //     this.state_one_center = [this.state_one_lat, this.state_one_lng];
+      //     this.state_one_fit_bounds = [[this.state_one_data.results['0'].geometry.viewport.northeast.lat, this.state_one_data.results['0'].geometry.viewport.northeast.lng],
+      //       [this.state_one_data.results['0'].geometry.viewport.southwest.lat, this.state_one_data.results['0'].geometry.viewport.southwest.lng]];
+      //     this.state_service.getCompareData(this.state_id_two)
+      //       .subscribe(response => {
+      //         console.log(response);
+      //         this.state_two_data = response;
+      //         this.state_two_lat = this.state_two_data.results['0'].geometry.location.lat;
+      //         this.state_two_lng = this.state_two_data.results['0'].geometry.location.lng;
+      //         this.state_two_center = [this.state_two_lat, this.state_two_lng];
+      //         this.state_two_fit_bounds = [[this.state_two_data.results['0'].geometry.viewport.northeast.lat, this.state_two_data.results['0'].geometry.viewport.northeast.lng],
+      //           [this.state_two_data.results['0'].geometry.viewport.southwest.lat, this.state_two_data.results['0'].geometry.viewport.southwest.lng]];
+      //         this.allDataFetched = true;
+      //         this.displayMaps();
+      //       });
+      //   });
+      this.allDataFetched = true;
       this.compared = true;
       console.log(this.state_id_two);
       console.log(this.state_id_one);
+      this.displayMaps();
     }
   }
 
   displayMaps() {
     let url_one = '/assets/data/' + this.state_id_one.toUpperCase() + '/' + this.state_id_one.toUpperCase() + '_COMBINED_CONGRESS.geojson';
     this.http.get<any>(url_one)
+    
       .subscribe(geo1 => {
+        this.state_one_fit_bounds = geoJSON(geo1).getBounds();
         let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
         let defaultOverlay = geoJSON(geo1, {
           onEachFeature: (feature, layer) => {
@@ -181,6 +184,7 @@ export class CompareComponent implements OnInit {
     let url_two = '/assets/data/' + this.state_id_two.toUpperCase() + '/' + this.state_id_two.toUpperCase() + '_COMBINED_CONGRESS.geojson';
     this.http.get<any>(url_two)
       .subscribe(geo1 => {
+        this.state_two_fit_bounds = geoJSON(geo1).getBounds();
         let defaultBaseLayer = tileLayer.provider('OpenStreetMap.Mapnik');
         let defaultOverlay = geoJSON(geo1, {
           onEachFeature: (feature, layer) => {
